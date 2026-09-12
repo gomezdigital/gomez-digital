@@ -71,7 +71,7 @@ script.js
 
 Find:
 
-const phoneNumber = "267XXXXXXXX";
+const phoneNumber = "2671086913";
 
 Replace it with the client's WhatsApp number.
 
@@ -104,17 +104,17 @@ index.html
 
 Search for:
 
-https://wa.me/267XXXXXXXX
+https://wa.me/2671086913
 
 Replace:
 
-267XXXXXXXX
+2671086913
 
 with the correct WhatsApp number.
 
 Example:
 
-https://wa.me/26771234567
+https://wa.me/26771086913
 
 ---
 
@@ -126,7 +126,7 @@ index.html
 
 Search for:
 
-hello@gomezdigital.com
+gomezdigital514@gmail.com
 
 Replace it with the client's real email address.
 
