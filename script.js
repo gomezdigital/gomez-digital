@@ -73,7 +73,7 @@ if (contactForm) {
         26771234567
         */
 
-        const phoneNumber = "267XXXXXXXX";
+        const phoneNumber = "2671086913";
 
 
         const whatsappMessage =
