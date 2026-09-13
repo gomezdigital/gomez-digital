@@ -1,98 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Gomez Digital — Websites That Move Businesses Forward</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <meta name="description"
-        content="Gomez Digital creates modern websites, digital experiences and online solutions for businesses worldwide.">
+    <meta
+        name="description"
+        content="Gomez Digital creates premium websites, digital experiences and AI-powered solutions for businesses worldwide."
+    >
 
+    <meta
+        name="theme-color"
+        content="#050505"
+    >
+
+    <title>Gomez Digital — Digital Experiences Worldwide</title>
+
+    <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- MAIN CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body>
 
-<!-- ================= PRELOADER ================= -->
+<!-- ==================================================
+     PAGE LOADER
+================================================== -->
 
 <div class="loader" id="loader">
-    <div class="loader-logo">G<span>D</span></div>
+
+    <div class="loader-logo">
+        GD<span>.</span>
+    </div>
+
     <div class="loader-line"></div>
+
     <p>GOMEZ DIGITAL</p>
+
 </div>
 
 
-<!-- ================= NAVBAR ================= -->
+<!-- ==================================================
+     NAVIGATION
+================================================== -->
 
 <header class="navbar">
 
-    <a href="#home" class="logo">
-        GOMEZ<span>.</span>
+    <!-- BRAND -->
+
+    <a
+        href="#home"
+        class="logo"
+        aria-label="Gomez Digital home"
+    >
+        GOMEZ <span>DIGITAL</span>
     </a>
 
-    <nav class="nav-links">
+
+    <!-- DESKTOP NAVIGATION -->
+
+    <nav
+        class="nav-links"
+        aria-label="Main navigation"
+    >
+
+        <a href="#home">Home</a>
+
         <a href="#work">Work</a>
+
         <a href="#services">Services</a>
+
         <a href="#process">Process</a>
+
         <a href="#contact">Contact</a>
+
     </nav>
 
-    <a href="#contact" class="nav-button">
+
+    <!-- DESKTOP CTA -->
+
+    <a
+        href="#contact"
+        class="nav-button"
+    >
         Start a Project
         <span>↗</span>
     </a>
 
-    <button class="menu-button" id="menuButton">
-        ☰
+
+    <!-- MOBILE MENU BUTTON -->
+
+    <button
+        class="menu-button"
+        id="menuButton"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+    >
+
+        <span></span>
+        <span></span>
+        <span></span>
+
     </button>
 
 </header>
 
 
-<!-- ================= HERO ================= -->
+<!-- ==================================================
+     MOBILE MENU
+================================================== -->
+
+<div
+    class="mobile-menu"
+    id="mobileMenu"
+    aria-hidden="true"
+>
+
+    <div class="mobile-menu-header">
+
+        <span class="mobile-menu-label">
+            MENU
+        </span>
+
+        <button
+            class="mobile-close"
+            id="mobileClose"
+            type="button"
+            aria-label="Close navigation menu"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <nav class="mobile-links">
+
+        <a href="#home">01 <span>Home</span></a>
+
+        <a href="#work">02 <span>Work</span></a>
+
+        <a href="#services">03 <span>Services</span></a>
+
+        <a href="#process">04 <span>Process</span></a>
+
+        <a href="#contact">05 <span>Contact</span></a>
+
+    </nav>
+
+
+    <div class="mobile-menu-footer">
+
+        <p>GOMEZ DIGITAL</p>
+
+        <a href="mailto:gomezdigital514@gmail.com">
+            gomezdigital514@gmail.com
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- ==================================================
+     MAIN CONTENT
+================================================== -->
 
 <main>
 
-<section class="hero" id="home">
+
+<!-- ==================================================
+     HERO
+================================================== -->
+
+<section
+    class="hero"
+    id="home"
+>
 
     <div class="hero-grid"></div>
 
     <div class="glow glow-one"></div>
+
     <div class="glow glow-two"></div>
+
 
     <div class="hero-content">
 
         <div class="eyebrow">
+
             <span class="status-dot"></span>
+
             DIGITAL STUDIO • WORLDWIDE
+
         </div>
 
+
         <h1>
+
             WE BUILD
+
             <span>THE DIGITAL</span>
+
             <em>FUTURE.</em>
+
         </h1>
 
+
         <p class="hero-description">
-            Gomez Digital creates bold websites, digital experiences
-            and online solutions designed to make brands impossible to ignore.
+
+            Gomez Digital creates bold websites,
+            digital experiences and online solutions
+            designed to make brands impossible to ignore.
+
         </p>
+
 
         <div class="hero-actions">
 
-            <a href="#contact" class="primary-button">
+            <a
+                href="#contact"
+                class="primary-button"
+            >
                 Start a Project
                 <span>↗</span>
             </a>
 
-            <a href="#work" class="secondary-button">
+
+            <a
+                href="#work"
+                class="secondary-button"
+            >
                 Explore Our Work
                 <span>↓</span>
             </a>
@@ -102,27 +260,39 @@
     </div>
 
 
-    <!-- FLOATING HERO CARD -->
+    <!-- HERO VISUAL -->
 
     <div class="hero-visual">
 
         <div class="orb"></div>
 
+
         <div class="floating-card card-top">
+
             <small>GLOBAL REACH</small>
+
             <strong>∞</strong>
+
             <span>Worldwide</span>
+
         </div>
 
+
         <div class="floating-card card-bottom">
+
             <small>WEBSITE SYSTEM</small>
+
             <strong>01</strong>
+
             <span>Strategy → Design → Build</span>
+
         </div>
+
 
         <div class="hero-circle">
 
             <div class="circle-ring ring-one"></div>
+
             <div class="circle-ring ring-two"></div>
 
             <div class="circle-core">
@@ -135,14 +305,19 @@
 
 
     <div class="hero-scroll">
+
         SCROLL TO EXPLORE
+
         <span></span>
+
     </div>
 
 </section>
 
 
-<!-- ================= MARQUEE ================= -->
+<!-- ==================================================
+     MARQUEE
+================================================== -->
 
 <section class="marquee">
 
@@ -174,7 +349,9 @@
 </section>
 
 
-<!-- ================= INTRO ================= -->
+<!-- ==================================================
+     PHILOSOPHY
+================================================== -->
 
 <section class="intro section">
 
@@ -182,16 +359,24 @@
         01 / PHILOSOPHY
     </div>
 
+
     <div class="intro-content">
 
         <h2>
+
             WE DON'T JUST
+
             <span>DESIGN WEBSITES.</span>
+
         </h2>
 
+
         <p>
-            We build digital identities that help businesses look credible,
-            communicate clearly and turn visitors into customers.
+
+            We build digital identities that help
+            businesses look credible, communicate
+            clearly and turn visitors into customers.
+
         </p>
 
     </div>
@@ -199,9 +384,14 @@
 </section>
 
 
-<!-- ================= SERVICES ================= -->
+<!-- ==================================================
+     SERVICES
+================================================== -->
 
-<section class="services section" id="services">
+<section
+    class="services section"
+    id="services"
+>
 
     <div class="section-heading">
 
@@ -210,8 +400,11 @@
         </div>
 
         <h2>
+
             DIGITAL
+
             <span>ENGINEERING.</span>
+
         </h2>
 
     </div>
@@ -219,17 +412,25 @@
 
     <div class="service-grid">
 
+
         <article class="service-card large">
 
-            <div class="service-number">01</div>
+            <div class="service-number">
+                01
+            </div>
 
-            <div class="service-icon">◈</div>
+            <div class="service-icon">
+                ◈
+            </div>
 
-            <h3>Website Design</h3>
+            <h3>
+                Website Design
+            </h3>
 
             <p>
-                Modern, responsive websites designed around your
-                brand, audience and business goals.
+                Modern, responsive websites designed
+                around your brand, audience and
+                business goals.
             </p>
 
             <a href="#contact">
@@ -242,15 +443,21 @@
 
         <article class="service-card">
 
-            <div class="service-number">02</div>
+            <div class="service-number">
+                02
+            </div>
 
-            <div class="service-icon">◎</div>
+            <div class="service-icon">
+                ◎
+            </div>
 
-            <h3>Landing Pages</h3>
+            <h3>
+                Landing Pages
+            </h3>
 
             <p>
-                High-converting landing pages for campaigns,
-                products and personal brands.
+                High-converting landing pages for
+                campaigns, products and personal brands.
             </p>
 
             <a href="#contact">
@@ -263,15 +470,22 @@
 
         <article class="service-card">
 
-            <div class="service-number">03</div>
+            <div class="service-number">
+                03
+            </div>
 
-            <div class="service-icon">⌁</div>
+            <div class="service-icon">
+                ⌁
+            </div>
 
-            <h3>Digital Branding</h3>
+            <h3>
+                Digital Branding
+            </h3>
 
             <p>
-                A digital identity that gives your business
-                a professional and memorable presence.
+                A digital identity that gives your
+                business a professional and memorable
+                presence.
             </p>
 
             <a href="#contact">
@@ -284,15 +498,22 @@
 
         <article class="service-card">
 
-            <div class="service-number">04</div>
+            <div class="service-number">
+                04
+            </div>
 
-            <div class="service-icon">✦</div>
+            <div class="service-icon">
+                ✦
+            </div>
 
-            <h3>AI Solutions</h3>
+            <h3>
+                AI Solutions
+            </h3>
 
             <p>
-                Smart digital workflows and AI-assisted solutions
-                built to save time and improve productivity.
+                Smart digital workflows and AI-assisted
+                solutions built to save time and improve
+                productivity.
             </p>
 
             <a href="#contact">
@@ -307,9 +528,14 @@
 </section>
 
 
-<!-- ================= WORK ================= -->
+<!-- ==================================================
+     WORK
+================================================== -->
 
-<section class="work section" id="work">
+<section
+    class="work section"
+    id="work"
+>
 
     <div class="section-heading">
 
@@ -318,8 +544,11 @@
         </div>
 
         <h2>
+
             BUILT TO BE
+
             <span>REMEMBERED.</span>
+
         </h2>
 
     </div>
@@ -327,15 +556,22 @@
 
     <div class="project-showcase">
 
-        <div class="project-image project-one">
+        <div class="project-image">
 
             <div class="project-overlay">
 
-                <small>DIGITAL EXPERIENCE</small>
+                <small>
+                    DIGITAL EXPERIENCE
+                </small>
 
-                <h3>Future<br>Commerce</h3>
+                <h3>
+                    Future<br>
+                    Commerce
+                </h3>
 
-                <span>View concept ↗</span>
+                <span>
+                    View concept ↗
+                </span>
 
             </div>
 
@@ -345,18 +581,23 @@
         <div class="project-info">
 
             <div>
-                <small>PROJECT / 001</small>
+
+                <small>
+                    PROJECT / 001
+                </small>
 
                 <h3>
                     DIGITAL
                     <br>
                     PRESENCE
                 </h3>
+
             </div>
 
+
             <p>
-                Strategic design, responsive development and
-                conversion-focused architecture.
+                Strategic design, responsive development
+                and conversion-focused architecture.
             </p>
 
         </div>
@@ -366,9 +607,14 @@
 </section>
 
 
-<!-- ================= PROCESS ================= -->
+<!-- ==================================================
+     PROCESS
+================================================== -->
 
-<section class="process section" id="process">
+<section
+    class="process section"
+    id="process"
+>
 
     <div class="section-heading">
 
@@ -377,8 +623,11 @@
         </div>
 
         <h2>
+
             FROM IDEA
+
             <span>TO ONLINE.</span>
+
         </h2>
 
     </div>
@@ -386,11 +635,14 @@
 
     <div class="process-grid">
 
+
         <div class="process-step">
 
             <span>01</span>
 
-            <h3>DISCOVER</h3>
+            <h3>
+                DISCOVER
+            </h3>
 
             <p>
                 You tell us about your business,
@@ -404,7 +656,9 @@
 
             <span>02</span>
 
-            <h3>DESIGN</h3>
+            <h3>
+                DESIGN
+            </h3>
 
             <p>
                 We create the visual direction,
@@ -418,7 +672,9 @@
 
             <span>03</span>
 
-            <h3>BUILD</h3>
+            <h3>
+                BUILD
+            </h3>
 
             <p>
                 Your website is developed,
@@ -432,7 +688,9 @@
 
             <span>04</span>
 
-            <h3>LAUNCH</h3>
+            <h3>
+                LAUNCH
+            </h3>
 
             <p>
                 Your website goes live and
@@ -446,39 +704,59 @@
 </section>
 
 
-<!-- ================= GLOBAL ================= -->
+<!-- ==================================================
+     GLOBAL
+================================================== -->
 
 <section class="global section">
 
     <div class="global-card">
 
-        <div class="global-glow"></div>
+        <small>
+            WHERE WE WORK
+        </small>
 
-        <small>WHERE WE WORK</small>
 
         <h2>
+
             YOUR BUSINESS.
+
             <br>
+
             <span>ANYWHERE.</span>
+
         </h2>
 
+
         <p>
-            Gomez Digital works with ambitious businesses,
-            creators and entrepreneurs around the world.
+
+            Gomez Digital works with ambitious
+            businesses, creators and entrepreneurs
+            around the world.
+
         </p>
 
 
         <div class="country-pills">
 
             <span>🇧🇼 Botswana</span>
+
             <span>🇿🇦 South Africa</span>
+
             <span>🇳🇬 Nigeria</span>
+
             <span>🇬🇭 Ghana</span>
+
             <span>🇰🇪 Kenya</span>
+
             <span>🇺🇸 USA</span>
+
             <span>🇬🇧 UK</span>
+
             <span>🇨🇦 Canada</span>
+
             <span>🇦🇪 UAE</span>
+
             <span>🌎 Worldwide</span>
 
         </div>
@@ -488,9 +766,15 @@
 </section>
 
 
-<!-- ================= CONTACT ================= -->
+<!-- ==================================================
+     CONTACT
+================================================== -->
 
-<section class="contact section" id="contact">
+<section
+    class="contact section"
+    id="contact"
+>
+
 
     <div class="contact-intro">
 
@@ -498,31 +782,67 @@
             05 / START A PROJECT
         </div>
 
+
         <h2>
+
             LET'S BUILD
+
             <span>SOMETHING.</span>
+
         </h2>
 
+
         <p>
-            Tell us what you're building and we'll
-            figure out the best digital solution.
+
+            Tell us what you're building and
+            we'll figure out the best digital
+            solution.
+
         </p>
+
+
+        <div class="contact-details">
+
+            <a href="mailto:gomezdigital514@gmail.com">
+                gomezdigital514@gmail.com
+            </a>
+
+
+            <a
+                href="https://wa.me/26771086913"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                WhatsApp: +267 71 086 913
+            </a>
+
+        </div>
 
     </div>
 
 
-    <form class="project-form" id="projectForm">
+    <!-- PROJECT FORM -->
+
+    <form
+        class="project-form"
+        id="projectForm"
+    >
+
 
         <div class="form-row">
 
+
             <div class="field">
 
-                <label>YOUR NAME</label>
+                <label for="name">
+                    YOUR NAME
+                </label>
 
                 <input
                     type="text"
                     id="name"
                     placeholder="John Doe"
+                    autocomplete="name"
                     required
                 >
 
@@ -531,12 +851,15 @@
 
             <div class="field">
 
-                <label>BUSINESS / BRAND</label>
+                <label for="business">
+                    BUSINESS / BRAND
+                </label>
 
                 <input
                     type="text"
                     id="business"
                     placeholder="Your Business"
+                    autocomplete="organization"
                     required
                 >
 
@@ -547,12 +870,15 @@
 
         <div class="field">
 
-            <label>EMAIL</label>
+            <label for="email">
+                EMAIL
+            </label>
 
             <input
                 type="email"
                 id="email"
                 placeholder="you@example.com"
+                autocomplete="email"
                 required
             >
 
@@ -563,57 +889,135 @@
 
         <div class="field">
 
-            <label>PHONE / WHATSAPP</label>
+            <label for="countryCode">
+                PHONE / WHATSAPP
+            </label>
+
 
             <div class="phone-wrapper">
 
+
                 <select id="countryCode">
 
-                    <option value="+267">🇧🇼 +267</option>
-                    <option value="+27">🇿🇦 +27</option>
-                    <option value="+234">🇳🇬 +234</option>
-                    <option value="+233">🇬🇭 +233</option>
-                    <option value="+254">🇰🇪 +254</option>
-                    <option value="+255">🇹🇿 +255</option>
-                    <option value="+260">🇿🇲 +260</option>
-                    <option value="+263">🇿🇼 +263</option>
-                    <option value="+264">🇳🇦 +264</option>
-                    <option value="+256">🇺🇬 +256</option>
+                    <option value="+267">
+                        🇧🇼 +267
+                    </option>
 
-                    <option value="+1">🇺🇸 +1</option>
-                    <option value="+1">🇨🇦 +1</option>
+                    <option value="+27">
+                        🇿🇦 +27
+                    </option>
 
-                    <option value="+44">🇬🇧 +44</option>
-                    <option value="+353">🇮🇪 +353</option>
-                    <option value="+33">🇫🇷 +33</option>
-                    <option value="+49">🇩🇪 +49</option>
-                    <option value="+39">🇮🇹 +39</option>
-                    <option value="+34">🇪🇸 +34</option>
-                    <option value="+31">🇳🇱 +31</option>
-                    <option value="+41">🇨🇭 +41</option>
-                    <option value="+46">🇸🇪 +46</option>
-                    <option value="+47">🇳🇴 +47</option>
-                    <option value="+45">🇩🇰 +45</option>
-                    <option value="+358">🇫🇮 +358</option>
+                    <option value="+234">
+                        🇳🇬 +234
+                    </option>
 
-                    <option value="+971">🇦🇪 +971</option>
-                    <option value="+966">🇸🇦 +966</option>
-                    <option value="+974">🇶🇦 +974</option>
-                    <option value="+972">🇮🇱 +972</option>
-                    <option value="+91">🇮🇳 +91</option>
-                    <option value="+92">🇵🇰 +92</option>
-                    <option value="+880">🇧🇩 +880</option>
-                    <option value="+86">🇨🇳 +86</option>
-                    <option value="+81">🇯🇵 +81</option>
-                    <option value="+82">🇰🇷 +82</option>
+                    <option value="+233">
+                        🇬🇭 +233
+                    </option>
 
-                    <option value="+61">🇦🇺 +61</option>
-                    <option value="+64">🇳🇿 +64</option>
+                    <option value="+254">
+                        🇰🇪 +254
+                    </option>
 
-                    <option value="+55">🇧🇷 +55</option>
-                    <option value="+52">🇲🇽 +52</option>
-                    <option value="+54">🇦🇷 +54</option>
-                    <option value="+57">🇨🇴 +57</option>
+                    <option value="+255">
+                        🇹🇿 +255
+                    </option>
+
+                    <option value="+260">
+                        🇿🇲 +260
+                    </option>
+
+                    <option value="+263">
+                        🇿🇼 +263
+                    </option>
+
+                    <option value="+264">
+                        🇳🇦 +264
+                    </option>
+
+                    <option value="+256">
+                        🇺🇬 +256
+                    </option>
+
+                    <option value="+1">
+                        🇺🇸🇨🇦 +1
+                    </option>
+
+                    <option value="+44">
+                        🇬🇧 +44
+                    </option>
+
+                    <option value="+353">
+                        🇮🇪 +353
+                    </option>
+
+                    <option value="+33">
+                        🇫🇷 +33
+                    </option>
+
+                    <option value="+49">
+                        🇩🇪 +49
+                    </option>
+
+                    <option value="+39">
+                        🇮🇹 +39
+                    </option>
+
+                    <option value="+34">
+                        🇪🇸 +34
+                    </option>
+
+                    <option value="+31">
+                        🇳🇱 +31
+                    </option>
+
+                    <option value="+41">
+                        🇨🇭 +41
+                    </option>
+
+                    <option value="+971">
+                        🇦🇪 +971
+                    </option>
+
+                    <option value="+966">
+                        🇸🇦 +966
+                    </option>
+
+                    <option value="+974">
+                        🇶🇦 +974
+                    </option>
+
+                    <option value="+91">
+                        🇮🇳 +91
+                    </option>
+
+                    <option value="+86">
+                        🇨🇳 +86
+                    </option>
+
+                    <option value="+81">
+                        🇯🇵 +81
+                    </option>
+
+                    <option value="+82">
+                        🇰🇷 +82
+                    </option>
+
+                    <option value="+61">
+                        🇦🇺 +61
+                    </option>
+
+                    <option value="+64">
+                        🇳🇿 +64
+                    </option>
+
+                    <option value="+55">
+                        🇧🇷 +55
+                    </option>
+
+                    <option value="+52">
+                        🇲🇽 +52
+                    </option>
 
                 </select>
 
@@ -622,6 +1026,7 @@
                     type="tel"
                     id="phone"
                     placeholder="71 234 5678"
+                    autocomplete="tel"
                 >
 
             </div>
@@ -629,30 +1034,69 @@
         </div>
 
 
+        <!-- SERVICE -->
+
         <div class="field">
 
-            <label>WHAT DO YOU NEED?</label>
+            <label for="service">
+                WHAT DO YOU NEED?
+            </label>
 
-            <select id="service">
 
-                <option value="">Select a service</option>
-                <option>Business Website</option>
-                <option>Landing Page</option>
-                <option>E-commerce Website</option>
-                <option>Personal Website</option>
-                <option>Portfolio</option>
-                <option>Digital Branding</option>
-                <option>AI Solution</option>
-                <option>Something Else</option>
+            <select
+                id="service"
+                required
+            >
+
+                <option value="">
+                    Select a service
+                </option>
+
+                <option>
+                    Business Website
+                </option>
+
+                <option>
+                    Landing Page
+                </option>
+
+                <option>
+                    E-commerce Website
+                </option>
+
+                <option>
+                    Personal Website
+                </option>
+
+                <option>
+                    Portfolio
+                </option>
+
+                <option>
+                    Digital Branding
+                </option>
+
+                <option>
+                    AI Solution
+                </option>
+
+                <option>
+                    Something Else
+                </option>
 
             </select>
 
         </div>
 
 
+        <!-- MESSAGE -->
+
         <div class="field">
 
-            <label>PROJECT DETAILS</label>
+            <label for="message">
+                PROJECT DETAILS
+            </label>
+
 
             <textarea
                 id="message"
@@ -664,7 +1108,10 @@
         </div>
 
 
-        <button type="submit" class="submit-button">
+        <button
+            type="submit"
+            class="submit-button"
+        >
 
             SEND PROJECT REQUEST
 
@@ -674,26 +1121,37 @@
 
 
         <p class="form-note">
-            Your request will open WhatsApp with your project
-            details ready to send.
+
+            Your request will open WhatsApp with
+            your project details ready to send.
+
         </p>
 
     </form>
 
 </section>
 
+</main>
 
-<!-- ================= FOOTER ================= -->
+
+<!-- ==================================================
+     FOOTER
+================================================== -->
 
 <footer>
 
     <div class="footer-top">
 
+
         <div>
 
-            <a class="logo footer-logo">
-                GOMEZ<span>.</span>
+            <a
+                href="#home"
+                class="logo footer-logo"
+            >
+                GOMEZ <span>DIGITAL</span>
             </a>
+
 
             <p>
                 Digital experiences for ambitious people.
@@ -705,8 +1163,11 @@
         <div class="footer-links">
 
             <a href="#home">Home</a>
+
             <a href="#work">Work</a>
+
             <a href="#services">Services</a>
+
             <a href="#contact">Contact</a>
 
         </div>
@@ -716,18 +1177,27 @@
 
     <div class="footer-bottom">
 
-        <span>© 2026 Gomez Digital</span>
+        <span>
+            © <span id="currentYear">2026</span>
+            Gomez Digital
+        </span>
 
-        <span>Built for the future.</span>
+
+        <a href="mailto:gomezdigital514@gmail.com">
+            gomezdigital514@gmail.com
+        </a>
 
     </div>
 
 </footer>
 
-</main>
 
+<!-- ==================================================
+     JAVASCRIPT
+================================================== -->
 
 <script src="script.js"></script>
 
 </body>
-</html>
+
+                        </html>
