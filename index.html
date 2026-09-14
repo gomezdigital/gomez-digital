@@ -1,1128 +1,1567 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+    <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1"
-  >
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-  <meta
-    name="description"
-    content="Gomez Digital — modern websites, AI-powered digital tools and growth systems for ambitious brands."
-  >
+    <meta
+        name="description"
+        content="Gomez Digital — Websites, AI solutions, digital branding and modern digital experiences for ambitious businesses and creators."
+    >
 
-  <title>Gomez Digital | Digital Experiences That Move</title>
+    <meta
+        name="theme-color"
+        content="#0b0806"
+    >
 
-  <link rel="stylesheet" href="style.css">
+    <title>Gomez Digital — Digital Experiences That Move</title>
+
+    <!-- Fonts -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Main stylesheet -->
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <!--
+        EMERGENCY LOADER PROTECTION
+
+        This runs independently from script.js.
+
+        Even if script.js crashes,
+        the loader will still disappear.
+    -->
+    <script>
+    (function () {
+        function hideGomezLoader() {
+            var loader = document.getElementById("page-loader");
+
+            if (loader) {
+                loader.classList.add("is-hidden");
+                loader.setAttribute("aria-hidden", "true");
+
+                setTimeout(function () {
+                    if (loader && loader.parentNode) {
+                        loader.parentNode.removeChild(loader);
+                    }
+                }, 700);
+            }
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", function () {
+                setTimeout(hideGomezLoader, 1600);
+            });
+        } else {
+            setTimeout(hideGomezLoader, 1600);
+        }
+
+        /* Absolute emergency backup */
+        setTimeout(hideGomezLoader, 3000);
+    })();
+    </script>
 </head>
 
 <body>
 
-  <!-- =====================================================
-       PAGE LOADER
-       ===================================================== -->
+    <!-- =====================================================
+         PAGE LOADER
+    ====================================================== -->
 
-  <div
-    id="page-loader"
-    class="page-loader"
-    aria-hidden="true"
-  >
+    <div
+        id="page-loader"
+        class="page-loader"
+        aria-hidden="true"
+    >
 
-    <div class="loader-orb">
-      <span>GD</span>
+        <div class="loader-orb">
+            <span>GD</span>
+        </div>
+
+        <div class="loader-brand">
+            Gomez Digital
+        </div>
+
+        <div class="loader-subtitle">
+            DIGITAL STUDIO
+        </div>
+
+        <div class="loader-line">
+            <span></span>
+        </div>
+
     </div>
 
-    <div class="loader-brand">
-      Gomez Digital
-    </div>
 
-    <div class="loader-line">
-      <span></span>
-    </div>
+    <!-- =====================================================
+         AMBIENT BACKGROUND
+    ====================================================== -->
 
-  </div>
+    <div
+        class="ambient ambient-one"
+        aria-hidden="true"
+    ></div>
+
+    <div
+        class="ambient ambient-two"
+        aria-hidden="true"
+    ></div>
+
+    <div
+        class="ambient ambient-three"
+        aria-hidden="true"
+    ></div>
 
 
-  <!-- =====================================================
-       AMBIENT BACKGROUND LIGHTS
-       ===================================================== -->
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
 
-  <div class="ambient ambient-one"></div>
-  <div class="ambient ambient-two"></div>
-  <div class="ambient ambient-three"></div>
-
-
-  <!-- =====================================================
-       HEADER
-       ===================================================== -->
-
-  <header
-    class="site-header"
-    id="top"
-  >
-
-    <a
-      class="brand"
-      href="#home"
-      aria-label="Gomez Digital home"
+    <header
+        class="site-header"
+        id="site-header"
     >
 
-      <span class="brand-mark">
-        GD
-      </span>
+        <div class="container nav-container">
 
-      <span class="brand-text">
-        <strong>Gomez</strong> Digital
-      </span>
+            <a
+                href="#home"
+                class="brand"
+                aria-label="Gomez Digital home"
+            >
 
-    </a>
+                <span class="brand-mark">
+                    GD
+                </span>
 
+                <span class="brand-name">
+                    Gomez Digital
+                </span>
 
-    <button
-      class="menu-toggle"
-      type="button"
-      aria-label="Open menu"
-      aria-expanded="false"
-      aria-controls="site-nav"
-    >
-      ☰
-    </button>
+            </a>
 
 
-    <nav
-      class="site-nav"
-      id="site-nav"
-    >
+            <button
+                class="menu-toggle"
+                id="menu-toggle"
+                type="button"
+                aria-label="Open navigation"
+                aria-expanded="false"
+            >
 
-      <a
-        class="nav-link active"
-        href="#home"
-      >
-        Home
-      </a>
+                <span></span>
+                <span></span>
+                <span></span>
 
-      <a
-        class="nav-link"
-        href="#services"
-      >
-        Services
-      </a>
-
-      <a
-        class="nav-link"
-        href="#studio"
-      >
-        AI Studio
-      </a>
-
-      <a
-        class="nav-link"
-        href="#process"
-      >
-        Process
-      </a>
-
-      <a
-        class="nav-link"
-        href="#about"
-      >
-        About
-      </a>
-
-      <a
-        class="nav-link nav-cta"
-        href="#contact"
-      >
-        Start a Project
-      </a>
-
-    </nav>
-
-  </header>
+            </button>
 
 
-  <!-- =====================================================
-       MAIN CONTENT
-       ===================================================== -->
+            <nav
+                class="site-nav"
+                id="site-nav"
+                aria-label="Main navigation"
+            >
 
-  <main>
+                <a
+                    href="#home"
+                    class="nav-link active"
+                >
+                    Home
+                </a>
 
+                <a
+                    href="#services"
+                    class="nav-link"
+                >
+                    Services
+                </a>
 
-    <!-- ===================================================
-         HERO
-         =================================================== -->
+                <a
+                    href="#ai-studio"
+                    class="nav-link"
+                >
+                    AI Studio
+                </a>
 
-    <section
-      class="hero section"
-      id="home"
-    >
+                <a
+                    href="#process"
+                    class="nav-link"
+                >
+                    Process
+                </a>
 
-      <div class="hero-copy reveal">
+                <a
+                    href="#about"
+                    class="nav-link"
+                >
+                    About
+                </a>
 
-        <span class="eyebrow">
-          <span class="pulse-dot"></span>
-          Digital studio • AI • Web
-        </span>
+                <a
+                    href="#contact"
+                    class="nav-cta"
+                >
+                    Start a Project
+                    <span>↗</span>
+                </a>
 
-
-        <h1>
-          Build a digital presence
-          that
-          <span>feels alive.</span>
-        </h1>
-
-
-        <p>
-          Gomez Digital creates warm, modern websites,
-          intelligent tools and growth-ready digital
-          systems for people building something bigger.
-        </p>
-
-
-        <div class="hero-actions">
-
-          <a
-            class="btn btn-primary"
-            href="#contact"
-          >
-            Start your project
-            <span>↗</span>
-          </a>
-
-
-          <a
-            class="btn btn-ghost"
-            href="#studio"
-          >
-            Explore AI Studio
-          </a>
+            </nav>
 
         </div>
 
+    </header>
 
-        <div class="hero-proof">
 
-          <div>
-            <strong>Web</strong>
-            <span>Design & builds</span>
-          </div>
+    <main id="home">
 
-          <div>
-            <strong>AI</strong>
-            <span>Smart tools</span>
-          </div>
 
-          <div>
-            <strong>Growth</strong>
-            <span>Digital systems</span>
-          </div>
+        <!-- =================================================
+             HERO
+        ================================================== -->
 
-        </div>
+        <section class="hero section">
 
-      </div>
+            <div class="container hero-grid">
 
+                <div class="hero-content">
 
-      <!-- HERO VISUAL -->
+                    <div class="eyebrow reveal">
+                        <span class="eyebrow-dot"></span>
+                        Digital Studio • AI • Web
+                    </div>
 
-      <div
-        class="hero-visual reveal"
-        aria-label="Gomez Digital interactive visual"
-      >
 
-        <div class="orbit orbit-a"></div>
+                    <h1 class="hero-title reveal">
 
-        <div class="orbit orbit-b"></div>
+                        Build a
+                        <span class="gradient-text">
+                            digital presence
+                        </span>
+                        that feels alive.
 
+                    </h1>
 
-        <div class="hero-core">
 
-          <span class="core-glow"></span>
+                    <p class="hero-description reveal">
 
-          <div class="core-monogram">
-            GD
-          </div>
+                        Gomez Digital creates modern websites,
+                        intelligent digital solutions and memorable
+                        brand experiences designed to help ambitious
+                        people and businesses move forward.
 
-          <span class="core-label">
-            GOMEZ DIGITAL
-          </span>
+                    </p>
 
-        </div>
 
+                    <div class="hero-actions reveal">
 
-        <div class="float-card card-one">
+                        <a
+                            href="#contact"
+                            class="btn btn-primary"
+                        >
+                            Start a Project
+                            <span>↗</span>
+                        </a>
 
-          <span>✦</span>
+                        <a
+                            href="#services"
+                            class="btn btn-ghost"
+                        >
+                            Explore Services
+                            <span>↓</span>
+                        </a>
 
-          <div>
-            <b>Creative</b>
-            <small>by design</small>
-          </div>
+                    </div>
 
-        </div>
 
+                    <div class="hero-proof reveal">
 
-        <div class="float-card card-two">
+                        <div class="proof-item">
 
-          <span>⌁</span>
+                            <strong>
+                                01
+                            </strong>
 
-          <div>
-            <b>AI powered</b>
-            <small>built to evolve</small>
-          </div>
+                            <span>
+                                Strategy
+                            </span>
 
-        </div>
+                        </div>
 
 
-        <div class="float-card card-three">
+                        <div class="proof-divider"></div>
 
-          <span>↗</span>
 
-          <div>
-            <b>Growth</b>
-            <small>made measurable</small>
-          </div>
+                        <div class="proof-item">
 
-        </div>
+                            <strong>
+                                02
+                            </strong>
 
-      </div>
+                            <span>
+                                Design
+                            </span>
 
-    </section>
+                        </div>
 
 
-    <!-- ===================================================
-         MOVING TICKER
-         =================================================== -->
+                        <div class="proof-divider"></div>
 
-    <section
-      class="ticker"
-      aria-label="Gomez Digital capabilities"
-    >
 
-      <div class="ticker-track">
+                        <div class="proof-item">
 
-        <span>WEB DESIGN</span>
-        <i>✦</i>
+                            <strong>
+                                03
+                            </strong>
 
-        <span>AI TOOLS</span>
-        <i>✦</i>
+                            <span>
+                                Build
+                            </span>
 
-        <span>BRAND SYSTEMS</span>
-        <i>✦</i>
+                        </div>
 
-        <span>DIGITAL GROWTH</span>
-        <i>✦</i>
 
-        <span>WEB DESIGN</span>
-        <i>✦</i>
+                        <div class="proof-divider"></div>
 
-        <span>AI TOOLS</span>
-        <i>✦</i>
 
-        <span>BRAND SYSTEMS</span>
-        <i>✦</i>
+                        <div class="proof-item">
 
-        <span>DIGITAL GROWTH</span>
-        <i>✦</i>
+                            <strong>
+                                04
+                            </strong>
 
-      </div>
+                            <span>
+                                Launch
+                            </span>
 
-    </section>
+                        </div>
 
+                    </div>
 
-    <!-- ===================================================
-         SERVICES
-         =================================================== -->
+                </div>
 
-    <section
-      class="section"
-      id="services"
-    >
 
-      <div class="section-head reveal">
+                <!-- HERO VISUAL -->
 
-        <div>
+                <div
+                    class="hero-visual reveal"
+                    aria-hidden="true"
+                >
 
-          <span class="eyebrow">
-            01 / What we build
-          </span>
+                    <div class="hero-glow"></div>
 
-          <h2>
-            Digital work with
-            <span>personality.</span>
-          </h2>
 
-        </div>
+                    <div class="orbit orbit-one"></div>
 
+                    <div class="orbit orbit-two"></div>
 
-        <p>
-          Not just another template. Every experience
-          is designed to look distinctive, move smoothly
-          and give visitors a reason to stay.
-        </p>
+                    <div class="orbit orbit-three"></div>
 
-      </div>
 
+                    <div class="hero-core">
 
-      <div class="service-grid">
+                        <div class="core-inner">
 
+                            <span class="core-small">
+                                GOMEZ
+                            </span>
 
-        <article class="service-card reveal">
+                            <strong>
+                                GD
+                            </strong>
 
-          <span class="service-number">
-            01
-          </span>
+                            <span class="core-small">
+                                DIGITAL
+                            </span>
 
-          <div class="service-icon">
-            ◈
-          </div>
+                        </div>
 
-          <h3>
-            Web Experiences
-          </h3>
+                    </div>
 
-          <p>
-            Responsive landing pages, portfolios,
-            business websites and digital platforms
-            with polished interactions.
-          </p>
 
-          <button
-            class="text-btn"
-            type="button"
-            data-tool="website"
-          >
-            Explore concept
-            <span>↗</span>
-          </button>
+                    <div class="floating-card floating-card-one">
 
-        </article>
+                        <span class="floating-icon">
+                            ✦
+                        </span>
 
+                        <div>
+                            <strong>
+                                Creative
+                            </strong>
 
-        <article class="service-card reveal">
+                            <small>
+                                Digital experiences
+                            </small>
+                        </div>
 
-          <span class="service-number">
-            02
-          </span>
+                    </div>
 
-          <div class="service-icon">
-            ✦
-          </div>
 
-          <h3>
-            AI & Automation
-          </h3>
+                    <div class="floating-card floating-card-two">
 
-          <p>
-            Practical AI-powered interfaces and
-            automations that reduce repetitive work
-            and create better user experiences.
-          </p>
+                        <span class="floating-icon">
+                            ◉
+                        </span>
 
-          <button
-            class="text-btn"
-            type="button"
-            data-tool="ai"
-          >
-            Open AI Studio
-            <span>↗</span>
-          </button>
+                        <div>
+                            <strong>
+                                AI Powered
+                            </strong>
 
-        </article>
+                            <small>
+                                Smarter workflows
+                            </small>
+                        </div>
 
+                    </div>
 
-        <article class="service-card reveal">
 
-          <span class="service-number">
-            03
-          </span>
+                    <div class="floating-card floating-card-three">
 
-          <div class="service-icon">
-            ↗
-          </div>
+                        <span class="floating-icon">
+                            ↗
+                        </span>
 
-          <h3>
-            Brand & Growth
-          </h3>
+                        <div>
+                            <strong>
+                                Growth
+                            </strong>
 
-          <p>
-            Digital identity, content direction and
-            conversion-focused systems that help a
-            brand move from idea to traction.
-          </p>
+                            <small>
+                                Built for impact
+                            </small>
+                        </div>
 
-          <button
-            class="text-btn"
-            type="button"
-            data-tool="brand"
-          >
-            Generate idea
-            <span>↗</span>
-          </button>
+                    </div>
 
-        </article>
+                </div>
 
+            </div>
 
-      </div>
+        </section>
 
-    </section>
 
+        <!-- =================================================
+             TICKER
+        ================================================== -->
 
-    <!-- ===================================================
-         AI STUDIO
-         =================================================== -->
-
-    <section
-      class="section studio"
-      id="studio"
-    >
-
-      <div class="studio-shell reveal">
-
-
-        <div class="studio-copy">
-
-          <span class="eyebrow">
-            02 / Gomez AI Studio
-          </span>
-
-          <h2>
-            A small toolkit with
-            <span>big energy.</span>
-          </h2>
-
-          <p>
-            Use the built-in generators to turn a rough
-            idea into a starting point. No account.
-            No complicated setup.
-          </p>
-
-          <div class="studio-status">
-
-            <span class="pulse-dot"></span>
-
-            Local tools are live
-
-          </div>
-
-        </div>
-
-
-        <div class="tool-grid">
-
-
-          <button
-            class="tool-card"
-            type="button"
-            data-tool="business"
-          >
-
-            <span>01</span>
-
-            <strong>
-              Business Name
-            </strong>
-
-            <small>
-              Generate a fresh brand name
-            </small>
-
-            <b>
-              Try it ↗
-            </b>
-
-          </button>
-
-
-          <button
-            class="tool-card"
-            type="button"
-            data-tool="website"
-          >
-
-            <span>02</span>
-
-            <strong>
-              Website Concept
-            </strong>
-
-            <small>
-              Turn an idea into a site direction
-            </small>
-
-            <b>
-              Try it ↗
-            </b>
-
-          </button>
-
-
-          <button
-            class="tool-card"
-            type="button"
-            data-tool="caption"
-          >
-
-            <span>03</span>
-
-            <strong>
-              Content Spark
-            </strong>
-
-            <small>
-              Generate a punchy content idea
-            </small>
-
-            <b>
-              Try it ↗
-            </b>
-
-          </button>
-
-
-          <button
-            class="tool-card"
-            type="button"
-            data-tool="ai"
-          >
-
-            <span>04</span>
-
-            <strong>
-              AI Roadmap
-            </strong>
-
-            <small>
-              See how a project can evolve
-            </small>
-
-            <b>
-              Try it ↗
-            </b>
-
-          </button>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         PROCESS
-         =================================================== -->
-
-    <section
-      class="section"
-      id="process"
-    >
-
-      <div class="section-head reveal">
-
-        <div>
-
-          <span class="eyebrow">
-            03 / How it works
-          </span>
-
-          <h2>
-            From
-            <span>idea</span>
-            to impact.
-          </h2>
-
-        </div>
-
-        <p>
-          A simple process keeps the work clear while
-          leaving room for creativity.
-        </p>
-
-      </div>
-
-
-      <div class="process-grid">
-
-
-        <article class="process-step reveal">
-
-          <span>01</span>
-
-          <h3>
-            Discover
-          </h3>
-
-          <p>
-            We define the goal, audience and direction
-            before touching the design.
-          </p>
-
-        </article>
-
-
-        <article class="process-step reveal">
-
-          <span>02</span>
-
-          <h3>
-            Design
-          </h3>
-
-          <p>
-            We shape the visual identity, layout,
-            content and interactions.
-          </p>
-
-        </article>
-
-
-        <article class="process-step reveal">
-
-          <span>03</span>
-
-          <h3>
-            Build
-          </h3>
-
-          <p>
-            The experience is developed responsively
-            with performance and usability in mind.
-          </p>
-
-        </article>
-
-
-        <article class="process-step reveal">
-
-          <span>04</span>
-
-          <h3>
-            Launch
-          </h3>
-
-          <p>
-            We polish, test and prepare the project
-            for real people and real traffic.
-          </p>
-
-        </article>
-
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         ABOUT
-         =================================================== -->
-
-    <section
-      class="section about"
-      id="about"
-    >
-
-      <div class="about-card reveal">
-
-        <div class="about-emblem">
-          GD
-        </div>
-
-
-        <div>
-
-          <span class="eyebrow">
-            04 / The studio
-          </span>
-
-          <h2>
-            Small studio.
-            <span>Big ambition.</span>
-          </h2>
-
-          <p>
-            Gomez Digital is built around one idea:
-            technology should feel human. The goal is
-            to combine sharp design, useful AI and
-            business thinking into digital experiences
-            people actually remember.
-          </p>
-
-          <a
-            class="text-btn"
-            href="#contact"
-          >
-            Let's build something
-            <span>↗</span>
-          </a>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         FAQ
-         =================================================== -->
-
-    <section class="section faq-section">
-
-      <div class="section-head reveal">
-
-        <div>
-
-          <span class="eyebrow">
-            05 / FAQ
-          </span>
-
-          <h2>
-            Questions,
-            <span>answered.</span>
-          </h2>
-
-        </div>
-
-      </div>
-
-
-      <div class="faq-list reveal">
-
-
-        <details>
-
-          <summary>
-            What can Gomez Digital build?
-          </summary>
-
-          <p>
-            Websites, landing pages, portfolios,
-            business platforms, AI interfaces and
-            digital growth systems.
-          </p>
-
-        </details>
-
-
-        <details>
-
-          <summary>
-            Can you build something from scratch?
-          </summary>
-
-          <p>
-            Yes. A project can start from a simple
-            idea, then be shaped into a clear design
-            and working digital experience.
-          </p>
-
-        </details>
-
-
-        <details>
-
-          <summary>
-            Does the AI Studio use paid AI APIs?
-          </summary>
-
-          <p>
-            The current starter tools run directly
-            in the browser. They are designed as a
-            foundation that can later connect to
-            real AI services.
-          </p>
-
-        </details>
-
-
-        <details>
-
-          <summary>
-            How do I start a project?
-          </summary>
-
-          <p>
-            Send the basic project details below.
-            The site prepares a project brief that
-            can be copied and sent through your
-            preferred contact channel.
-          </p>
-
-        </details>
-
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         CONTACT
-         =================================================== -->
-
-    <section
-      class="section contact"
-      id="contact"
-    >
-
-      <div class="contact-shell reveal">
-
-
-        <div class="contact-copy">
-
-          <span class="eyebrow">
-            06 / Start a project
-          </span>
-
-          <h2>
-            Have an idea?
-            <span>Let's make it real.</span>
-          </h2>
-
-          <p>
-            Tell Gomez Digital what you're trying
-            to build. Keep it rough — clarity can
-            come during the process.
-          </p>
-
-        </div>
-
-
-        <form
-          class="project-form"
-          id="project-form"
+        <section
+            class="ticker"
+            aria-label="Gomez Digital services"
         >
 
+            <div class="ticker-track">
 
-          <label>
+                <span>WEB DESIGN</span>
+                <i>✦</i>
 
-            Name
+                <span>AI SOLUTIONS</span>
+                <i>✦</i>
 
-            <input
-              name="name"
-              type="text"
-              autocomplete="name"
-              placeholder="Your name"
-              required
+                <span>DIGITAL STRATEGY</span>
+                <i>✦</i>
+
+                <span>BRAND EXPERIENCES</span>
+                <i>✦</i>
+
+                <span>AUTOMATION</span>
+                <i>✦</i>
+
+                <span>WEB DESIGN</span>
+                <i>✦</i>
+
+                <span>AI SOLUTIONS</span>
+                <i>✦</i>
+
+                <span>DIGITAL STRATEGY</span>
+                <i>✦</i>
+
+                <span>BRAND EXPERIENCES</span>
+                <i>✦</i>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SERVICES
+        ================================================== -->
+
+        <section
+            class="section services-section"
+            id="services"
+        >
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <span class="section-number">
+                        01 / WHAT WE DO
+                    </span>
+
+                    <h2>
+                        Digital tools built
+                        <span class="gradient-text">
+                            to move.
+                        </span>
+                    </h2>
+
+                    <p>
+                        From your first idea to a polished digital
+                        product, Gomez Digital combines design,
+                        technology and AI to create useful experiences.
+                    </p>
+
+                </div>
+
+
+                <div class="services-grid">
+
+
+                    <article
+                        class="service-card reveal"
+                        data-tilt
+                    >
+
+                        <div class="service-top">
+
+                            <span class="service-number">
+                                01
+                            </span>
+
+                            <span class="service-icon">
+                                ◈
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Web Experiences
+                        </h3>
+
+                        <p>
+                            Modern responsive websites and landing
+                            pages designed to make businesses look
+                            credible and convert attention into action.
+                        </p>
+
+                        <div class="service-tags">
+
+                            <span>Websites</span>
+                            <span>Landing Pages</span>
+                            <span>UI/UX</span>
+
+                        </div>
+
+                        <a
+                            href="#contact"
+                            class="service-link"
+                        >
+                            Build a website
+                            <span>↗</span>
+                        </a>
+
+                    </article>
+
+
+                    <article
+                        class="service-card reveal"
+                        data-tilt
+                    >
+
+                        <div class="service-top">
+
+                            <span class="service-number">
+                                02
+                            </span>
+
+                            <span class="service-icon">
+                                ◎
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            AI & Automation
+                        </h3>
+
+                        <p>
+                            Intelligent tools and workflows that
+                            reduce repetitive work, improve productivity
+                            and help businesses operate smarter.
+                        </p>
+
+                        <div class="service-tags">
+
+                            <span>AI Tools</span>
+                            <span>Automation</span>
+                            <span>Workflows</span>
+
+                        </div>
+
+                        <a
+                            href="#ai-studio"
+                            class="service-link"
+                        >
+                            Explore AI
+                            <span>↗</span>
+                        </a>
+
+                    </article>
+
+
+                    <article
+                        class="service-card reveal"
+                        data-tilt
+                    >
+
+                        <div class="service-top">
+
+                            <span class="service-number">
+                                03
+                            </span>
+
+                            <span class="service-icon">
+                                ✦
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Brand & Growth
+                        </h3>
+
+                        <p>
+                            Digital identity, content direction and
+                            growth-focused experiences that help your
+                            brand become easier to remember.
+                        </p>
+
+                        <div class="service-tags">
+
+                            <span>Branding</span>
+                            <span>Content</span>
+                            <span>Growth</span>
+
+                        </div>
+
+                        <a
+                            href="#contact"
+                            class="service-link"
+                        >
+                            Grow your brand
+                            <span>↗</span>
+                        </a>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             AI STUDIO
+        ================================================== -->
+
+        <section
+            class="section ai-section"
+            id="ai-studio"
+        >
+
+            <div class="container">
+
+                <div class="ai-panel reveal">
+
+                    <div class="ai-heading">
+
+                        <div>
+
+                            <span class="section-number">
+                                02 / AI STUDIO
+                            </span>
+
+                            <h2>
+                                Your idea in.
+                                <span class="gradient-text">
+                                    Possibilities out.
+                                </span>
+                            </h2>
+
+                            <p>
+                                Try Gomez Digital's experimental AI
+                                tools. Generate ideas instantly and
+                                use them as a starting point for your
+                                next digital project.
+                            </p>
+
+                        </div>
+
+
+                        <div class="ai-badge">
+                            <span></span>
+                            AI LAB
+                        </div>
+
+                    </div>
+
+
+                    <div class="tools-grid">
+
+
+                        <button
+                            class="tool-card"
+                            type="button"
+                            data-tool="business-name"
+                            data-tilt
+                        >
+
+                            <span class="tool-icon">
+                                ✦
+                            </span>
+
+                            <strong>
+                                Business Name
+                            </strong>
+
+                            <small>
+                                Generate brand ideas
+                            </small>
+
+                            <span class="tool-arrow">
+                                →
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            class="tool-card"
+                            type="button"
+                            data-tool="website-concept"
+                            data-tilt
+                        >
+
+                            <span class="tool-icon">
+                                ◇
+                            </span>
+
+                            <strong>
+                                Website Concept
+                            </strong>
+
+                            <small>
+                                Turn an idea into a concept
+                            </small>
+
+                            <span class="tool-arrow">
+                                →
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            class="tool-card"
+                            type="button"
+                            data-tool="content-spark"
+                            data-tilt
+                        >
+
+                            <span class="tool-icon">
+                                ⚡
+                            </span>
+
+                            <strong>
+                                Content Spark
+                            </strong>
+
+                            <small>
+                                Get content inspiration
+                            </small>
+
+                            <span class="tool-arrow">
+                                →
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            class="tool-card"
+                            type="button"
+                            data-tool="ai-roadmap"
+                            data-tilt
+                        >
+
+                            <span class="tool-icon">
+                                ◎
+                            </span>
+
+                            <strong>
+                                AI Roadmap
+                            </strong>
+
+                            <small>
+                                Discover automation ideas
+                            </small>
+
+                            <span class="tool-arrow">
+                                →
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PROCESS
+        ================================================== -->
+
+        <section
+            class="section process-section"
+            id="process"
+        >
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <span class="section-number">
+                        03 / OUR PROCESS
+                    </span>
+
+                    <h2>
+                        From idea
+                        <span class="gradient-text">
+                            to online.
+                        </span>
+                    </h2>
+
+                    <p>
+                        A simple process designed to turn your idea
+                        into something people can actually experience.
+                    </p>
+
+                </div>
+
+
+                <div class="process-grid">
+
+
+                    <article class="process-card reveal">
+
+                        <span>
+                            01
+                        </span>
+
+                        <div class="process-line"></div>
+
+                        <h3>
+                            Discover
+                        </h3>
+
+                        <p>
+                            We understand your business, audience,
+                            goals and vision.
+                        </p>
+
+                    </article>
+
+
+                    <article class="process-card reveal">
+
+                        <span>
+                            02
+                        </span>
+
+                        <div class="process-line"></div>
+
+                        <h3>
+                            Design
+                        </h3>
+
+                        <p>
+                            We create the visual direction,
+                            structure and user experience.
+                        </p>
+
+                    </article>
+
+
+                    <article class="process-card reveal">
+
+                        <span>
+                            03
+                        </span>
+
+                        <div class="process-line"></div>
+
+                        <h3>
+                            Build
+                        </h3>
+
+                        <p>
+                            Your digital experience is developed,
+                            optimized and tested.
+                        </p>
+
+                    </article>
+
+
+                    <article class="process-card reveal">
+
+                        <span>
+                            04
+                        </span>
+
+                        <div class="process-line"></div>
+
+                        <h3>
+                            Launch
+                        </h3>
+
+                        <p>
+                            Your project goes live and your digital
+                            presence begins working for you.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ABOUT
+        ================================================== -->
+
+        <section
+            class="section about-section"
+            id="about"
+        >
+
+            <div class="container about-grid">
+
+
+                <div class="about-visual reveal">
+
+                    <div class="about-orb">
+
+                        <div class="about-orb-inner">
+
+                            <span>
+                                GOMEZ
+                            </span>
+
+                            <strong>
+                                GD
+                            </strong>
+
+                            <span>
+                                DIGITAL
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="about-content reveal">
+
+                    <span class="section-number">
+                        04 / ABOUT GOMEZ DIGITAL
+                    </span>
+
+                    <h2>
+                        Technology should feel
+                        <span class="gradient-text">
+                            human.
+                        </span>
+                    </h2>
+
+                    <p>
+                        Gomez Digital is a digital studio focused on
+                        building useful, modern and memorable online
+                        experiences.
+                    </p>
+
+                    <p>
+                        We combine creative thinking, web technology
+                        and artificial intelligence to help businesses,
+                        creators and entrepreneurs turn ideas into
+                        digital products.
+                    </p>
+
+
+                    <div class="about-points">
+
+                        <div>
+                            <span>✓</span>
+                            <p>Mobile-first experiences</p>
+                        </div>
+
+                        <div>
+                            <span>✓</span>
+                            <p>Modern visual systems</p>
+                        </div>
+
+                        <div>
+                            <span>✓</span>
+                            <p>AI-assisted solutions</p>
+                        </div>
+
+                        <div>
+                            <span>✓</span>
+                            <p>Built for real-world use</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FAQ
+        ================================================== -->
+
+        <section class="section faq-section">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <span class="section-number">
+                        05 / FAQ
+                    </span>
+
+                    <h2>
+                        Questions?
+                        <span class="gradient-text">
+                            We've got you.
+                        </span>
+                    </h2>
+
+                </div>
+
+
+                <div class="faq-list">
+
+
+                    <details class="faq-item reveal">
+
+                        <summary>
+                            What can Gomez Digital build?
+                            <span>+</span>
+                        </summary>
+
+                        <p>
+                            Websites, landing pages, digital brand
+                            experiences, AI-assisted tools and
+                            automation concepts.
+                        </p>
+
+                    </details>
+
+
+                    <details class="faq-item reveal">
+
+                        <summary>
+                            Can you build a website for my business?
+                            <span>+</span>
+                        </summary>
+
+                        <p>
+                            Yes. Tell us about your business through
+                            the project form and we can determine the
+                            best digital solution.
+                        </p>
+
+                    </details>
+
+
+                    <details class="faq-item reveal">
+
+                        <summary>
+                            Do you work with businesses outside Botswana?
+                            <span>+</span>
+                        </summary>
+
+                        <p>
+                            Yes. Gomez Digital is designed to work
+                            remotely with clients and businesses
+                            worldwide.
+                        </p>
+
+                    </details>
+
+
+                    <details class="faq-item reveal">
+
+                        <summary>
+                            Can AI be included in my project?
+                            <span>+</span>
+                        </summary>
+
+                        <p>
+                            Yes. Depending on the project, AI can be
+                            used for content, workflows, automation,
+                            customer experiences and other digital
+                            solutions.
+                        </p>
+
+                    </details>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CONTACT / START PROJECT
+        ================================================== -->
+
+        <section
+            class="section contact-section"
+            id="contact"
+        >
+
+            <div class="container">
+
+                <div class="contact-panel reveal">
+
+
+                    <div class="contact-intro">
+
+                        <span class="section-number">
+                            06 / START A PROJECT
+                        </span>
+
+                        <h2>
+                            Let's build
+                            <span class="gradient-text">
+                                something.
+                            </span>
+                        </h2>
+
+                        <p>
+                            Tell us what you're building. We'll help
+                            turn the idea into a clear digital direction.
+                        </p>
+
+
+                        <div class="contact-note">
+
+                            <span>✦</span>
+
+                            <p>
+                                No complicated process.
+                                Just tell us what you need.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <form
+                        id="project-form"
+                        class="project-form"
+                    >
+
+                        <div class="form-row">
+
+                            <label>
+
+                                <span>
+                                    Your Name
+                                </span>
+
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    placeholder="John Doe"
+                                    autocomplete="name"
+                                    required
+                                >
+
+                            </label>
+
+
+                            <label>
+
+                                <span>
+                                    Business / Brand
+                                </span>
+
+                                <input
+                                    type="text"
+                                    id="business"
+                                    name="business"
+                                    placeholder="Your Business"
+                                    autocomplete="organization"
+                                    required
+                                >
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <label>
+
+                                <span>
+                                    Email
+                                </span>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder="you@example.com"
+                                    autocomplete="email"
+                                    required
+                                >
+
+                            </label>
+
+
+                            <label>
+
+                                <span>
+                                    Phone / WhatsApp
+                                </span>
+
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    placeholder="71 234 5678"
+                                    autocomplete="tel"
+                                >
+
+                            </label>
+
+                        </div>
+
+
+                        <label>
+
+                            <span>
+                                What do you need?
+                            </span>
+
+                            <select
+                                id="service"
+                                name="service"
+                                required
+                            >
+
+                                <option
+                                    value=""
+                                    selected
+                                    disabled
+                                >
+                                    Select a service
+                                </option>
+
+                                <option value="Website">
+                                    Website
+                                </option>
+
+                                <option value="Landing Page">
+                                    Landing Page
+                                </option>
+
+                                <option value="AI Solution">
+                                    AI Solution
+                                </option>
+
+                                <option value="Automation">
+                                    Automation
+                                </option>
+
+                                <option value="Branding">
+                                    Branding
+                                </option>
+
+                                <option value="Other">
+                                    Something Else
+                                </option>
+
+                            </select>
+
+                        </label>
+
+
+                        <label>
+
+                            <span>
+                                Project Details
+                            </span>
+
+                            <textarea
+                                id="details"
+                                name="details"
+                                rows="5"
+                                placeholder="Tell us what you want to build..."
+                                required
+                            ></textarea>
+
+                        </label>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary form-submit"
+                        >
+
+                            Send Project Request
+
+                            <span>
+                                ↗
+                            </span>
+
+                        </button>
+
+
+                        <p class="form-disclaimer">
+                            Your project details will be prepared
+                            for WhatsApp so you can review them
+                            before sending.
+                        </p>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-grid">
+
+
+            <div class="footer-brand">
+
+                <a
+                    href="#home"
+                    class="brand"
+                >
+
+                    <span class="brand-mark">
+                        GD
+                    </span>
+
+                    <span class="brand-name">
+                        Gomez Digital
+                    </span>
+
+                </a>
+
+                <p>
+                    Digital experiences for ambitious people.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="#services">
+                    Services
+                </a>
+
+                <a href="#ai-studio">
+                    AI Studio
+                </a>
+
+                <a href="#process">
+                    Process
+                </a>
+
+                <a href="#contact">
+                    Contact
+                </a>
+
+            </div>
+
+
+            <div class="footer-meta">
+
+                <span>
+                    © <span id="year"></span>
+                    Gomez Digital
+                </span>
+
+                <span>
+                    Built for the future.
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =====================================================
+         AI MODAL
+    ====================================================== -->
+
+    <div
+        class="modal"
+        id="modal"
+        aria-hidden="true"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+    >
+
+        <div class="modal-backdrop"></div>
+
+
+        <div class="modal-panel">
+
+            <button
+                type="button"
+                class="modal-close"
+                id="modal-close"
+                aria-label="Close"
             >
-
-          </label>
-
-
-          <label>
-
-            Email
-
-            <input
-              name="email"
-              type="email"
-              autocomplete="email"
-              placeholder="you@example.com"
-              required
-            >
-
-          </label>
+                ×
+            </button>
 
 
-          <label>
+            <div class="modal-icon">
+                ✦
+            </div>
 
-            Service
 
-            <select name="service">
+            <span class="modal-label">
+                GOMEZ DIGITAL AI STUDIO
+            </span>
 
-              <option value="Website">
-                Website
-              </option>
 
-              <option value="AI Tool">
+            <h2 id="modal-title">
                 AI Tool
-              </option>
-
-              <option value="Brand & Growth">
-                Brand & Growth
-              </option>
-
-              <option value="Other">
-                Other
-              </option>
-
-            </select>
-
-          </label>
+            </h2>
 
 
-          <label>
+            <div
+                id="modal-content"
+                class="modal-content"
+            >
 
-            Budget
+                <p>
+                    Your generated result will appear here.
+                </p>
 
-            <select name="budget">
-
-              <option value="Not sure yet">
-                Not sure yet
-              </option>
-
-              <option value="Starter">
-                Starter
-              </option>
-
-              <option value="Growth">
-                Growth
-              </option>
-
-              <option value="Custom">
-                Custom
-              </option>
-
-            </select>
-
-          </label>
+            </div>
 
 
-          <label class="full">
+            <div class="modal-actions">
 
-            Project idea
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-copy
+                >
+                    Copy Result
+                </button>
 
-            <textarea
-              name="message"
-              rows="5"
-              placeholder="What do you want to build?"
-              required
-            ></textarea>
+                <button
+                    type="button"
+                    class="btn btn-ghost"
+                    data-regenerate
+                >
+                    Generate Again
+                </button>
 
-          </label>
+            </div>
 
-
-          <button
-            class="btn btn-primary full"
-            type="submit"
-          >
-
-            Prepare project brief
-
-            <span>↗</span>
-
-          </button>
-
-
-        </form>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- =====================================================
-       FOOTER
-       ===================================================== -->
-
-  <footer class="site-footer">
-
-    <div>
-
-      <a
-        class="brand"
-        href="#top"
-      >
-
-        <span class="brand-mark">
-          GD
-        </span>
-
-        <span class="brand-text">
-          <strong>Gomez</strong> Digital
-        </span>
-
-      </a>
-
-      <p>
-        Digital experiences with warmth,
-        intelligence and movement.
-      </p>
+        </div>
 
     </div>
 
 
-    <div class="footer-right">
+    <!-- =====================================================
+         TOAST
+    ====================================================== -->
 
-      <span>
-        ©
-        <span id="year"></span>
-        Gomez Digital
-      </span>
-
-      <a href="#top">
-        Back to top ↑
-      </a>
-
+    <div
+        class="toast"
+        id="toast"
+        role="status"
+        aria-live="polite"
+    >
+        <span class="toast-icon">✓</span>
+        <span id="toast-message">Done</span>
     </div>
 
-  </footer>
 
+    <!-- =====================================================
+         MAIN JAVASCRIPT
+    ====================================================== -->
 
-  <!-- =====================================================
-       MODAL
-       ===================================================== -->
-
-  <div
-    class="modal"
-    id="modal"
-    aria-hidden="true"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="modal-title"
-  >
-
-    <div class="modal-panel">
-
-      <button
-        class="modal-close"
-        type="button"
-        aria-label="Close"
-      >
-        ×
-      </button>
-
-      <span class="eyebrow">
-        GOMEZ AI STUDIO
-      </span>
-
-      <h2 id="modal-title">
-        Gomez Digital
-      </h2>
-
-      <div id="modal-content"></div>
-
-    </div>
-
-  </div>
-
-
-  <!-- =====================================================
-       TOAST
-       ===================================================== -->
-
-  <div
-    class="toast"
-    id="toast"
-    role="status"
-    aria-live="polite"
-  ></div>
-
-
-  <!-- =====================================================
-       JAVASCRIPT
-       ===================================================== -->
-
-  <script
-    src="script.js"
-    defer
-  ></script>
+    <script
+        src="script.js"
+        defer
+    ></script>
 
 </body>
-              </html>
+                      </html>
