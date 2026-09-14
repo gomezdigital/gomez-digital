@@ -1,1203 +1,373 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>Gomez Digital | Build. Automate. Grow.</title>
 
-    <meta
-        name="description"
-        content="Gomez Digital creates premium websites, digital experiences and AI-powered solutions for businesses worldwide."
-    >
+    <meta name="description"
+          content="Gomez Digital builds modern websites, digital tools and AI-powered solutions for businesses and creators.">
 
-    <meta
-        name="theme-color"
-        content="#050505"
-    >
-
-    <title>Gomez Digital — Digital Experiences Worldwide</title>
-
-    <!-- GOOGLE FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
-
-    <!-- MAIN CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
-
 <body>
 
-<!-- ==================================================
-     PAGE LOADER
-================================================== -->
+    <!-- ================= NAVIGATION ================= -->
 
-<div class="loader" id="loader">
+    <header class="navbar">
 
-    <div class="loader-logo">
-        GD<span>.</span>
-    </div>
-
-    <div class="loader-line"></div>
-
-    <p>GOMEZ DIGITAL</p>
-
-</div>
-
-
-<!-- ==================================================
-     NAVIGATION
-================================================== -->
-
-<header class="navbar">
-
-    <!-- BRAND -->
-
-    <a
-        href="#home"
-        class="logo"
-        aria-label="Gomez Digital home"
-    >
-        GOMEZ <span>DIGITAL</span>
-    </a>
-
-
-    <!-- DESKTOP NAVIGATION -->
-
-    <nav
-        class="nav-links"
-        aria-label="Main navigation"
-    >
-
-        <a href="#home">Home</a>
-
-        <a href="#work">Work</a>
-
-        <a href="#services">Services</a>
-
-        <a href="#process">Process</a>
-
-        <a href="#contact">Contact</a>
-
-    </nav>
-
-
-    <!-- DESKTOP CTA -->
-
-    <a
-        href="#contact"
-        class="nav-button"
-    >
-        Start a Project
-        <span>↗</span>
-    </a>
-
-
-    <!-- MOBILE MENU BUTTON -->
-
-    <button
-        class="menu-button"
-        id="menuButton"
-        type="button"
-        aria-label="Open navigation menu"
-        aria-expanded="false"
-    >
-
-        <span></span>
-        <span></span>
-        <span></span>
-
-    </button>
-
-</header>
-
-
-<!-- ==================================================
-     MOBILE MENU
-================================================== -->
-
-<div
-    class="mobile-menu"
-    id="mobileMenu"
-    aria-hidden="true"
->
-
-    <div class="mobile-menu-header">
-
-        <span class="mobile-menu-label">
-            MENU
-        </span>
-
-        <button
-            class="mobile-close"
-            id="mobileClose"
-            type="button"
-            aria-label="Close navigation menu"
-        >
-            ×
-        </button>
-
-    </div>
-
-
-    <nav class="mobile-links">
-
-        <a href="#home">01 <span>Home</span></a>
-
-        <a href="#work">02 <span>Work</span></a>
-
-        <a href="#services">03 <span>Services</span></a>
-
-        <a href="#process">04 <span>Process</span></a>
-
-        <a href="#contact">05 <span>Contact</span></a>
-
-    </nav>
-
-
-    <div class="mobile-menu-footer">
-
-        <p>GOMEZ DIGITAL</p>
-
-        <a href="mailto:gomezdigital514@gmail.com">
-            gomezdigital514@gmail.com
+        <a href="#" class="logo">
+            <span>G</span>OMEZ<span class="dot">.</span>
         </a>
 
-    </div>
+        <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#tools">AI Tools</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
 
-</div>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
-
-<!-- ==================================================
-     MAIN CONTENT
-================================================== -->
-
-<main>
-
-
-<!-- ==================================================
-     HERO
-================================================== -->
-
-<section
-    class="hero"
-    id="home"
->
-
-    <div class="hero-grid"></div>
-
-    <div class="glow glow-one"></div>
-
-    <div class="glow glow-two"></div>
+    </header>
 
 
-    <div class="hero-content">
+    <!-- ================= HERO ================= -->
 
-        <div class="eyebrow">
+    <main>
 
-            <span class="status-dot"></span>
+        <section id="home" class="hero">
 
-            DIGITAL STUDIO • WORLDWIDE
+            <div class="hero-content">
 
-        </div>
+                <div class="status">
+                    <span class="status-dot"></span>
+                    Gomez Digital is online
+                </div>
 
+                <h1>
+                    We Build Digital
+                    <span>Experiences.</span>
+                </h1>
 
-        <h1>
+                <p>
+                    Websites, AI-powered tools and digital solutions
+                    designed to help businesses, creators and brands
+                    build, automate and grow.
+                </p>
 
-            WE BUILD
+                <div class="hero-buttons">
 
-            <span>THE DIGITAL</span>
+                    <a href="#tools" class="btn primary">
+                        Explore AI Tools →
+                    </a>
 
-            <em>FUTURE.</em>
+                    <a href="#services" class="btn secondary">
+                        View Services
+                    </a>
 
-        </h1>
+                </div>
 
+            </div>
 
-        <p class="hero-description">
+            <div class="hero-card">
 
-            Gomez Digital creates bold websites,
-            digital experiences and online solutions
-            designed to make brands impossible to ignore.
+                <div class="card-top">
+                    <span>GOMEZ DIGITAL</span>
+                    <span>V4.0</span>
+                </div>
 
-        </p>
+                <div class="orb"></div>
 
+                <h3>
+                    BUILD.<br>
+                    AUTOMATE.<br>
+                    <span>GROW.</span>
+                </h3>
 
-        <div class="hero-actions">
+                <div class="card-bottom">
+                    <span>Digital Solutions</span>
+                    <span>∞</span>
+                </div>
 
-            <a
-                href="#contact"
-                class="primary-button"
-            >
-                Start a Project
-                <span>↗</span>
-            </a>
+            </div>
 
-
-            <a
-                href="#work"
-                class="secondary-button"
-            >
-                Explore Our Work
-                <span>↓</span>
-            </a>
-
-        </div>
-
-    </div>
-
-
-    <!-- HERO VISUAL -->
-
-    <div class="hero-visual">
-
-        <div class="orb"></div>
-
-
-        <div class="floating-card card-top">
-
-            <small>GLOBAL REACH</small>
-
-            <strong>∞</strong>
-
-            <span>Worldwide</span>
-
-        </div>
+        </section>
 
 
-        <div class="floating-card card-bottom">
+        <!-- ================= SERVICES ================= -->
 
-            <small>WEBSITE SYSTEM</small>
+        <section id="services" class="section">
 
-            <strong>01</strong>
+            <div class="section-heading">
+                <span class="eyebrow">WHAT WE DO</span>
 
-            <span>Strategy → Design → Build</span>
+                <h2>
+                    Digital solutions<br>
+                    built for <span>growth.</span>
+                </h2>
 
-        </div>
+                <p>
+                    From websites to automation, Gomez Digital
+                    helps turn ideas into useful digital products.
+                </p>
+            </div>
 
 
-        <div class="hero-circle">
+            <div class="services-grid">
 
-            <div class="circle-ring ring-one"></div>
+                <article class="service-card">
+                    <div class="service-icon">01</div>
 
-            <div class="circle-ring ring-two"></div>
+                    <h3>Web Development</h3>
 
-            <div class="circle-core">
+                    <p>
+                        Modern, responsive websites designed
+                        for businesses, creators and personal brands.
+                    </p>
+
+                    <a href="#contact">Build a website →</a>
+                </article>
+
+
+                <article class="service-card">
+                    <div class="service-icon">02</div>
+
+                    <h3>AI Solutions</h3>
+
+                    <p>
+                        Smart digital tools that use automation
+                        and AI to save time and improve workflows.
+                    </p>
+
+                    <a href="#tools">Explore tools →</a>
+                </article>
+
+
+                <article class="service-card">
+                    <div class="service-icon">03</div>
+
+                    <h3>Digital Growth</h3>
+
+                    <p>
+                        Content, marketing and digital strategies
+                        designed to help brands reach more people.
+                    </p>
+
+                    <a href="#contact">Grow your brand →</a>
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= AI TOOLS ================= -->
+
+        <section id="tools" class="section tools-section">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">GOMEZ AI LAB</span>
+
+                <h2>
+                    Your idea.<br>
+                    <span>Powered by AI.</span>
+                </h2>
+
+                <p>
+                    Experiment with the first generation of
+                    Gomez Digital's AI-powered tools.
+                </p>
+
+            </div>
+
+
+            <div class="tools-grid">
+
+                <div class="tool-card">
+
+                    <div class="tool-icon">✦</div>
+
+                    <h3>Business Idea Generator</h3>
+
+                    <p>
+                        Generate digital business ideas based
+                        on your interests and skills.
+                    </p>
+
+                    <button onclick="openTool('business')">
+                        Launch Tool →
+                    </button>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <div class="tool-icon">◈</div>
+
+                    <h3>Brand Name Generator</h3>
+
+                    <p>
+                        Create memorable names for businesses,
+                        projects and digital brands.
+                    </p>
+
+                    <button onclick="openTool('brand')">
+                        Launch Tool →
+                    </button>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <div class="tool-icon">⌁</div>
+
+                    <h3>Content Ideas</h3>
+
+                    <p>
+                        Generate content concepts for TikTok,
+                        Instagram and other platforms.
+                    </p>
+
+                    <button onclick="openTool('content')">
+                        Launch Tool →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ABOUT ================= -->
+
+        <section id="about" class="section about-section">
+
+            <div class="about-number">
                 GD
             </div>
 
+            <div class="about-content">
+
+                <span class="eyebrow">ABOUT GOMEZ DIGITAL</span>
+
+                <h2>
+                    Turning ideas into
+                    <span>digital reality.</span>
+                </h2>
+
+                <p>
+                    Gomez Digital is a digital technology brand focused
+                    on websites, AI tools, automation and online growth.
+                </p>
+
+                <p>
+                    The mission is simple:
+                    make powerful digital technology more accessible
+                    to people and businesses.
+                </p>
+
+                <div class="stats">
+
+                    <div>
+                        <strong>∞</strong>
+                        <span>Ideas</span>
+                    </div>
+
+                    <div>
+                        <strong>AI</strong>
+                        <span>Powered</span>
+                    </div>
+
+                    <div>
+                        <strong>24/7</strong>
+                        <span>Digital</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CONTACT ================= -->
+
+        <section id="contact" class="section contact-section">
+
+            <span class="eyebrow">START A PROJECT</span>
+
+            <h2>
+                Have an idea?
+                <span>Let's build it.</span>
+            </h2>
+
+            <p>
+                Tell Gomez Digital what you want to create.
+            </p>
+
+            <a href="mailto:gomezdigital@example.com"
+               class="btn primary">
+                Contact Gomez Digital →
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-logo">
+            GOMEZ<span>.</span>
         </div>
-
-    </div>
-
-
-    <div class="hero-scroll">
-
-        SCROLL TO EXPLORE
-
-        <span></span>
-
-    </div>
-
-</section>
-
-
-<!-- ==================================================
-     MARQUEE
-================================================== -->
-
-<section class="marquee">
-
-    <div class="marquee-track">
-
-        <span>WEB DESIGN</span>
-        <i>✦</i>
-
-        <span>DIGITAL STRATEGY</span>
-        <i>✦</i>
-
-        <span>BRAND EXPERIENCES</span>
-        <i>✦</i>
-
-        <span>AI-POWERED SOLUTIONS</span>
-        <i>✦</i>
-
-        <span>WORLDWIDE</span>
-        <i>✦</i>
-
-        <span>WEB DESIGN</span>
-        <i>✦</i>
-
-        <span>DIGITAL STRATEGY</span>
-        <i>✦</i>
-
-    </div>
-
-</section>
-
-
-<!-- ==================================================
-     PHILOSOPHY
-================================================== -->
-
-<section class="intro section">
-
-    <div class="section-label">
-        01 / PHILOSOPHY
-    </div>
-
-
-    <div class="intro-content">
-
-        <h2>
-
-            WE DON'T JUST
-
-            <span>DESIGN WEBSITES.</span>
-
-        </h2>
-
 
         <p>
-
-            We build digital identities that help
-            businesses look credible, communicate
-            clearly and turn visitors into customers.
-
+            © 2026 Gomez Digital. Build. Automate. Grow.
         </p>
-
-    </div>
-
-</section>
-
-
-<!-- ==================================================
-     SERVICES
-================================================== -->
-
-<section
-    class="services section"
-    id="services"
->
-
-    <div class="section-heading">
-
-        <div class="section-label">
-            02 / WHAT WE DO
-        </div>
-
-        <h2>
-
-            DIGITAL
-
-            <span>ENGINEERING.</span>
-
-        </h2>
-
-    </div>
-
-
-    <div class="service-grid">
-
-
-        <article class="service-card large">
-
-            <div class="service-number">
-                01
-            </div>
-
-            <div class="service-icon">
-                ◈
-            </div>
-
-            <h3>
-                Website Design
-            </h3>
-
-            <p>
-                Modern, responsive websites designed
-                around your brand, audience and
-                business goals.
-            </p>
-
-            <a href="#contact">
-                Build a website
-                <span>↗</span>
-            </a>
-
-        </article>
-
-
-        <article class="service-card">
-
-            <div class="service-number">
-                02
-            </div>
-
-            <div class="service-icon">
-                ◎
-            </div>
-
-            <h3>
-                Landing Pages
-            </h3>
-
-            <p>
-                High-converting landing pages for
-                campaigns, products and personal brands.
-            </p>
-
-            <a href="#contact">
-                Start one
-                <span>↗</span>
-            </a>
-
-        </article>
-
-
-        <article class="service-card">
-
-            <div class="service-number">
-                03
-            </div>
-
-            <div class="service-icon">
-                ⌁
-            </div>
-
-            <h3>
-                Digital Branding
-            </h3>
-
-            <p>
-                A digital identity that gives your
-                business a professional and memorable
-                presence.
-            </p>
-
-            <a href="#contact">
-                Build my brand
-                <span>↗</span>
-            </a>
-
-        </article>
-
-
-        <article class="service-card">
-
-            <div class="service-number">
-                04
-            </div>
-
-            <div class="service-icon">
-                ✦
-            </div>
-
-            <h3>
-                AI Solutions
-            </h3>
-
-            <p>
-                Smart digital workflows and AI-assisted
-                solutions built to save time and improve
-                productivity.
-            </p>
-
-            <a href="#contact">
-                Explore AI
-                <span>↗</span>
-            </a>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-<!-- ==================================================
-     WORK
-================================================== -->
-
-<section
-    class="work section"
-    id="work"
->
-
-    <div class="section-heading">
-
-        <div class="section-label">
-            03 / SELECTED WORK
-        </div>
-
-        <h2>
-
-            BUILT TO BE
-
-            <span>REMEMBERED.</span>
-
-        </h2>
-
-    </div>
-
-
-    <div class="project-showcase">
-
-        <div class="project-image">
-
-            <div class="project-overlay">
-
-                <small>
-                    DIGITAL EXPERIENCE
-                </small>
-
-                <h3>
-                    Future<br>
-                    Commerce
-                </h3>
-
-                <span>
-                    View concept ↗
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <div class="project-info">
-
-            <div>
-
-                <small>
-                    PROJECT / 001
-                </small>
-
-                <h3>
-                    DIGITAL
-                    <br>
-                    PRESENCE
-                </h3>
-
-            </div>
-
-
-            <p>
-                Strategic design, responsive development
-                and conversion-focused architecture.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ==================================================
-     PROCESS
-================================================== -->
-
-<section
-    class="process section"
-    id="process"
->
-
-    <div class="section-heading">
-
-        <div class="section-label">
-            04 / HOW IT WORKS
-        </div>
-
-        <h2>
-
-            FROM IDEA
-
-            <span>TO ONLINE.</span>
-
-        </h2>
-
-    </div>
-
-
-    <div class="process-grid">
-
-
-        <div class="process-step">
-
-            <span>01</span>
-
-            <h3>
-                DISCOVER
-            </h3>
-
-            <p>
-                You tell us about your business,
-                goals and vision.
-            </p>
-
-        </div>
-
-
-        <div class="process-step">
-
-            <span>02</span>
-
-            <h3>
-                DESIGN
-            </h3>
-
-            <p>
-                We create the visual direction,
-                structure and user experience.
-            </p>
-
-        </div>
-
-
-        <div class="process-step">
-
-            <span>03</span>
-
-            <h3>
-                BUILD
-            </h3>
-
-            <p>
-                Your website is developed,
-                optimized and tested.
-            </p>
-
-        </div>
-
-
-        <div class="process-step">
-
-            <span>04</span>
-
-            <h3>
-                LAUNCH
-            </h3>
-
-            <p>
-                Your website goes live and
-                your digital presence begins.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ==================================================
-     GLOBAL
-================================================== -->
-
-<section class="global section">
-
-    <div class="global-card">
-
-        <small>
-            WHERE WE WORK
-        </small>
-
-
-        <h2>
-
-            YOUR BUSINESS.
-
-            <br>
-
-            <span>ANYWHERE.</span>
-
-        </h2>
-
-
-        <p>
-
-            Gomez Digital works with ambitious
-            businesses, creators and entrepreneurs
-            around the world.
-
-        </p>
-
-
-        <div class="country-pills">
-
-            <span>🇧🇼 Botswana</span>
-
-            <span>🇿🇦 South Africa</span>
-
-            <span>🇳🇬 Nigeria</span>
-
-            <span>🇬🇭 Ghana</span>
-
-            <span>🇰🇪 Kenya</span>
-
-            <span>🇺🇸 USA</span>
-
-            <span>🇬🇧 UK</span>
-
-            <span>🇨🇦 Canada</span>
-
-            <span>🇦🇪 UAE</span>
-
-            <span>🌎 Worldwide</span>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ==================================================
-     CONTACT
-================================================== -->
-
-<section
-    class="contact section"
-    id="contact"
->
-
-
-    <div class="contact-intro">
-
-        <div class="section-label">
-            05 / START A PROJECT
-        </div>
-
-
-        <h2>
-
-            LET'S BUILD
-
-            <span>SOMETHING.</span>
-
-        </h2>
-
-
-        <p>
-
-            Tell us what you're building and
-            we'll figure out the best digital
-            solution.
-
-        </p>
-
-
-        <div class="contact-details">
-
-            <a href="mailto:gomezdigital514@gmail.com">
-                gomezdigital514@gmail.com
-            </a>
-
-
-            <a
-                href="https://wa.me/26771086913"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                WhatsApp: +267 71 086 913
-            </a>
-
-        </div>
-
-    </div>
-
-
-    <!-- PROJECT FORM -->
-
-    <form
-        class="project-form"
-        id="projectForm"
-    >
-
-
-        <div class="form-row">
-
-
-            <div class="field">
-
-                <label for="name">
-                    YOUR NAME
-                </label>
-
-                <input
-                    type="text"
-                    id="name"
-                    placeholder="John Doe"
-                    autocomplete="name"
-                    required
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label for="business">
-                    BUSINESS / BRAND
-                </label>
-
-                <input
-                    type="text"
-                    id="business"
-                    placeholder="Your Business"
-                    autocomplete="organization"
-                    required
-                >
-
-            </div>
-
-        </div>
-
-
-        <div class="field">
-
-            <label for="email">
-                EMAIL
-            </label>
-
-            <input
-                type="email"
-                id="email"
-                placeholder="you@example.com"
-                autocomplete="email"
-                required
-            >
-
-        </div>
-
-
-        <!-- INTERNATIONAL PHONE -->
-
-        <div class="field">
-
-            <label for="countryCode">
-                PHONE / WHATSAPP
-            </label>
-
-
-            <div class="phone-wrapper">
-
-
-                <select id="countryCode">
-
-                    <option value="+267">
-                        🇧🇼 +267
-                    </option>
-
-                    <option value="+27">
-                        🇿🇦 +27
-                    </option>
-
-                    <option value="+234">
-                        🇳🇬 +234
-                    </option>
-
-                    <option value="+233">
-                        🇬🇭 +233
-                    </option>
-
-                    <option value="+254">
-                        🇰🇪 +254
-                    </option>
-
-                    <option value="+255">
-                        🇹🇿 +255
-                    </option>
-
-                    <option value="+260">
-                        🇿🇲 +260
-                    </option>
-
-                    <option value="+263">
-                        🇿🇼 +263
-                    </option>
-
-                    <option value="+264">
-                        🇳🇦 +264
-                    </option>
-
-                    <option value="+256">
-                        🇺🇬 +256
-                    </option>
-
-                    <option value="+1">
-                        🇺🇸🇨🇦 +1
-                    </option>
-
-                    <option value="+44">
-                        🇬🇧 +44
-                    </option>
-
-                    <option value="+353">
-                        🇮🇪 +353
-                    </option>
-
-                    <option value="+33">
-                        🇫🇷 +33
-                    </option>
-
-                    <option value="+49">
-                        🇩🇪 +49
-                    </option>
-
-                    <option value="+39">
-                        🇮🇹 +39
-                    </option>
-
-                    <option value="+34">
-                        🇪🇸 +34
-                    </option>
-
-                    <option value="+31">
-                        🇳🇱 +31
-                    </option>
-
-                    <option value="+41">
-                        🇨🇭 +41
-                    </option>
-
-                    <option value="+971">
-                        🇦🇪 +971
-                    </option>
-
-                    <option value="+966">
-                        🇸🇦 +966
-                    </option>
-
-                    <option value="+974">
-                        🇶🇦 +974
-                    </option>
-
-                    <option value="+91">
-                        🇮🇳 +91
-                    </option>
-
-                    <option value="+86">
-                        🇨🇳 +86
-                    </option>
-
-                    <option value="+81">
-                        🇯🇵 +81
-                    </option>
-
-                    <option value="+82">
-                        🇰🇷 +82
-                    </option>
-
-                    <option value="+61">
-                        🇦🇺 +61
-                    </option>
-
-                    <option value="+64">
-                        🇳🇿 +64
-                    </option>
-
-                    <option value="+55">
-                        🇧🇷 +55
-                    </option>
-
-                    <option value="+52">
-                        🇲🇽 +52
-                    </option>
-
-                </select>
-
-
-                <input
-                    type="tel"
-                    id="phone"
-                    placeholder="71 234 5678"
-                    autocomplete="tel"
-                >
-
-            </div>
-
-        </div>
-
-
-        <!-- SERVICE -->
-
-        <div class="field">
-
-            <label for="service">
-                WHAT DO YOU NEED?
-            </label>
-
-
-            <select
-                id="service"
-                required
-            >
-
-                <option value="">
-                    Select a service
-                </option>
-
-                <option>
-                    Business Website
-                </option>
-
-                <option>
-                    Landing Page
-                </option>
-
-                <option>
-                    E-commerce Website
-                </option>
-
-                <option>
-                    Personal Website
-                </option>
-
-                <option>
-                    Portfolio
-                </option>
-
-                <option>
-                    Digital Branding
-                </option>
-
-                <option>
-                    AI Solution
-                </option>
-
-                <option>
-                    Something Else
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <!-- MESSAGE -->
-
-        <div class="field">
-
-            <label for="message">
-                PROJECT DETAILS
-            </label>
-
-
-            <textarea
-                id="message"
-                rows="6"
-                placeholder="Tell us about your project..."
-                required
-            ></textarea>
-
-        </div>
-
-
-        <button
-            type="submit"
-            class="submit-button"
-        >
-
-            SEND PROJECT REQUEST
-
-            <span>↗</span>
-
-        </button>
-
-
-        <p class="form-note">
-
-            Your request will open WhatsApp with
-            your project details ready to send.
-
-        </p>
-
-    </form>
-
-</section>
-
-</main>
-
-
-<!-- ==================================================
-     FOOTER
-================================================== -->
-
-<footer>
-
-    <div class="footer-top">
-
-
-        <div>
-
-            <a
-                href="#home"
-                class="logo footer-logo"
-            >
-                GOMEZ <span>DIGITAL</span>
-            </a>
-
-
-            <p>
-                Digital experiences for ambitious people.
-            </p>
-
-        </div>
-
 
         <div class="footer-links">
-
             <a href="#home">Home</a>
-
-            <a href="#work">Work</a>
-
             <a href="#services">Services</a>
+            <a href="#tools">AI Tools</a>
+        </div>
 
-            <a href="#contact">Contact</a>
+    </footer>
+
+
+    <!-- TOOL MODAL -->
+
+    <div id="toolModal" class="modal">
+
+        <div class="modal-box">
+
+            <button class="close-btn" onclick="closeTool()">×</button>
+
+            <span class="eyebrow">GOMEZ AI LAB</span>
+
+            <h2 id="modalTitle">AI Tool</h2>
+
+            <p id="modalDescription">
+                Your AI tool will appear here.
+            </p>
+
+            <div id="toolInterface"></div>
 
         </div>
 
     </div>
 
 
-    <div class="footer-bottom">
-
-        <span>
-            © <span id="currentYear">2026</span>
-            Gomez Digital
-        </span>
-
-
-        <a href="mailto:gomezdigital514@gmail.com">
-            gomezdigital514@gmail.com
-        </a>
-
-    </div>
-
-</footer>
-
-
-<!-- ==================================================
-     JAVASCRIPT
-================================================== -->
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
-
-                        </html>
+    </html>
