@@ -1,451 +1,386 @@
 /* =====================================================
-   GOMEZ DIGITAL V3.1
-   MAIN JAVASCRIPT
+   GOMEZ DIGITAL V4
+   JAVASCRIPT ENGINE
 ===================================================== */
 
 
 /* =====================================================
-   PAGE LOADER
+   MOBILE MENU
 ===================================================== */
 
-window.addEventListener("load", function () {
+function toggleMenu() {
 
-    const loader =
-        document.getElementById("loader");
+    const nav = document.querySelector(".nav-links");
+
+    nav.classList.toggle("active");
+
+}
 
 
-    setTimeout(function () {
+/* Close mobile menu when a link is clicked */
 
-        if (loader) {
-            loader.classList.add("hidden");
-        }
+document.querySelectorAll(".nav-links a").forEach(link => {
 
-    }, 700);
+    link.addEventListener("click", () => {
+
+        document.querySelector(".nav-links")
+            .classList.remove("active");
+
+    });
 
 });
 
 
-
 /* =====================================================
-   MOBILE NAVIGATION
+   AI TOOL MODAL
 ===================================================== */
 
-const menuButton =
-    document.getElementById("menuButton");
-
-const mobileMenu =
-    document.getElementById("mobileMenu");
-
-const mobileClose =
-    document.getElementById("mobileClose");
-
-const mobileLinks =
-    document.querySelectorAll(".mobile-links a");
+const modal = document.getElementById("toolModal");
+const modalTitle = document.getElementById("modalTitle");
+const modalDescription = document.getElementById("modalDescription");
+const toolInterface = document.getElementById("toolInterface");
 
 
-/*
-    OPEN MENU
-*/
+function openTool(tool) {
 
-function openMenu() {
+    modal.classList.add("active");
 
-    if (!mobileMenu || !menuButton) {
-        return;
+    if (tool === "business") {
+
+        modalTitle.textContent = "Business Idea Generator";
+
+        modalDescription.textContent =
+            "Tell Gomez AI what you are interested in and generate business ideas.";
+
+        toolInterface.innerHTML = `
+
+            <input
+                id="businessInput"
+                type="text"
+                placeholder="Example: fitness, fashion, technology..."
+                class="tool-input"
+            >
+
+            <button
+                class="generate-btn"
+                onclick="generateBusinessIdea()">
+                Generate Idea →
+            </button>
+
+            <div id="toolResult" class="tool-result"></div>
+
+        `;
+
     }
 
 
-    mobileMenu.classList.add("open");
+    else if (tool === "brand") {
 
-    document.body.classList.add("menu-active");
+        modalTitle.textContent = "Brand Name Generator";
 
+        modalDescription.textContent =
+            "Enter your business niche and generate brand name ideas.";
 
-    menuButton.setAttribute(
-        "aria-expanded",
-        "true"
-    );
+        toolInterface.innerHTML = `
 
+            <input
+                id="brandInput"
+                type="text"
+                placeholder="Example: clothing, tech, food..."
+                class="tool-input"
+            >
 
-    mobileMenu.setAttribute(
-        "aria-hidden",
-        "false"
-    );
+            <button
+                class="generate-btn"
+                onclick="generateBrandNames()">
+                Generate Names →
+            </button>
 
-}
+            <div id="toolResult" class="tool-result"></div>
 
+        `;
 
-/*
-    CLOSE MENU
-*/
-
-function closeMenu() {
-
-    if (!mobileMenu || !menuButton) {
-        return;
     }
 
 
-    mobileMenu.classList.remove("open");
+    else if (tool === "content") {
 
-    document.body.classList.remove("menu-active");
+        modalTitle.textContent = "Content Idea Generator";
 
+        modalDescription.textContent =
+            "Choose a platform and generate content ideas.";
 
-    menuButton.setAttribute(
-        "aria-expanded",
-        "false"
-    );
+        toolInterface.innerHTML = `
 
+            <input
+                id="contentInput"
+                type="text"
+                placeholder="Example: TikTok fitness page..."
+                class="tool-input"
+            >
 
-    mobileMenu.setAttribute(
-        "aria-hidden",
-        "true"
-    );
+            <button
+                class="generate-btn"
+                onclick="generateContentIdeas()">
+                Generate Ideas →
+            </button>
 
-}
+            <div id="toolResult" class="tool-result"></div>
 
+        `;
 
-/*
-    TOGGLE MENU
-*/
-
-if (menuButton) {
-
-    menuButton.addEventListener(
-        "click",
-        function () {
-
-            const isOpen =
-                mobileMenu.classList.contains("open");
-
-
-            if (isOpen) {
-
-                closeMenu();
-
-            } else {
-
-                openMenu();
-
-            }
-
-        }
-    );
+    }
 
 }
 
 
-/*
-    CLOSE BUTTON
-*/
+/* =====================================================
+   CLOSE MODAL
+===================================================== */
 
-if (mobileClose) {
+function closeTool() {
 
-    mobileClose.addEventListener(
-        "click",
-        closeMenu
-    );
+    modal.classList.remove("active");
 
 }
 
 
-/*
-    CLOSE AFTER CLICKING A LINK
-*/
+/* Close modal when clicking outside */
 
-mobileLinks.forEach(function (link) {
+modal.addEventListener("click", function(event) {
 
-    link.addEventListener(
-        "click",
-        closeMenu
-    );
+    if (event.target === modal) {
+
+        closeTool();
+
+    }
 
 });
 
 
-/*
-    ESCAPE KEY CLOSES MENU
-*/
+/* Close modal with Escape */
 
-document.addEventListener(
-    "keydown",
-    function (event) {
+document.addEventListener("keydown", function(event) {
 
-        if (event.key === "Escape") {
+    if (event.key === "Escape") {
 
-            closeMenu();
-
-        }
+        closeTool();
 
     }
-);
 
+});
 
 
 /* =====================================================
-   SCROLL REVEAL
+   BUSINESS IDEA GENERATOR
 ===================================================== */
 
-const revealElements =
-    document.querySelectorAll(
-        ".section-heading, " +
-        ".service-card, " +
-        ".process-step, " +
-        ".project-showcase, " +
-        ".global-card, " +
-        ".contact-intro, " +
-        ".project-form"
-    );
+function generateBusinessIdea() {
+
+    const input =
+        document.getElementById("businessInput").value.trim();
+
+    const result =
+        document.getElementById("toolResult");
 
 
-const revealObserver =
-    new IntersectionObserver(
+    if (!input) {
 
-        function (entries) {
+        result.innerHTML =
+            "<p>Please enter an interest or niche first.</p>";
 
-            entries.forEach(
-                function (entry) {
-
-                    if (
-                        entry.isIntersecting
-                    ) {
-
-                        entry.target.style.opacity =
-                            "1";
-
-                        entry.target.style.transform =
-                            "translateY(0)";
-
-                        revealObserver.unobserve(
-                            entry.target
-                        );
-
-                    }
-
-                }
-            );
-
-        },
-
-        {
-            threshold: 0.12
-        }
-
-    );
-
-
-revealElements.forEach(
-    function (element) {
-
-        element.style.opacity = "0";
-
-        element.style.transform =
-            "translateY(35px)";
-
-        element.style.transition =
-            "opacity .8s ease, " +
-            "transform .8s ease";
-
-        revealObserver.observe(element);
+        return;
 
     }
-);
 
 
+    const ideas = [
 
-/* =====================================================
-   HERO PARALLAX
-===================================================== */
+        `Create a digital service helping ${input} businesses attract customers online.`,
 
-const heroVisual =
-    document.querySelector(".hero-visual");
+        `Build a social-media brand focused on ${input} tips, education and entertainment.`,
 
+        `Create an online marketplace connecting ${input} providers with customers.`,
 
-document.addEventListener(
-    "mousemove",
-    function (event) {
+        `Build a subscription-free digital tool that helps ${input} businesses automate repetitive tasks.`,
 
-        if (
-            !heroVisual ||
-            window.innerWidth < 901
-        ) {
-            return;
-        }
+        `Create a content agency specializing in ${input} brands.`
+
+    ];
 
 
-        const x =
-            (
-                window.innerWidth / 2 -
-                event.clientX
-            ) / 70;
+    const randomIdea =
+        ideas[Math.floor(Math.random() * ideas.length)];
 
 
-        const y =
-            (
-                window.innerHeight / 2 -
-                event.clientY
-            ) / 70;
+    result.innerHTML = `
 
+        <div class="result-box">
 
-        heroVisual.style.transform =
-            `translateY(-50%) translate(${x}px, ${y}px)`;
+            <strong>💡 Gomez Idea</strong>
 
-    }
-);
+            <p>${randomIdea}</p>
 
+        </div>
 
-
-/* =====================================================
-   PROJECT FORM → WHATSAPP
-===================================================== */
-
-const projectForm =
-    document.getElementById("projectForm");
-
-
-if (projectForm) {
-
-    projectForm.addEventListener(
-        "submit",
-        function (event) {
-
-            event.preventDefault();
-
-
-            /*
-                GOMEZ DIGITAL BUSINESS WHATSAPP
-
-                International format.
-                No + sign.
-                No spaces.
-            */
-
-            const GOMEZ_WHATSAPP =
-                "26771086913";
-
-
-            /*
-                GET FORM VALUES
-            */
-
-            const name =
-                document
-                    .getElementById("name")
-                    .value
-                    .trim();
-
-
-            const business =
-                document
-                    .getElementById("business")
-                    .value
-                    .trim();
-
-
-            const email =
-                document
-                    .getElementById("email")
-                    .value
-                    .trim();
-
-
-            const countryCode =
-                document
-                    .getElementById("countryCode")
-                    .value;
-
-
-            const phone =
-                document
-                    .getElementById("phone")
-                    .value
-                    .trim();
-
-
-            const service =
-                document
-                    .getElementById("service")
-                    .value;
-
-
-            const message =
-                document
-                    .getElementById("message")
-                    .value
-                    .trim();
-
-
-            /*
-                CREATE WHATSAPP MESSAGE
-            */
-
-            const whatsappMessage =
-
-`🚀 GOMEZ DIGITAL — NEW PROJECT REQUEST
-
-━━━━━━━━━━━━━━━━━━
-
-👤 CLIENT
-Name: ${name}
-
-🏢 BUSINESS / BRAND
-${business}
-
-📧 EMAIL
-${email}
-
-📱 CLIENT WHATSAPP
-${countryCode} ${phone}
-
-💼 SERVICE
-${service}
-
-📝 PROJECT DETAILS
-${message}
-
-━━━━━━━━━━━━━━━━━━
-
-🌍 Submitted through Gomez Digital
-https://gomezdigital.github.io/gomez-digital/`;
-
-
-            /*
-                CREATE WHATSAPP URL
-            */
-
-            const whatsappURL =
-                `https://wa.me/${GOMEZ_WHATSAPP}` +
-                `?text=${encodeURIComponent(
-                    whatsappMessage
-                )}`;
-
-
-            /*
-                OPEN WHATSAPP
-            */
-
-            window.open(
-                whatsappURL,
-                "_blank",
-                "noopener,noreferrer"
-            );
-
-        }
-    );
+    `;
 
 }
 
 
-
 /* =====================================================
-   CURRENT YEAR
+   BRAND NAME GENERATOR
 ===================================================== */
 
-const currentYear =
-    document.getElementById("currentYear");
+function generateBrandNames() {
+
+    const input =
+        document.getElementById("brandInput").value.trim();
+
+    const result =
+        document.getElementById("toolResult");
 
 
-if (currentYear) {
+    if (!input) {
 
-    currentYear.textContent =
-        new Date().getFullYear();
+        result.innerHTML =
+            "<p>Please enter a niche first.</p>";
+
+        return;
+
+    }
+
+
+    const words = [
+
+        "Nova",
+        "Nexa",
+        "Vibe",
+        "Prime",
+        "Vertex",
+        "Pulse",
+        "Forge",
+        "Vision",
+        "Flow",
+        "Rise"
+
+    ];
+
+
+    let names = [];
+
+
+    for (let i = 0; i < 5; i++) {
+
+        const word =
+            words[Math.floor(Math.random() * words.length)];
+
+        const name =
+            word + " " +
+            input.charAt(0).toUpperCase() +
+            input.slice(1);
+
+        names.push(name);
+
+    }
+
+
+    result.innerHTML = `
+
+        <div class="result-box">
+
+            <strong>✨ Brand Ideas</strong>
+
+            ${names.map(name =>
+                `<p>• ${name}</p>`
+            ).join("")}
+
+        </div>
+
+    `;
 
 }
+
+
+/* =====================================================
+   CONTENT IDEA GENERATOR
+===================================================== */
+
+function generateContentIdeas() {
+
+    const input =
+        document.getElementById("contentInput").value.trim();
+
+    const result =
+        document.getElementById("toolResult");
+
+
+    if (!input) {
+
+        result.innerHTML =
+            "<p>Please describe your page or niche first.</p>";
+
+        return;
+
+    }
+
+
+    const ideas = [
+
+        `3 mistakes people make when starting ${input}`,
+
+        `A beginner's guide to ${input}`,
+
+        `The truth nobody tells you about ${input}`,
+
+        `5 things you should know about ${input}`,
+
+        `I tried ${input} for 7 days — here's what happened`,
+
+        `POV: You finally understand ${input}`,
+
+        `The fastest way to improve at ${input}`
+
+    ];
+
+
+    result.innerHTML = `
+
+        <div class="result-box">
+
+            <strong>🔥 Content Ideas</strong>
+
+            ${ideas.map((idea, index) =>
+                `<p>${index + 1}. ${idea}</p>`
+            ).join("")}
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   PAGE LOAD ANIMATION
+===================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    document.body.classList.add("loaded");
+
+});
+
+
+/* =====================================================
+   CONSOLE BRANDING
+===================================================== */
+
+console.log(
+    "%c GOMEZ DIGITAL ",
+    "background:#fff;color:#000;font-size:20px;font-weight:bold;padding:8px;"
+);
+
+console.log(
+    "Build. Automate. Grow."
+);
