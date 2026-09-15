@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -8,9 +10,28 @@
         content="width=device-width, initial-scale=1.0"
     >
 
+    <!-- =====================================================
+         SEO
+    ====================================================== -->
+
     <meta
         name="description"
-        content="Gomez Digital — Websites, AI solutions, digital branding and modern digital experiences for ambitious businesses and creators."
+        content="Gomez Digital builds modern websites, AI solutions, automation systems and digital experiences that help ambitious businesses and creators move forward."
+    >
+
+    <meta
+        name="keywords"
+        content="Gomez Digital, web design, website development, AI solutions, automation, digital branding, digital agency, Botswana, web development"
+    >
+
+    <meta
+        name="author"
+        content="Gomez Digital"
+    >
+
+    <meta
+        name="robots"
+        content="index, follow"
     >
 
     <meta
@@ -18,9 +39,58 @@
         content="#0b0806"
     >
 
-    <title>Gomez Digital — Digital Experiences That Move</title>
+    <!-- =====================================================
+         OPEN GRAPH / SOCIAL SHARING
+    ====================================================== -->
 
-    <!-- Fonts -->
+    <meta
+        property="og:type"
+        content="website"
+    >
+
+    <meta
+        property="og:title"
+        content="Gomez Digital — Digital Experiences That Move Businesses Forward"
+    >
+
+    <meta
+        property="og:description"
+        content="Modern websites, AI solutions, automation and digital experiences built for ambitious businesses and creators."
+    >
+
+    <meta
+        property="og:site_name"
+        content="Gomez Digital"
+    >
+
+    <!-- =====================================================
+         TWITTER / X
+    ====================================================== -->
+
+    <meta
+        name="twitter:card"
+        content="summary_large_image"
+    >
+
+    <meta
+        name="twitter:title"
+        content="Gomez Digital — Digital Experiences That Move"
+    >
+
+    <meta
+        name="twitter:description"
+        content="Websites, AI solutions, automation and digital experiences built to move businesses forward."
+    >
+
+    <title>
+        Gomez Digital — Digital Experiences That Move Businesses Forward
+    </title>
+
+
+    <!-- =====================================================
+         FONTS
+    ====================================================== -->
+
     <link
         rel="preconnect"
         href="https://fonts.googleapis.com"
@@ -37,52 +107,102 @@
         rel="stylesheet"
     >
 
-    <!-- Main stylesheet -->
+
+    <!-- =====================================================
+         MAIN STYLESHEET
+    ====================================================== -->
+
     <link
         rel="stylesheet"
         href="style.css"
     >
 
-    <!--
-        EMERGENCY LOADER PROTECTION
 
-        This runs independently from script.js.
+    <!-- =====================================================
+         EMERGENCY LOADER PROTECTION
+    ====================================================== -->
 
-        Even if script.js crashes,
-        the loader will still disappear.
-    -->
     <script>
-    (function () {
-        function hideGomezLoader() {
-            var loader = document.getElementById("page-loader");
 
-            if (loader) {
-                loader.classList.add("is-hidden");
-                loader.setAttribute("aria-hidden", "true");
+        (function () {
 
-                setTimeout(function () {
-                    if (loader && loader.parentNode) {
-                        loader.parentNode.removeChild(loader);
-                    }
-                }, 700);
+            function hideGomezLoader() {
+
+                var loader =
+                    document.getElementById("page-loader");
+
+                if (loader) {
+
+                    loader.classList.add("is-hidden");
+
+                    loader.setAttribute(
+                        "aria-hidden",
+                        "true"
+                    );
+
+                    setTimeout(function () {
+
+                        if (
+                            loader &&
+                            loader.parentNode
+                        ) {
+
+                            loader.parentNode.removeChild(
+                                loader
+                            );
+
+                        }
+
+                    }, 700);
+
+                }
+
             }
-        }
 
-        if (document.readyState === "loading") {
-            document.addEventListener("DOMContentLoaded", function () {
-                setTimeout(hideGomezLoader, 1600);
-            });
-        } else {
-            setTimeout(hideGomezLoader, 1600);
-        }
 
-        /* Absolute emergency backup */
-        setTimeout(hideGomezLoader, 3000);
-    })();
+            if (
+                document.readyState ===
+                "loading"
+            ) {
+
+                document.addEventListener(
+                    "DOMContentLoaded",
+                    function () {
+
+                        setTimeout(
+                            hideGomezLoader,
+                            1600
+                        );
+
+                    }
+                );
+
+            } else {
+
+                setTimeout(
+                    hideGomezLoader,
+                    1600
+                );
+
+            }
+
+
+            /* Absolute emergency backup */
+
+            setTimeout(
+                hideGomezLoader,
+                3000
+            );
+
+        })();
+
     </script>
+
 </head>
 
+
 <body>
+
 
     <!-- =====================================================
          PAGE LOADER
@@ -95,16 +215,23 @@
     >
 
         <div class="loader-orb">
-            <span>GD</span>
+
+            <span>
+                GD
+            </span>
+
         </div>
+
 
         <div class="loader-brand">
             Gomez Digital
         </div>
 
+
         <div class="loader-subtitle">
             DIGITAL STUDIO
         </div>
+
 
         <div class="loader-line">
             <span></span>
@@ -134,7 +261,7 @@
 
 
     <!-- =====================================================
-         HEADER
+         HEADER / NAVIGATION
     ====================================================== -->
 
     <header
@@ -144,13 +271,19 @@
 
         <div class="container nav-container">
 
+
+            <!-- BRAND -->
+
             <a
                 href="#home"
                 class="brand"
                 aria-label="Gomez Digital home"
             >
 
-                <span class="brand-mark">
+                <span
+                    class="brand-mark"
+                    aria-hidden="true"
+                >
                     GD
                 </span>
 
@@ -161,12 +294,15 @@
             </a>
 
 
+            <!-- MOBILE MENU -->
+
             <button
                 class="menu-toggle"
                 id="menu-toggle"
                 type="button"
                 aria-label="Open navigation"
                 aria-expanded="false"
+                aria-controls="site-nav"
             >
 
                 <span></span>
@@ -175,6 +311,8 @@
 
             </button>
 
+
+            <!-- NAVIGATION -->
 
             <nav
                 class="site-nav"
@@ -218,11 +356,18 @@
                 </a>
 
                 <a
+                    href="#faq"
+                    class="nav-link"
+                >
+                    FAQ
+                </a>
+
+                <a
                     href="#contact"
                     class="nav-cta"
                 >
                     Start a Project
-                    <span>↗</span>
+                    <span aria-hidden="true">↗</span>
                 </a>
 
             </nav>
@@ -232,6 +377,10 @@
     </header>
 
 
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
     <main id="home">
 
 
@@ -239,35 +388,50 @@
              HERO
         ================================================== -->
 
-        <section class="hero section">
+        <section
+            class="hero section"
+            aria-labelledby="hero-title"
+        >
 
             <div class="container hero-grid">
 
+
+                <!-- HERO CONTENT -->
+
                 <div class="hero-content">
 
+
                     <div class="eyebrow reveal">
-                        <span class="eyebrow-dot"></span>
+
+                        <span
+                            class="eyebrow-dot"
+                            aria-hidden="true"
+                        ></span>
+
                         Digital Studio • AI • Web
+
                     </div>
 
 
-                    <h1 class="hero-title reveal">
+                    <h1
+                        class="hero-title reveal"
+                        id="hero-title"
+                    >
 
-                        Build a
+                        Build digital.
                         <span class="gradient-text">
-                            digital presence
+                            Move forward.
                         </span>
-                        that feels alive.
 
                     </h1>
 
 
                     <p class="hero-description reveal">
 
-                        Gomez Digital creates modern websites,
+                        Gomez Digital builds modern websites,
                         intelligent digital solutions and memorable
-                        brand experiences designed to help ambitious
-                        people and businesses move forward.
+                        brand experiences for ambitious businesses,
+                        creators and entrepreneurs.
 
                     </p>
 
@@ -278,22 +442,36 @@
                             href="#contact"
                             class="btn btn-primary"
                         >
+
                             Start a Project
-                            <span>↗</span>
+
+                            <span aria-hidden="true">
+                                ↗
+                            </span>
+
                         </a>
+
 
                         <a
                             href="#services"
                             class="btn btn-ghost"
                         >
+
                             Explore Services
-                            <span>↓</span>
+
+                            <span aria-hidden="true">
+                                ↓
+                            </span>
+
                         </a>
 
                     </div>
 
 
+                    <!-- PROCESS PROOF -->
+
                     <div class="hero-proof reveal">
+
 
                         <div class="proof-item">
 
@@ -308,7 +486,10 @@
                         </div>
 
 
-                        <div class="proof-divider"></div>
+                        <div
+                            class="proof-divider"
+                            aria-hidden="true"
+                        ></div>
 
 
                         <div class="proof-item">
@@ -324,7 +505,10 @@
                         </div>
 
 
-                        <div class="proof-divider"></div>
+                        <div
+                            class="proof-divider"
+                            aria-hidden="true"
+                        ></div>
 
 
                         <div class="proof-item">
@@ -340,7 +524,10 @@
                         </div>
 
 
-                        <div class="proof-divider"></div>
+                        <div
+                            class="proof-divider"
+                            aria-hidden="true"
+                        ></div>
 
 
                         <div class="proof-item">
@@ -360,7 +547,9 @@
                 </div>
 
 
-                <!-- HERO VISUAL -->
+                <!-- =================================================
+                     HERO VISUAL
+                ================================================== -->
 
                 <div
                     class="hero-visual reveal"
@@ -398,6 +587,9 @@
                     </div>
 
 
+                    <!-- FLOATING CARDS -->
+
+
                     <div class="floating-card floating-card-one">
 
                         <span class="floating-icon">
@@ -405,6 +597,7 @@
                         </span>
 
                         <div>
+
                             <strong>
                                 Creative
                             </strong>
@@ -412,6 +605,7 @@
                             <small>
                                 Digital experiences
                             </small>
+
                         </div>
 
                     </div>
@@ -424,6 +618,7 @@
                         </span>
 
                         <div>
+
                             <strong>
                                 AI Powered
                             </strong>
@@ -431,6 +626,7 @@
                             <small>
                                 Smarter workflows
                             </small>
+
                         </div>
 
                     </div>
@@ -443,6 +639,7 @@
                         </span>
 
                         <div>
+
                             <strong>
                                 Growth
                             </strong>
@@ -450,6 +647,7 @@
                             <small>
                                 Built for impact
                             </small>
+
                         </div>
 
                     </div>
@@ -467,37 +665,99 @@
 
         <section
             class="ticker"
-            aria-label="Gomez Digital services"
+            aria-label="Gomez Digital capabilities"
         >
 
             <div class="ticker-track">
 
-                <span>WEB DESIGN</span>
-                <i>✦</i>
+                <span>
+                    WEB DESIGN
+                </span>
 
-                <span>AI SOLUTIONS</span>
-                <i>✦</i>
+                <i aria-hidden="true">
+                    ✦
+                </i>
 
-                <span>DIGITAL STRATEGY</span>
-                <i>✦</i>
 
-                <span>BRAND EXPERIENCES</span>
-                <i>✦</i>
+                <span>
+                    AI SOLUTIONS
+                </span>
 
-                <span>AUTOMATION</span>
-                <i>✦</i>
+                <i aria-hidden="true">
+                    ✦
+                </i>
 
-                <span>WEB DESIGN</span>
-                <i>✦</i>
 
-                <span>AI SOLUTIONS</span>
-                <i>✦</i>
+                <span>
+                    DIGITAL STRATEGY
+                </span>
 
-                <span>DIGITAL STRATEGY</span>
-                <i>✦</i>
+                <i aria-hidden="true">
+                    ✦
+                </i>
 
-                <span>BRAND EXPERIENCES</span>
-                <i>✦</i>
+
+                <span>
+                    BRAND EXPERIENCES
+                </span>
+
+                <i aria-hidden="true">
+                    ✦
+                </i>
+
+
+                <span>
+                    AUTOMATION
+                </span>
+
+                <i aria-hidden="true">
+                    ✦
+                </i>
+
+
+                <span>
+                    WEB DESIGN
+                </span>
+
+                <i aria-hidden="true">
+                    ✦
+                </i>
+
+
+                <span>
+                    AI SOLUTIONS
+                </span>
+
+                <i aria-hidden="true">
+                    ✦
+                </i>
+
+
+                <span>
+                    DIGITAL STRATEGY
+                </span>
+
+                <i aria-hidden="true">
+                    ✦
+                </i>
+
+
+                <span>
+                    BRAND EXPERIENCES
+                </span>
+
+                <i aria-hidden="true">
+                    ✦
+                </i>
+
+
+                <span>
+                    AUTOMATION
+                </span>
+
+                <i aria-hidden="true">
+                    ✦
+                </i>
 
             </div>
 
@@ -511,9 +771,11 @@
         <section
             class="section services-section"
             id="services"
+            aria-labelledby="services-title"
         >
 
             <div class="container">
+
 
                 <div class="section-heading reveal">
 
@@ -521,17 +783,21 @@
                         01 / WHAT WE DO
                     </span>
 
-                    <h2>
+                    <h2 id="services-title">
+
                         Digital tools built
                         <span class="gradient-text">
                             to move.
                         </span>
+
                     </h2>
 
                     <p>
+
                         From your first idea to a polished digital
                         product, Gomez Digital combines design,
                         technology and AI to create useful experiences.
+
                     </p>
 
                 </div>
@@ -539,6 +805,8 @@
 
                 <div class="services-grid">
 
+
+                    <!-- SERVICE 01 -->
 
                     <article
                         class="service-card reveal"
@@ -551,40 +819,64 @@
                                 01
                             </span>
 
-                            <span class="service-icon">
+                            <span
+                                class="service-icon"
+                                aria-hidden="true"
+                            >
                                 ◈
                             </span>
 
                         </div>
 
+
                         <h3>
                             Web Experiences
                         </h3>
 
+
                         <p>
+
                             Modern responsive websites and landing
                             pages designed to make businesses look
-                            credible and convert attention into action.
+                            credible and turn attention into action.
+
                         </p>
+
 
                         <div class="service-tags">
 
-                            <span>Websites</span>
-                            <span>Landing Pages</span>
-                            <span>UI/UX</span>
+                            <span>
+                                Websites
+                            </span>
+
+                            <span>
+                                Landing Pages
+                            </span>
+
+                            <span>
+                                UI/UX
+                            </span>
 
                         </div>
+
 
                         <a
                             href="#contact"
                             class="service-link"
                         >
+
                             Build a website
-                            <span>↗</span>
+
+                            <span aria-hidden="true">
+                                ↗
+                            </span>
+
                         </a>
 
                     </article>
 
+
+                    <!-- SERVICE 02 -->
 
                     <article
                         class="service-card reveal"
@@ -597,40 +889,64 @@
                                 02
                             </span>
 
-                            <span class="service-icon">
+                            <span
+                                class="service-icon"
+                                aria-hidden="true"
+                            >
                                 ◎
                             </span>
 
                         </div>
 
+
                         <h3>
                             AI & Automation
                         </h3>
 
+
                         <p>
+
                             Intelligent tools and workflows that
                             reduce repetitive work, improve productivity
                             and help businesses operate smarter.
+
                         </p>
+
 
                         <div class="service-tags">
 
-                            <span>AI Tools</span>
-                            <span>Automation</span>
-                            <span>Workflows</span>
+                            <span>
+                                AI Tools
+                            </span>
+
+                            <span>
+                                Automation
+                            </span>
+
+                            <span>
+                                Workflows
+                            </span>
 
                         </div>
+
 
                         <a
                             href="#ai-studio"
                             class="service-link"
                         >
+
                             Explore AI
-                            <span>↗</span>
+
+                            <span aria-hidden="true">
+                                ↗
+                            </span>
+
                         </a>
 
                     </article>
 
+
+                    <!-- SERVICE 03 -->
 
                     <article
                         class="service-card reveal"
@@ -643,36 +959,58 @@
                                 03
                             </span>
 
-                            <span class="service-icon">
+                            <span
+                                class="service-icon"
+                                aria-hidden="true"
+                            >
                                 ✦
                             </span>
 
                         </div>
 
+
                         <h3>
                             Brand & Growth
                         </h3>
 
+
                         <p>
+
                             Digital identity, content direction and
                             growth-focused experiences that help your
                             brand become easier to remember.
+
                         </p>
+
 
                         <div class="service-tags">
 
-                            <span>Branding</span>
-                            <span>Content</span>
-                            <span>Growth</span>
+                            <span>
+                                Branding
+                            </span>
+
+                            <span>
+                                Content
+                            </span>
+
+                            <span>
+                                Growth
+                            </span>
 
                         </div>
+
 
                         <a
                             href="#contact"
                             class="service-link"
                         >
+
                             Grow your brand
-                            <span>↗</span>
+
+                            <span aria-hidden="true">
+                                ↗
+                            </span>
+
                         </a>
 
                     </article>
@@ -691,11 +1029,14 @@
         <section
             class="section ai-section"
             id="ai-studio"
+            aria-labelledby="ai-title"
         >
 
             <div class="container">
 
+
                 <div class="ai-panel reveal">
+
 
                     <div class="ai-heading">
 
@@ -705,26 +1046,35 @@
                                 02 / AI STUDIO
                             </span>
 
-                            <h2>
+
+                            <h2 id="ai-title">
+
                                 Your idea in.
                                 <span class="gradient-text">
                                     Possibilities out.
                                 </span>
+
                             </h2>
 
+
                             <p>
+
                                 Try Gomez Digital's experimental AI
                                 tools. Generate ideas instantly and
                                 use them as a starting point for your
                                 next digital project.
+
                             </p>
 
                         </div>
 
 
                         <div class="ai-badge">
+
                             <span></span>
+
                             AI LAB
+
                         </div>
 
                     </div>
@@ -733,6 +1083,8 @@
                     <div class="tools-grid">
 
 
+                        <!-- AI TOOL 01 -->
+
                         <button
                             class="tool-card"
                             type="button"
@@ -740,24 +1092,35 @@
                             data-tilt
                         >
 
-                            <span class="tool-icon">
+                            <span
+                                class="tool-icon"
+                                aria-hidden="true"
+                            >
                                 ✦
                             </span>
+
 
                             <strong>
                                 Business Name
                             </strong>
 
+
                             <small>
                                 Generate brand ideas
                             </small>
 
-                            <span class="tool-arrow">
+
+                            <span
+                                class="tool-arrow"
+                                aria-hidden="true"
+                            >
                                 →
                             </span>
 
                         </button>
 
+
+                        <!-- AI TOOL 02 -->
 
                         <button
                             class="tool-card"
@@ -766,24 +1129,35 @@
                             data-tilt
                         >
 
-                            <span class="tool-icon">
+                            <span
+                                class="tool-icon"
+                                aria-hidden="true"
+                            >
                                 ◇
                             </span>
+
 
                             <strong>
                                 Website Concept
                             </strong>
 
+
                             <small>
                                 Turn an idea into a concept
                             </small>
 
-                            <span class="tool-arrow">
+
+                            <span
+                                class="tool-arrow"
+                                aria-hidden="true"
+                            >
                                 →
                             </span>
 
                         </button>
 
+
+                        <!-- AI TOOL 03 -->
 
                         <button
                             class="tool-card"
@@ -792,24 +1166,35 @@
                             data-tilt
                         >
 
-                            <span class="tool-icon">
+                            <span
+                                class="tool-icon"
+                                aria-hidden="true"
+                            >
                                 ⚡
                             </span>
+
 
                             <strong>
                                 Content Spark
                             </strong>
 
+
                             <small>
                                 Get content inspiration
                             </small>
 
-                            <span class="tool-arrow">
+
+                            <span
+                                class="tool-arrow"
+                                aria-hidden="true"
+                            >
                                 →
                             </span>
 
                         </button>
 
+
+                        <!-- AI TOOL 04 -->
 
                         <button
                             class="tool-card"
@@ -818,19 +1203,28 @@
                             data-tilt
                         >
 
-                            <span class="tool-icon">
+                            <span
+                                class="tool-icon"
+                                aria-hidden="true"
+                            >
                                 ◎
                             </span>
+
 
                             <strong>
                                 AI Roadmap
                             </strong>
 
+
                             <small>
                                 Discover automation ideas
                             </small>
 
-                            <span class="tool-arrow">
+
+                            <span
+                                class="tool-arrow"
+                                aria-hidden="true"
+                            >
                                 →
                             </span>
 
@@ -852,9 +1246,11 @@
         <section
             class="section process-section"
             id="process"
+            aria-labelledby="process-title"
         >
 
             <div class="container">
+
 
                 <div class="section-heading reveal">
 
@@ -862,16 +1258,22 @@
                         03 / OUR PROCESS
                     </span>
 
-                    <h2>
+
+                    <h2 id="process-title">
+
                         From idea
                         <span class="gradient-text">
                             to online.
                         </span>
+
                     </h2>
 
+
                     <p>
+
                         A simple process designed to turn your idea
                         into something people can actually experience.
+
                     </p>
 
                 </div>
@@ -880,25 +1282,34 @@
                 <div class="process-grid">
 
 
+                    <!-- PROCESS 01 -->
+
                     <article class="process-card reveal">
 
                         <span>
                             01
                         </span>
 
+
                         <div class="process-line"></div>
+
 
                         <h3>
                             Discover
                         </h3>
 
+
                         <p>
+
                             We understand your business, audience,
                             goals and vision.
+
                         </p>
 
                     </article>
 
+
+                    <!-- PROCESS 02 -->
 
                     <article class="process-card reveal">
 
@@ -906,19 +1317,26 @@
                             02
                         </span>
 
+
                         <div class="process-line"></div>
+
 
                         <h3>
                             Design
                         </h3>
 
+
                         <p>
+
                             We create the visual direction,
                             structure and user experience.
+
                         </p>
 
                     </article>
 
+
+                    <!-- PROCESS 03 -->
 
                     <article class="process-card reveal">
 
@@ -926,19 +1344,26 @@
                             03
                         </span>
 
+
                         <div class="process-line"></div>
+
 
                         <h3>
                             Build
                         </h3>
 
+
                         <p>
+
                             Your digital experience is developed,
                             optimized and tested.
+
                         </p>
 
                     </article>
 
+
+                    <!-- PROCESS 04 -->
 
                     <article class="process-card reveal">
 
@@ -946,15 +1371,20 @@
                             04
                         </span>
 
+
                         <div class="process-line"></div>
+
 
                         <h3>
                             Launch
                         </h3>
 
+
                         <p>
+
                             Your project goes live and your digital
                             presence begins working for you.
+
                         </p>
 
                     </article>
@@ -973,12 +1403,18 @@
         <section
             class="section about-section"
             id="about"
+            aria-labelledby="about-title"
         >
 
             <div class="container about-grid">
 
 
-                <div class="about-visual reveal">
+                <!-- ABOUT VISUAL -->
+
+                <div
+                    class="about-visual reveal"
+                    aria-hidden="true"
+                >
 
                     <div class="about-orb">
 
@@ -1003,53 +1439,96 @@
                 </div>
 
 
+                <!-- ABOUT CONTENT -->
+
                 <div class="about-content reveal">
 
                     <span class="section-number">
                         04 / ABOUT GOMEZ DIGITAL
                     </span>
 
-                    <h2>
+
+                    <h2 id="about-title">
+
                         Technology should feel
                         <span class="gradient-text">
                             human.
                         </span>
+
                     </h2>
 
+
                     <p>
+
                         Gomez Digital is a digital studio focused on
                         building useful, modern and memorable online
                         experiences.
+
                     </p>
 
+
                     <p>
+
                         We combine creative thinking, web technology
                         and artificial intelligence to help businesses,
                         creators and entrepreneurs turn ideas into
                         digital products.
+
                     </p>
 
 
                     <div class="about-points">
 
-                        <div>
-                            <span>✓</span>
-                            <p>Mobile-first experiences</p>
-                        </div>
 
                         <div>
-                            <span>✓</span>
-                            <p>Modern visual systems</p>
+
+                            <span aria-hidden="true">
+                                ✓
+                            </span>
+
+                            <p>
+                                Mobile-first experiences
+                            </p>
+
                         </div>
 
-                        <div>
-                            <span>✓</span>
-                            <p>AI-assisted solutions</p>
-                        </div>
 
                         <div>
-                            <span>✓</span>
-                            <p>Built for real-world use</p>
+
+                            <span aria-hidden="true">
+                                ✓
+                            </span>
+
+                            <p>
+                                Modern visual systems
+                            </p>
+
+                        </div>
+
+
+                        <div>
+
+                            <span aria-hidden="true">
+                                ✓
+                            </span>
+
+                            <p>
+                                AI-assisted solutions
+                            </p>
+
+                        </div>
+
+
+                        <div>
+
+                            <span aria-hidden="true">
+                                ✓
+                            </span>
+
+                            <p>
+                                Built for real-world use
+                            </p>
+
                         </div>
 
                     </div>
@@ -1065,9 +1544,14 @@
              FAQ
         ================================================== -->
 
-        <section class="section faq-section">
+        <section
+            class="section faq-section"
+            id="faq"
+            aria-labelledby="faq-title"
+        >
 
             <div class="container">
+
 
                 <div class="section-heading reveal">
 
@@ -1075,11 +1559,14 @@
                         05 / FAQ
                     </span>
 
-                    <h2>
+
+                    <h2 id="faq-title">
+
                         Questions?
                         <span class="gradient-text">
                             We've got you.
                         </span>
+
                     </h2>
 
                 </div>
@@ -1088,66 +1575,106 @@
                 <div class="faq-list">
 
 
+                    <!-- FAQ 01 -->
+
                     <details class="faq-item reveal">
 
                         <summary>
+
                             What can Gomez Digital build?
-                            <span>+</span>
+
+                            <span aria-hidden="true">
+                                +
+                            </span>
+
                         </summary>
 
+
                         <p>
+
                             Websites, landing pages, digital brand
                             experiences, AI-assisted tools and
                             automation concepts.
+
                         </p>
 
                     </details>
 
 
+                    <!-- FAQ 02 -->
+
                     <details class="faq-item reveal">
 
                         <summary>
+
                             Can you build a website for my business?
-                            <span>+</span>
+
+                            <span aria-hidden="true">
+                                +
+                            </span>
+
                         </summary>
 
+
                         <p>
+
                             Yes. Tell us about your business through
                             the project form and we can determine the
                             best digital solution.
+
                         </p>
 
                     </details>
 
 
+                    <!-- FAQ 03 -->
+
                     <details class="faq-item reveal">
 
                         <summary>
+
                             Do you work with businesses outside Botswana?
-                            <span>+</span>
+
+                            <span aria-hidden="true">
+                                +
+                            </span>
+
                         </summary>
 
+
                         <p>
+
                             Yes. Gomez Digital is designed to work
                             remotely with clients and businesses
                             worldwide.
+
                         </p>
 
                     </details>
 
 
+                    <!-- FAQ 04 -->
+
                     <details class="faq-item reveal">
 
                         <summary>
+
                             Can AI be included in my project?
-                            <span>+</span>
+
+                            <span aria-hidden="true">
+                                +
+                            </span>
+
                         </summary>
 
+
                         <p>
+
                             Yes. Depending on the project, AI can be
                             used for content, workflows, automation,
                             customer experiences and other digital
                             solutions.
+
                         </p>
 
                     </details>
@@ -1166,12 +1693,16 @@
         <section
             class="section contact-section"
             id="contact"
+            aria-labelledby="contact-title"
         >
 
             <div class="container">
 
+
                 <div class="contact-panel reveal">
 
+
+                    <!-- CONTACT INTRO -->
 
                     <div class="contact-intro">
 
@@ -1179,26 +1710,37 @@
                             06 / START A PROJECT
                         </span>
 
-                        <h2>
+
+                        <h2 id="contact-title">
+
                             Let's build
                             <span class="gradient-text">
                                 something.
                             </span>
+
                         </h2>
 
+
                         <p>
+
                             Tell us what you're building. We'll help
                             turn the idea into a clear digital direction.
+
                         </p>
 
 
                         <div class="contact-note">
 
-                            <span>✦</span>
+                            <span aria-hidden="true">
+                                ✦
+                            </span>
+
 
                             <p>
+
                                 No complicated process.
                                 Just tell us what you need.
+
                             </p>
 
                         </div>
@@ -1206,18 +1748,25 @@
                     </div>
 
 
+                    <!-- PROJECT FORM -->
+
                     <form
                         id="project-form"
                         class="project-form"
                     >
 
+
+                        <!-- NAME / BUSINESS -->
+
                         <div class="form-row">
+
 
                             <label>
 
                                 <span>
                                     Your Name
                                 </span>
+
 
                                 <input
                                     type="text"
@@ -1237,6 +1786,7 @@
                                     Business / Brand
                                 </span>
 
+
                                 <input
                                     type="text"
                                     id="business"
@@ -1251,13 +1801,17 @@
                         </div>
 
 
+                        <!-- EMAIL / PHONE -->
+
                         <div class="form-row">
+
 
                             <label>
 
                                 <span>
                                     Email
                                 </span>
+
 
                                 <input
                                     type="email"
@@ -1277,6 +1831,7 @@
                                     Phone / WhatsApp
                                 </span>
 
+
                                 <input
                                     type="tel"
                                     id="phone"
@@ -1290,11 +1845,14 @@
                         </div>
 
 
+                        <!-- SERVICE -->
+
                         <label>
 
                             <span>
                                 What do you need?
                             </span>
+
 
                             <select
                                 id="service"
@@ -1310,25 +1868,36 @@
                                     Select a service
                                 </option>
 
+
                                 <option value="Website">
                                     Website
                                 </option>
+
 
                                 <option value="Landing Page">
                                     Landing Page
                                 </option>
 
+
                                 <option value="AI Solution">
                                     AI Solution
                                 </option>
+
 
                                 <option value="Automation">
                                     Automation
                                 </option>
 
+
                                 <option value="Branding">
                                     Branding
                                 </option>
+
+
+                                <option value="Digital Marketing">
+                                    Digital Marketing
+                                </option>
+
 
                                 <option value="Other">
                                     Something Else
@@ -1339,11 +1908,14 @@
                         </label>
 
 
+                        <!-- DETAILS -->
+
                         <label>
 
                             <span>
                                 Project Details
                             </span>
+
 
                             <textarea
                                 id="details"
@@ -1356,6 +1928,8 @@
                         </label>
 
 
+                        <!-- SUBMIT -->
+
                         <button
                             type="submit"
                             class="btn btn-primary form-submit"
@@ -1363,7 +1937,7 @@
 
                             Send Project Request
 
-                            <span>
+                            <span aria-hidden="true">
                                 ↗
                             </span>
 
@@ -1371,9 +1945,11 @@
 
 
                         <p class="form-disclaimer">
+
                             Your project details will be prepared
                             for WhatsApp so you can review them
                             before sending.
+
                         </p>
 
                     </form>
@@ -1396,14 +1972,20 @@
         <div class="container footer-grid">
 
 
+            <!-- FOOTER BRAND -->
+
             <div class="footer-brand">
 
                 <a
                     href="#home"
                     class="brand"
+                    aria-label="Gomez Digital home"
                 >
 
-                    <span class="brand-mark">
+                    <span
+                        class="brand-mark"
+                        aria-hidden="true"
+                    >
                         GD
                     </span>
 
@@ -1413,12 +1995,15 @@
 
                 </a>
 
+
                 <p>
-                    Digital experiences for ambitious people.
+                    Digital experiences that move businesses forward.
                 </p>
 
             </div>
 
+
+            <!-- FOOTER LINKS -->
 
             <div class="footer-links">
 
@@ -1426,13 +2011,26 @@
                     Services
                 </a>
 
+
                 <a href="#ai-studio">
                     AI Studio
                 </a>
 
+
                 <a href="#process">
                     Process
                 </a>
+
+
+                <a href="#about">
+                    About
+                </a>
+
+
+                <a href="#faq">
+                    FAQ
+                </a>
+
 
                 <a href="#contact">
                     Contact
@@ -1441,12 +2039,18 @@
             </div>
 
 
+            <!-- FOOTER META -->
+
             <div class="footer-meta">
 
                 <span>
-                    © <span id="year"></span>
+
+                    ©
+                    <span id="year"></span>
                     Gomez Digital
+
                 </span>
+
 
                 <span>
                     Built for the future.
@@ -1472,22 +2076,30 @@
         aria-labelledby="modal-title"
     >
 
-        <div class="modal-backdrop"></div>
+
+        <div
+            class="modal-backdrop"
+            aria-hidden="true"
+        ></div>
 
 
         <div class="modal-panel">
+
 
             <button
                 type="button"
                 class="modal-close"
                 id="modal-close"
-                aria-label="Close"
+                aria-label="Close AI tool"
             >
                 ×
             </button>
 
 
-            <div class="modal-icon">
+            <div
+                class="modal-icon"
+                aria-hidden="true"
+            >
                 ✦
             </div>
 
@@ -1516,6 +2128,7 @@
 
             <div class="modal-actions">
 
+
                 <button
                     type="button"
                     class="btn btn-primary"
@@ -1523,6 +2136,7 @@
                 >
                     Copy Result
                 </button>
+
 
                 <button
                     type="button"
@@ -1549,8 +2163,19 @@
         role="status"
         aria-live="polite"
     >
-        <span class="toast-icon">✓</span>
-        <span id="toast-message">Done</span>
+
+        <span
+            class="toast-icon"
+            aria-hidden="true"
+        >
+            ✓
+        </span>
+
+
+        <span id="toast-message">
+            Done
+        </span>
+
     </div>
 
 
@@ -1563,5 +2188,7 @@
         defer
     ></script>
 
+
 </body>
-                      </html>
+
+    </html>
