@@ -1,972 +1,1071 @@
 /* =========================================================
-   GOMEZ DIGITAL V4
+   GOMEZ DIGITAL V5
    Main JavaScript
    ========================================================= */
 
 (function () {
-    "use strict";
+  "use strict";
 
-    /* -------------------------------------------------------
-       SAFE DOM READY
-    ------------------------------------------------------- */
+  document.addEventListener("DOMContentLoaded", function () {
 
-    document.addEventListener("DOMContentLoaded", function () {
+    /* =====================================================
+       ELEMENTS
+       ===================================================== */
 
-        /* ---------------------------------------------------
-           ELEMENTS
-        --------------------------------------------------- */
+    var loader = document.getElementById("page-loader");
+    var header = document.getElementById("site-header");
 
-        var loader = document.getElementById("page-loader");
-        var header = document.getElementById("site-header");
+    var menuToggle = document.getElementById("menu-toggle");
+    var siteNav = document.getElementById("site-nav");
 
-        var menuToggle = document.getElementById("menu-toggle");
-        var siteNav = document.getElementById("site-nav");
+    var modal = document.getElementById("modal");
+    var modalClose = document.getElementById("modal-close");
+    var modalTitle = document.getElementById("modal-title");
+    var modalContent = document.getElementById("modal-content");
 
-        var modal = document.getElementById("modal");
-        var modalClose = document.getElementById("modal-close");
-        var modalTitle = document.getElementById("modal-title");
-        var modalContent = document.getElementById("modal-content");
+    var toast = document.getElementById("toast");
+    var toastMessage = document.getElementById("toast-message");
 
-        var toast = document.getElementById("toast");
-        var toastMessage = document.getElementById("toast-message");
+    var year = document.getElementById("year");
+    var projectForm = document.getElementById("project-form");
 
-        var year = document.getElementById("year");
+    var currentTool = "";
 
-        var projectForm = document.getElementById("project-form");
+    /* =====================================================
+       YEAR
+       ===================================================== */
 
+    if (year) {
+      year.textContent = new Date().getFullYear();
+    }
 
-        /* ===================================================
-           1. LOADER
-           =================================================== */
+    /* =====================================================
+       LOADER
+       ===================================================== */
 
-        function removeLoader() {
+    function removeLoader() {
 
-            if (!loader) {
-                return;
-            }
+      if (!loader) {
+        return;
+      }
 
-            loader.classList.add("is-hidden");
-            loader.setAttribute("aria-hidden", "true");
+      loader.classList.add("is-hidden");
 
-            window.setTimeout(function () {
+      loader.setAttribute(
+        "aria-hidden",
+        "true"
+      );
 
-                if (loader && loader.parentNode) {
-                    loader.parentNode.removeChild(loader);
-                }
+      window.setTimeout(function () {
 
-            }, 800);
+        if (loader && loader.parentNode) {
+          loader.parentNode.removeChild(loader);
         }
 
-        /*
-         * Normal loader removal.
-         */
-        window.setTimeout(removeLoader, 1500);
+      }, 800);
+    }
 
-        /*
-         * Absolute emergency protection.
-         * Even if another part of this script fails,
-         * the page will not remain stuck behind the loader.
-         */
-        window.setTimeout(removeLoader, 2800);
+    window.setTimeout(
+      removeLoader,
+      900
+    );
 
+    window.setTimeout(
+      removeLoader,
+      2500
+    );
 
-        /* ===================================================
-           2. HEADER SCROLL EFFECT
-           =================================================== */
+    /* =====================================================
+       HEADER
+       ===================================================== */
 
-        function updateHeader() {
+    function updateHeader() {
 
-            if (!header) {
-                return;
-            }
+      if (!header) {
+        return;
+      }
 
-            if (window.scrollY > 30) {
-                header.classList.add("scrolled");
-            } else {
-                header.classList.remove("scrolled");
-            }
+      if (window.scrollY > 25) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    }
+
+    window.addEventListener(
+      "scroll",
+      updateHeader,
+      { passive: true }
+    );
+
+    updateHeader();
+
+    /* =====================================================
+       MOBILE NAVIGATION
+       ===================================================== */
+
+    function closeMenu() {
+
+      if (!siteNav || !menuToggle) {
+        return;
+      }
+
+      siteNav.classList.remove("open");
+      menuToggle.classList.remove("active");
+
+      menuToggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+      menuToggle.setAttribute(
+        "aria-label",
+        "Open navigation"
+      );
+    }
+
+    function openMenu() {
+
+      if (!siteNav || !menuToggle) {
+        return;
+      }
+
+      siteNav.classList.add("open");
+      menuToggle.classList.add("active");
+
+      menuToggle.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+      menuToggle.setAttribute(
+        "aria-label",
+        "Close navigation"
+      );
+    }
+
+    if (menuToggle) {
+
+      menuToggle.addEventListener(
+        "click",
+        function () {
+
+          if (
+            siteNav &&
+            siteNav.classList.contains("open")
+          ) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+
         }
+      );
 
-        window.addEventListener(
-            "scroll",
-            updateHeader,
-            { passive: true }
-        );
+    }
 
-        updateHeader();
+    if (siteNav) {
 
+      siteNav
+        .querySelectorAll("a")
+        .forEach(function (link) {
 
-        /* ===================================================
-           3. MOBILE NAVIGATION
-           =================================================== */
-
-        function closeMenu() {
-
-            if (!siteNav || !menuToggle) {
-                return;
-            }
-
-            siteNav.classList.remove("open");
-
-            menuToggle.classList.remove("open");
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-            menuToggle.setAttribute(
-                "aria-label",
-                "Open navigation"
-            );
-        }
-
-
-        function openMenu() {
-
-            if (!siteNav || !menuToggle) {
-                return;
-            }
-
-            siteNav.classList.add("open");
-
-            menuToggle.classList.add("open");
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                "true"
-            );
-
-            menuToggle.setAttribute(
-                "aria-label",
-                "Close navigation"
-            );
-        }
-
-
-        if (menuToggle && siteNav) {
-
-            menuToggle.addEventListener(
-                "click",
-                function () {
-
-                    var isOpen =
-                        siteNav.classList.contains("open");
-
-                    if (isOpen) {
-                        closeMenu();
-                    } else {
-                        openMenu();
-                    }
-
-                }
-            );
-
-
-            var navLinks =
-                siteNav.querySelectorAll("a");
-
-            navLinks.forEach(function (link) {
-
-                link.addEventListener(
-                    "click",
-                    function () {
-                        closeMenu();
-                    }
-                );
-
-            });
-
-
-            window.addEventListener(
-                "resize",
-                function () {
-
-                    if (window.innerWidth > 850) {
-                        closeMenu();
-                    }
-
-                }
-            );
-        }
-
-
-        /* ===================================================
-           4. SMOOTH SCROLL
-           =================================================== */
-
-        var anchorLinks =
-            document.querySelectorAll('a[href^="#"]');
-
-        anchorLinks.forEach(function (link) {
-
-            link.addEventListener(
-                "click",
-                function (event) {
-
-                    var targetId =
-                        link.getAttribute("href");
-
-                    if (
-                        !targetId ||
-                        targetId === "#"
-                    ) {
-                        return;
-                    }
-
-                    var target =
-                        document.querySelector(targetId);
-
-                    if (!target) {
-                        return;
-                    }
-
-                    event.preventDefault();
-
-                    var headerHeight =
-                        header
-                            ? header.offsetHeight
-                            : 0;
-
-                    var targetPosition =
-                        target.getBoundingClientRect().top +
-                        window.pageYOffset -
-                        headerHeight -
-                        15;
-
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: "smooth"
-                    });
-
-                }
-            );
+          link.addEventListener(
+            "click",
+            closeMenu
+          );
 
         });
 
+    }
 
-        /* ===================================================
-           5. REVEAL ANIMATIONS
-           =================================================== */
+    window.addEventListener(
+      "resize",
+      function () {
 
-        var revealElements =
-            document.querySelectorAll(".reveal");
-
-
-        if ("IntersectionObserver" in window) {
-
-            var revealObserver =
-                new IntersectionObserver(
-                    function (entries, observer) {
-
-                        entries.forEach(
-                            function (entry) {
-
-                                if (
-                                    entry.isIntersecting
-                                ) {
-
-                                    entry.target.classList.add(
-                                        "visible"
-                                    );
-
-                                    observer.unobserve(
-                                        entry.target
-                                    );
-                                }
-
-                            }
-                        );
-
-                    },
-                    {
-                        threshold: 0.12,
-                        rootMargin: "0px 0px -40px 0px"
-                    }
-                );
-
-
-            revealElements.forEach(
-                function (element) {
-
-                    revealObserver.observe(element);
-
-                }
-            );
-
-        } else {
-
-            /*
-             * Older browser fallback.
-             */
-            revealElements.forEach(
-                function (element) {
-
-                    element.classList.add("visible");
-
-                }
-            );
+        if (window.innerWidth > 850) {
+          closeMenu();
         }
 
+      }
+    );
 
-        /* ===================================================
-           6. ACTIVE NAVIGATION
-           =================================================== */
+    /* =====================================================
+       SMOOTH SCROLL
+       ===================================================== */
 
-        var sections =
-            document.querySelectorAll(
-                "main section[id]"
-            );
+    document
+      .querySelectorAll('a[href^="#"]')
+      .forEach(function (link) {
 
-        var navigationLinks =
-            document.querySelectorAll(
-                ".site-nav a[href^='#']"
-            );
+        link.addEventListener(
+          "click",
+          function (event) {
 
+            var href = link.getAttribute("href");
 
-        function setActiveNavigation(id) {
+            if (
+              !href ||
+              href === "#" ||
+              href.length < 2
+            ) {
+              return;
+            }
 
-            navigationLinks.forEach(
-                function (link) {
+            var target = document.querySelector(href);
 
-                    var href =
-                        link.getAttribute("href");
+            if (!target) {
+              return;
+            }
 
-                    if (href === "#" + id) {
+            event.preventDefault();
 
-                        link.classList.add("active");
+            var headerHeight =
+              header
+                ? header.offsetHeight
+                : 0;
 
-                    } else {
+            var targetPosition =
+              target.getBoundingClientRect().top +
+              window.pageYOffset -
+              headerHeight -
+              15;
 
-                        link.classList.remove("active");
+            window.scrollTo({
+              top: targetPosition,
+              behavior: "smooth"
+            });
 
-                    }
+          }
+        );
+
+      });
+
+    /* =====================================================
+       REVEAL ANIMATIONS
+       ===================================================== */
+
+    var revealElements =
+      document.querySelectorAll(".reveal");
+
+    if (
+      "IntersectionObserver" in window
+    ) {
+
+      var revealObserver =
+        new IntersectionObserver(
+          function (entries, observer) {
+
+            entries.forEach(
+              function (entry) {
+
+                if (
+                  entry.isIntersecting
+                ) {
+
+                  entry.target.classList.add(
+                    "visible"
+                  );
+
+                  observer.unobserve(
+                    entry.target
+                  );
 
                 }
-            );
-        }
 
+              }
+            );
+
+          },
+          {
+            threshold: 0.12,
+            rootMargin: "0px 0px -40px 0px"
+          }
+        );
+
+      revealElements.forEach(
+        function (element) {
+
+          revealObserver.observe(element);
+
+        }
+      );
+
+    } else {
+
+      revealElements.forEach(
+        function (element) {
+
+          element.classList.add(
+            "visible"
+          );
+
+        }
+      );
+
+    }
+
+    /* =====================================================
+       TOAST
+       ===================================================== */
+
+    var toastTimer = null;
+
+    function showToast(message) {
+
+      if (!toast || !toastMessage) {
+        return;
+      }
+
+      toastMessage.textContent = message;
+
+      toast.classList.add("show");
+
+      if (toastTimer) {
+        window.clearTimeout(toastTimer);
+      }
+
+      toastTimer = window.setTimeout(
+        function () {
+
+          toast.classList.remove("show");
+
+        },
+        3000
+      );
+    }
+
+    /* =====================================================
+       COPY
+       ===================================================== */
+
+    function copyText(text) {
+
+      if (!text) {
+        return;
+      }
+
+      if (
+        navigator.clipboard &&
+        window.isSecureContext
+      ) {
+
+        navigator.clipboard
+          .writeText(text)
+          .then(function () {
+
+            showToast(
+              "Result copied to clipboard."
+            );
+
+          })
+          .catch(function () {
+
+            fallbackCopy(text);
+
+          });
+
+      } else {
+
+        fallbackCopy(text);
+
+      }
+    }
+
+    function fallbackCopy(text) {
+
+      var textarea =
+        document.createElement("textarea");
+
+      textarea.value = text;
+
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+
+      document.body.appendChild(
+        textarea
+      );
+
+      textarea.focus();
+      textarea.select();
+
+      try {
+
+        document.execCommand(
+          "copy"
+        );
+
+        showToast(
+          "Result copied to clipboard."
+        );
+
+      } catch (error) {
+
+        showToast(
+          "Copy failed. Please select the text manually."
+        );
+
+      }
+
+      document.body.removeChild(
+        textarea
+      );
+    }
+
+    /* =====================================================
+       MODAL
+       ===================================================== */
+
+    function openModal(
+      title,
+      content
+    ) {
+
+      if (
+        !modal ||
+        !modalTitle ||
+        !modalContent
+      ) {
+        return;
+      }
+
+      modalTitle.textContent =
+        title;
+
+      modalContent.innerHTML =
+        content;
+
+      modal.classList.add(
+        "open"
+      );
+
+      modal.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+      document.body.classList.add(
+        "modal-active"
+      );
+
+    }
+
+    function closeModal() {
+
+      if (!modal) {
+        return;
+      }
+
+      modal.classList.remove(
+        "open"
+      );
+
+      modal.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      document.body.classList.remove(
+        "modal-active"
+      );
+
+    }
+
+    if (modalClose) {
+
+      modalClose.addEventListener(
+        "click",
+        closeModal
+      );
+
+    }
+
+    var modalBackdrop =
+      modal
+        ? modal.querySelector(".modal-backdrop")
+        : null;
+
+    if (modalBackdrop) {
+
+      modalBackdrop.addEventListener(
+        "click",
+        closeModal
+      );
+
+    }
+
+    document.addEventListener(
+      "keydown",
+      function (event) {
 
         if (
-            "IntersectionObserver" in window &&
-            sections.length
+          event.key === "Escape"
         ) {
-
-            var sectionObserver =
-                new IntersectionObserver(
-                    function (entries) {
-
-                        entries.forEach(
-                            function (entry) {
-
-                                if (
-                                    entry.isIntersecting
-                                ) {
-
-                                    setActiveNavigation(
-                                        entry.target.id
-                                    );
-
-                                }
-
-                            }
-                        );
-
-                    },
-                    {
-                        rootMargin:
-                            "-35% 0px -55% 0px",
-                        threshold: 0
-                    }
-                );
-
-
-            sections.forEach(
-                function (section) {
-
-                    sectionObserver.observe(section);
-
-                }
-            );
+          closeModal();
         }
 
+      }
+    );
+
+    /* =====================================================
+       AI DATA
+       ===================================================== */
+
+    var businessNames = [
+      "Nexora",
+      "Velora",
+      "Gomexa",
+      "Lumora",
+      "Novexa",
+      "Vantora",
+      "Elevora",
+      "Zentra",
+      "Movexa",
+      "Aurevia",
+      "Fluxora",
+      "BrightForge"
+    ];
+
+    var websiteIdeas = [
+      {
+        title: "Premium Local Business",
+        text:
+          "A polished website for a growing local business with strong services, testimonials, pricing and a conversion-focused contact section."
+      },
+      {
+        title: "Creator Command Center",
+        text:
+          "A personal platform combining a creator portfolio, digital products, social links, newsletter and community funnel."
+      },
+      {
+        title: "AI Service Studio",
+        text:
+          "A modern AI-powered service website where visitors can discover tools, generate ideas and request custom solutions."
+      },
+      {
+        title: "Startup Launch Page",
+        text:
+          "A high-impact landing page explaining a new product, its problem, solution, benefits, proof and call to action."
+      }
+    ];
+
+    var contentIdeas = [
+      "Explain the biggest problem your audience faces and show your simple solution.",
+      "Show how your product or service saves someone time.",
+      "Tell the story behind why you started.",
+      "Share three mistakes beginners make in your industry.",
+      "Create a before-and-after transformation.",
+      "Answer the question customers ask you most.",
+      "Show the process behind your work.",
+      "Turn one customer problem into a short educational series."
+    ];
+
+    var roadmapIdeas = [
+      {
+        title: "Foundation",
+        text:
+          "Define the audience, offer, brand identity and one clear business goal."
+      },
+      {
+        title: "Digital Presence",
+        text:
+          "Build a professional website, social profiles and a simple lead-generation system."
+      },
+      {
+        title: "Content Engine",
+        text:
+          "Create repeatable content pillars and a weekly publishing workflow."
+      },
+      {
+        title: "Automation",
+        text:
+          "Identify repetitive tasks and connect forms, communication and follow-ups."
+      },
+      {
+        title: "Optimization",
+        text:
+          "Track what works, improve conversion points and double down on your strongest channels."
+      }
+    ];
+
+    /* =====================================================
+       RANDOM
+       ===================================================== */
+
+    function randomItem(array) {
+
+      return array[
+        Math.floor(
+          Math.random() * array.length
+        )
+      ];
+
+    }
+
+    /* =====================================================
+       TOOL GENERATORS
+       ===================================================== */
 
-        /* ===================================================
-           7. TOAST
-           =================================================== */
+    function generateBusinessName() {
 
-        var toastTimer = null;
-
-
-        function showToast(message) {
-
-            if (!toast) {
-                return;
-            }
-
-            if (toastMessage) {
-                toastMessage.textContent = message;
-            }
-
-            toast.classList.add("show");
-
-            if (toastTimer) {
-                window.clearTimeout(toastTimer);
-            }
-
-            toastTimer =
-                window.setTimeout(
-                    function () {
-
-                        toast.classList.remove("show");
-
-                    },
-                    3000
-                );
-        }
-
-
-        /* ===================================================
-           8. CLIPBOARD
-           =================================================== */
-
-        function copyText(text) {
-
-            if (!text) {
-                return Promise.reject(
-                    new Error("Nothing to copy")
-                );
-            }
-
-
-            if (
-                navigator.clipboard &&
-                navigator.clipboard.writeText
-            ) {
-
-                return navigator.clipboard.writeText(text);
-
-            }
-
-
-            /*
-             * Fallback for older mobile browsers.
-             */
-
-            return new Promise(
-                function (resolve, reject) {
-
-                    var textarea =
-                        document.createElement("textarea");
-
-                    textarea.value = text;
-
-                    textarea.style.position = "fixed";
-                    textarea.style.opacity = "0";
-                    textarea.style.pointerEvents = "none";
-
-                    document.body.appendChild(
-                        textarea
-                    );
-
-                    textarea.focus();
-                    textarea.select();
-
-                    try {
-
-                        var successful =
-                            document.execCommand(
-                                "copy"
-                            );
-
-                        document.body.removeChild(
-                            textarea
-                        );
-
-                        if (successful) {
-                            resolve();
-                        } else {
-                            reject(
-                                new Error("Copy failed")
-                            );
-                        }
-
-                    } catch (error) {
-
-                        document.body.removeChild(
-                            textarea
-                        );
-
-                        reject(error);
-
-                    }
-
-                }
-            );
-        }
-
-
-        /* ===================================================
-           9. MODAL
-           =================================================== */
-
-        var currentTool = null;
-
-
-        function openModal(title, content) {
-
-            if (
-                !modal ||
-                !modalTitle ||
-                !modalContent
-            ) {
-                return;
-            }
-
-            modalTitle.textContent = title;
-
-            modalContent.innerHTML = content;
-
-            modal.classList.add("open");
-
-            modal.setAttribute(
-                "aria-hidden",
-                "false"
-            );
-
-            document.body.classList.add(
-                "modal-active"
-            );
-
-        }
-
-
-        function closeModal() {
-
-            if (!modal) {
-                return;
-            }
-
-            modal.classList.remove("open");
-
-            modal.setAttribute(
-                "aria-hidden",
-                "true"
-            );
-
-            document.body.classList.remove(
-                "modal-active"
-            );
-
-        }
-
-
-        if (modalClose) {
-
-            modalClose.addEventListener(
-                "click",
-                closeModal
-            );
-
-        }
-
-
-        if (modal) {
-
-            var modalBackdrop =
-                modal.querySelector(
-                    ".modal-backdrop"
-                );
-
-            if (modalBackdrop) {
-
-                modalBackdrop.addEventListener(
-                    "click",
-                    closeModal
-                );
-
-            }
-
-        }
-
-
-        document.addEventListener(
-            "keydown",
-            function (event) {
-
-                if (event.key === "Escape") {
-                    closeModal();
-                }
-
-            }
+      var name =
+        randomItem(
+          businessNames
         );
 
+      return {
+        title: "Business Name",
+        html:
+          '<div class="result-box">' +
 
-        /* ===================================================
-           10. AI TOOL GENERATORS
-           =================================================== */
+          '<span class="result-label">' +
+          'GENERATED BRAND' +
+          '</span>' +
 
-        var businessNames = [
-            "NovaForge",
-            "BrightCore",
-            "VantaFlow",
-            "Nexora",
-            "Elevora",
-            "Lumina Labs",
-            "PrimeShift",
-            "VertexOne",
-            "Boldora",
-            "MomentumX"
-        ];
+          '<h3 class="result-title">' +
+          name +
+          '</h3>' +
 
+          '<p class="result-text">' +
+          'A short, modern and flexible name that could work well for a digital-first brand.' +
+          '</p>' +
 
-        var websiteIdeas = [
-            "A premium dark-mode business website with warm gold accents, animated statistics and a powerful conversion-focused hero.",
-            "A modern AI consultancy website with interactive tools, glass panels and a futuristic but human visual identity.",
-            "A clean personal brand website with an editorial layout, strong typography and animated project showcases.",
-            "A high-energy startup landing page with interactive cards, customer proof and bold calls to action.",
-            "A luxury service brand website using warm gradients, elegant typography and subtle motion."
-        ];
+          '</div>'
+      };
 
+    }
 
-        var contentIdeas = [
-            "Your website is not just a page. It is your first salesperson.",
-            "Stop waiting for the perfect idea. Build the first version and improve it.",
-            "AI doesn't replace ambition. It amplifies people who know how to use it.",
-            "Your digital presence should work while you sleep.",
-            "Small businesses don't need to look small online."
-        ];
+    function generateWebsiteConcept() {
 
-
-        var roadmapIdeas = [
-            "Automate customer FAQs → collect leads → organize prospects → follow up automatically.",
-            "Create an AI content system → generate ideas → write drafts → schedule publishing.",
-            "Build a lead funnel → landing page → contact form → automated response → sales follow-up.",
-            "Turn repetitive admin work into a workflow using forms, AI processing and automated notifications.",
-            "Build a customer support assistant that answers common questions and directs complex requests to a human."
-        ];
-
-
-        function randomItem(array) {
-
-            return array[
-                Math.floor(
-                    Math.random() * array.length
-                )
-            ];
-
-        }
-
-
-        function generateBusinessName() {
-
-            return (
-                '<div class="generated-result">' +
-
-                '<span class="result-label">' +
-                'BRAND NAME IDEA' +
-                '</span>' +
-
-                '<strong class="generated-name">' +
-                randomItem(businessNames) +
-                '</strong>' +
-
-                '<p>' +
-                'A modern, flexible name designed for a digital-first brand.' +
-                '</p>' +
-
-                '</div>'
-            );
-
-        }
-
-
-        function generateWebsiteConcept() {
-
-            return (
-                '<div class="generated-result">' +
-
-                '<span class="result-label">' +
-                'WEBSITE CONCEPT' +
-                '</span>' +
-
-                '<p>' +
-                randomItem(websiteIdeas) +
-                '</p>' +
-
-                '<div class="result-mini">' +
-                '<strong>Recommended sections</strong>' +
-                '<span>Hero • Services • Proof • About • CTA</span>' +
-                '</div>' +
-
-                '</div>'
-            );
-
-        }
-
-
-        function generateContentSpark() {
-
-            return (
-                '<div class="generated-result">' +
-
-                '<span class="result-label">' +
-                'CONTENT SPARK' +
-                '</span>' +
-
-                '<blockquote>' +
-                randomItem(contentIdeas) +
-                '</blockquote>' +
-
-                '<p>' +
-                'Turn this idea into a short video, carousel, post or campaign.' +
-                '</p>' +
-
-                '</div>'
-            );
-
-        }
-
-
-        function generateAIRoadmap() {
-
-            return (
-                '<div class="generated-result">' +
-
-                '<span class="result-label">' +
-                'AI ROADMAP' +
-                '</span>' +
-
-                '<p>' +
-                randomItem(roadmapIdeas) +
-                '</p>' +
-
-                '<div class="result-mini">' +
-                '<strong>Start small</strong>' +
-                '<span>Automate one repetitive task first, then expand.</span>' +
-                '</div>' +
-
-                '</div>'
-            );
-
-        }
-
-
-        function generateTool(tool) {
-
-            switch (tool) {
-
-                case "business-name":
-                    return {
-                        title: "Business Name Generator",
-                        content: generateBusinessName()
-                    };
-
-                case "website-concept":
-                    return {
-                        title: "Website Concept Generator",
-                        content: generateWebsiteConcept()
-                    };
-
-                case "content-spark":
-                    return {
-                        title: "Content Spark",
-                        content: generateContentSpark()
-                    };
-
-                case "ai-roadmap":
-                    return {
-                        title: "AI Roadmap",
-                        content: generateAIRoadmap()
-                    };
-
-                default:
-                    return {
-                        title: "Gomez Digital AI",
-                        content:
-                            "<p>Choose one of the AI tools to begin.</p>"
-                    };
-            }
-
-        }
-
-
-        /* ===================================================
-           11. AI TOOL BUTTONS
-           =================================================== */
-
-        var toolButtons =
-            document.querySelectorAll(
-                "[data-tool]"
-            );
-
-
-        toolButtons.forEach(
-            function (button) {
-
-                button.addEventListener(
-                    "click",
-                    function () {
-
-                        var tool =
-                            button.getAttribute(
-                                "data-tool"
-                            );
-
-                        currentTool = tool;
-
-                        var result =
-                            generateTool(tool);
-
-                        openModal(
-                            result.title,
-                            result.content
-                        );
-
-                    }
-                );
-
-            }
+      var idea =
+        randomItem(
+          websiteIdeas
         );
 
+      return {
+        title: "Website Concept",
+        html:
+          '<div class="result-box">' +
 
-        /* ===================================================
-           12. COPY RESULT
-           =================================================== */
+          '<span class="result-label">' +
+          'CONCEPT' +
+          '</span>' +
 
-        var copyButton =
-            document.querySelector(
-                "[data-copy]"
+          '<h3 class="result-title">' +
+          idea.title +
+          '</h3>' +
+
+          '<p class="result-text">' +
+          idea.text +
+          '</p>' +
+
+          '</div>'
+      };
+
+    }
+
+    function generateContentSpark() {
+
+      var idea =
+        randomItem(
+          contentIdeas
+        );
+
+      return {
+        title: "Content Spark",
+        html:
+          '<div class="result-box">' +
+
+          '<span class="result-label">' +
+          'CONTENT IDEA' +
+          '</span>' +
+
+          '<h3 class="result-title">' +
+          'Create this post' +
+          '</h3>' +
+
+          '<p class="result-text">' +
+          idea +
+          '</p>' +
+
+          '</div>'
+      };
+
+    }
+
+    function generateRoadmap() {
+
+      var shuffled =
+        roadmapIdeas
+          .slice()
+          .sort(
+            function () {
+              return 0.5 -
+                Math.random();
+            }
+          )
+          .slice(0, 4);
+
+      var list =
+        shuffled
+          .map(
+            function (item) {
+
+              return (
+                "<li>" +
+                "<strong>" +
+                item.title +
+                ":</strong> " +
+                item.text +
+                "</li>"
+              );
+
+            }
+          )
+          .join("");
+
+      return {
+        title: "AI Growth Roadmap",
+        html:
+          '<div class="result-box">' +
+
+          '<span class="result-label">' +
+          'YOUR ROADMAP' +
+          '</span>' +
+
+          '<ul class="result-list">' +
+          list +
+          '</ul>' +
+
+          '</div>'
+      };
+
+    }
+
+    function generateTool(tool) {
+
+      switch (tool) {
+
+        case "business-name":
+          return generateBusinessName();
+
+        case "website-concept":
+          return generateWebsiteConcept();
+
+        case "content-spark":
+          return generateContentSpark();
+
+        case "ai-roadmap":
+          return generateRoadmap();
+
+        default:
+          return {
+            title: "Gomez AI",
+            html:
+              '<div class="result-box">' +
+              '<p class="result-text">' +
+              'Choose a tool to generate something.' +
+              '</p>' +
+              '</div>'
+          };
+
+      }
+
+    }
+
+    /* =====================================================
+       AI TOOL BUTTONS
+       ===================================================== */
+
+    document
+      .querySelectorAll("[data-tool]")
+      .forEach(function (button) {
+
+        button.addEventListener(
+          "click",
+          function () {
+
+            currentTool =
+              button.getAttribute(
+                "data-tool"
+              );
+
+            var result =
+              generateTool(
+                currentTool
+              );
+
+            openModal(
+              result.title,
+              result.html
             );
 
+          }
+        );
 
-        if (copyButton) {
+      });
 
-            copyButton.addEventListener(
-                "click",
-                function () {
+    /* =====================================================
+       COPY RESULT
+       ===================================================== */
 
-                    if (!modalContent) {
-                        return;
-                    }
+    var copyButton =
+      document.querySelector(
+        "[data-copy]"
+      );
 
-                    var text =
-                        modalContent.innerText.trim();
+    if (copyButton) {
 
-                    copyText(text)
-                        .then(
-                            function () {
+      copyButton.addEventListener(
+        "click",
+        function () {
 
-                                showToast(
-                                    "Result copied to clipboard."
-                                );
+          if (!modalContent) {
+            return;
+          }
 
-                            }
-                        )
-                        .catch(
-                            function () {
-
-                                showToast(
-                                    "Could not copy automatically."
-                                );
-
-                            }
-                        );
-
-                }
-            );
+          copyText(
+            modalContent.innerText
+          );
 
         }
+      );
 
+    }
 
-        /* ===================================================
-           13. REGENERATE
-           =================================================== */
+    /* =====================================================
+       REGENERATE
+       ===================================================== */
 
-        var regenerateButton =
-            document.querySelector(
-                "[data-regenerate]"
+    var regenerateButton =
+      document.querySelector(
+        "[data-regenerate]"
+      );
+
+    if (regenerateButton) {
+
+      regenerateButton.addEventListener(
+        "click",
+        function () {
+
+          if (!currentTool) {
+            return;
+          }
+
+          var result =
+            generateTool(
+              currentTool
             );
 
+          if (modalTitle) {
+            modalTitle.textContent =
+              result.title;
+          }
 
-        if (regenerateButton) {
+          if (modalContent) {
+            modalContent.innerHTML =
+              result.html;
+          }
 
-            regenerateButton.addEventListener(
-                "click",
-                function () {
-
-                    if (!currentTool) {
-                        return;
-                    }
-
-                    var result =
-                        generateTool(
-                            currentTool
-                        );
-
-                    openModal(
-                        result.title,
-                        result.content
-                    );
-
-                }
-            );
+          showToast(
+            "New result generated."
+          );
 
         }
+      );
 
+    }
 
-        /* ===================================================
-           14. PROJECT FORM
-           =================================================== */
+    /* =====================================================
+       PROJECT FORM
+       ===================================================== */
 
-        if (projectForm) {
+    if (projectForm) {
 
-            projectForm.addEventListener(
-                "submit",
-                function (event) {
+      projectForm.addEventListener(
+        "submit",
+        function (event) {
 
-                    event.preventDefault();
+          event.preventDefault();
 
+          var name =
+            document.getElementById(
+              "name"
+            );
 
-                    var name =
-                        document.getElementById(
-                            "name"
-                        );
+          var business =
+            document.getElementById(
+              "business"
+            );
 
-                    var business =
-                        document.getElementById(
-                            "business"
-                        );
+          var email =
+            document.getElementById(
+              "email"
+            );
 
-                    var email =
-                        document.getElementById(
-                            "email"
-                        );
+          var phone =
+            document.getElementById(
+              "phone"
+            );
 
-                    var phone =
-                        document.getElementById(
-                            "phone"
-                        );
+          var service =
+            document.getElementById(
+              "service"
+            );
 
-                    var service =
-                        document.getElementById(
-                            "service"
-                        );
+          var details =
+            document.getElementById(
+              "details"
+            );
 
-                    var details =
-                        document.getElementById(
-                            "details"
-                        );
+          var projectName =
+            name
+              ? name.value.trim()
+              : "";
 
+          var projectBusiness =
+            business
+              ? business.value.trim()
+              : "";
 
-                    var projectName =
-                        name
-                            ? name.value.trim()
-                            : "";
+          var projectEmail =
+            email
+              ? email.value.trim()
+              : "";
 
-                    var projectBusiness =
-                        business
-                            ? business.value.trim()
-                            : "";
+          var projectPhone =
+            phone
+              ? phone.value.trim()
+              : "";
 
-                    var projectEmail =
+          var projectService =
+            service
+              ? service.value
+              : "";
+
+          var projectDetails =
+            details
+              ? details.value.trim()
+              : "";
+
+          if (
+            !projectName ||
+            !projectEmail ||
+            !projectService ||
+            !projectDetails
+          ) {
+
+            showToast(
+              "Please complete the required fields."
+            );
+
+            return;
+
+          }
+
+          var subject =
+            encodeURIComponent(
+              "New Gomez Digital Project — " +
+              projectName
+            );
+
+          var body =
+            encodeURIComponent(
+              "NEW GOMEZ DIGITAL PROJECT\n\n" +
+
+              "Name: " +
+              projectName +
+              "\n" +
+
+              "Business / Brand: " +
+              (
+                projectBusiness ||
+                "Not provided"
+              ) +
+              "\n" +
+
+              "Email: " +
+              projectEmail +
+              "\n" +
+
+              "Phone: " +
+              (
+                projectPhone ||
+                "Not provided"
+              ) +
+              "\n" +
+
+              "Service: " +
+              projectService +
+              "\n\n" +
+
+              "Project details:\n" +
+              projectDetails
+            );
+
+          /*
+             Replace this email address with the actual
+             Gomez Digital business email before launch.
+          */
+
+          var destination =
+            "mailto:?subject=" +
+            subject +
+            "&body=" +
+            body;
+
+          window.location.href =
+            destination;
+
+          showToast(
+            "Project brief prepared."
+          );
+
+        }
+      );
+
+    }
+
+    /* =====================================================
+       FAQ
+       ===================================================== */
+
+    var faqItems =
+      document.querySelectorAll(
+        ".faq-item"
+      );
+
+    faqItems.forEach(
+      function (item) {
+
+        item.addEventListener(
+          "toggle",
+          function () {
+
+            if (!item.open) {
+              return;
+            }
+
+            faqItems.forEach(
+              function (other) {
+
+                if (
+                  other !== item
+                ) {
+                  other.removeAttribute(
+                    "open"
+                  );
+                }
+
+              }
+            );
+
+          }
+        );
+
+      }
+    );
+
+  });
+
+})();
