@@ -1,5 +1,5 @@
 /* =========================================================
-   GOMEZ DIGITAL V4
+   GOMEZ DIGITAL V5
    MAIN JAVASCRIPT
 ========================================================= */
 
@@ -1437,6 +1437,86 @@
 
         console.log(
             "Gomez Digital V4 initialized."
+           /* =========================================================
+   GOMEZ DIGITAL V5
+   STEP 2 — MOBILE NAVIGATION
+   ========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    var menuToggle = document.querySelector(".menu-toggle");
+    var navLinks = document.querySelector(".nav-links");
+
+    if (!menuToggle || !navLinks) {
+        return;
+    }
+
+    menuToggle.addEventListener("click", function () {
+
+        var isOpen = menuToggle.classList.toggle("active");
+
+        navLinks.classList.toggle("active", isOpen);
+
+        menuToggle.setAttribute(
+            "aria-expanded",
+            isOpen ? "true" : "false"
+        );
+
+        document.body.style.overflow = isOpen
+            ? "hidden"
+            : "";
+
+    });
+
+
+    /* ---------------------------------------------
+       CLOSE MENU AFTER CLICKING A LINK
+       --------------------------------------------- */
+
+    var links = navLinks.querySelectorAll("a");
+
+    links.forEach(function (link) {
+
+        link.addEventListener("click", function () {
+
+            menuToggle.classList.remove("active");
+            navLinks.classList.remove("active");
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            document.body.style.overflow = "";
+
+        });
+
+    });
+
+
+    /* ---------------------------------------------
+       CLOSE MENU WITH ESCAPE
+       --------------------------------------------- */
+
+    document.addEventListener("keydown", function (event) {
+
+        if (event.key === "Escape") {
+
+            menuToggle.classList.remove("active");
+            navLinks.classList.remove("active");
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            document.body.style.overflow = "";
+
+        }
+
+    });
+
+});
         );
 
 
