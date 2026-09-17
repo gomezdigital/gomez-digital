@@ -3769,3 +3769,156 @@ textarea:focus-visible {
     }
 
                }
+/* =========================================================
+   GOMEZ DIGITAL V5
+   RESPONSIVE FOUNDATION
+   Phone → Tablet → Laptop → Large Desktop
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   GLOBAL RESPONSIVE SAFETY
+   --------------------------------------------------------- */
+
+html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+}
+
+img,
+svg,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+    max-width: 100%;
+}
+
+section,
+header,
+footer,
+main {
+    max-width: 100%;
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE CONTAINER
+   --------------------------------------------------------- */
+
+.container {
+    width: min(100% - 40px, 1200px);
+    margin-inline: auto;
+}
+
+
+/* ---------------------------------------------------------
+   FLUID TYPOGRAPHY
+   --------------------------------------------------------- */
+
+h1 {
+    font-size: clamp(3rem, 7vw, 7rem);
+    line-height: 0.95;
+}
+
+h2 {
+    font-size: clamp(2rem, 4vw, 4rem);
+    line-height: 1;
+}
+
+h3 {
+    font-size: clamp(1.25rem, 2vw, 2rem);
+}
+
+
+/* ---------------------------------------------------------
+   LARGE DESKTOP
+   --------------------------------------------------------- */
+
+@media (min-width: 1441px) {
+
+    .container {
+        width: min(100% - 80px, 1400px);
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   LAPTOP / DESKTOP
+   --------------------------------------------------------- */
+
+@media (max-width: 1200px) {
+
+    .container {
+        width: min(100% - 48px, 1100px);
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   TABLET
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+    .container {
+        width: min(100% - 40px, 760px);
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   PHONE
+   --------------------------------------------------------- */
+
+@media (max-width: 600px) {
+
+    .container {
+        width: calc(100% - 32px);
+    }
+
+    h1 {
+        font-size: clamp(2.7rem, 14vw, 4.5rem);
+    }
+
+    h2 {
+        font-size: clamp(2rem, 10vw, 3rem);
+    }
+
+    h3 {
+        font-size: 1.35rem;
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   SMALL PHONE
+   --------------------------------------------------------- */
+
+@media (max-width: 380px) {
+
+    .container {
+        width: calc(100% - 24px);
+    }
+
+    h1 {
+        font-size: 2.55rem;
+    }
+
+                   }
