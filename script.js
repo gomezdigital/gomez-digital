@@ -1,7 +1,7 @@
 /* =========================================================
    GOMEZ DIGITAL V5
    MAIN JAVASCRIPT
-========================================================= */
+   ========================================================= */
 
 (function () {
 
@@ -10,28 +10,35 @@
 
     /* =====================================================
        DOM READY
-    ===================================================== */
+       ===================================================== */
 
     document.addEventListener("DOMContentLoaded", function () {
 
 
         /* =================================================
            ELEMENTS
-        ================================================= */
+           ================================================= */
 
-        var loader = document.getElementById("pageLoader");
+        var loader =
+            document.getElementById("pageLoader");
 
-        var header = document.getElementById("siteHeader");
+        var header =
+            document.getElementById("siteHeader");
 
-        var nav = document.getElementById("nav");
+        var nav =
+            document.getElementById("nav");
 
-        var navLinks = document.getElementById("navLinks");
+        var navLinks =
+            document.getElementById("navLinks");
 
-        var menuToggle = document.getElementById("menuToggle");
+        var menuToggle =
+            document.getElementById("menuToggle");
 
-        var backToTop = document.getElementById("backToTop");
+        var backToTop =
+            document.getElementById("backToTop");
 
-        var aiModal = document.getElementById("aiModal");
+        var aiModal =
+            document.getElementById("aiModal");
 
         var modalOverlay =
             document.getElementById("modalOverlay");
@@ -63,7 +70,7 @@
 
         /* =================================================
            FOOTER YEAR
-        ================================================= */
+           ================================================= */
 
         if (year) {
 
@@ -74,8 +81,19 @@
 
 
         /* =================================================
+           REDUCED MOTION
+           ================================================= */
+
+        var reduceMotion =
+            window.matchMedia &&
+            window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches;
+
+
+        /* =================================================
            PAGE LOADER
-        ================================================= */
+           ================================================= */
 
         function hideLoader() {
 
@@ -85,9 +103,7 @@
 
             loader.classList.add("hidden");
 
-            document.body.classList.remove(
-                "loading"
-            );
+            document.body.classList.remove("loading");
 
         }
 
@@ -95,32 +111,17 @@
         document.body.classList.add("loading");
 
 
-        /*
-         * Normal loader timing
-         */
-
         window.setTimeout(
             hideLoader,
             1500
         );
 
 
-        /*
-         * Emergency fallback.
-         * Prevents the loader from ever becoming
-         * permanently stuck.
-         */
-
         window.setTimeout(
             hideLoader,
             3500
         );
 
-
-        /*
-         * If the page has already loaded,
-         * remove the loader shortly after.
-         */
 
         window.addEventListener(
             "load",
@@ -137,7 +138,7 @@
 
         /* =================================================
            MOBILE NAVIGATION
-        ================================================= */
+           ================================================= */
 
         function closeMobileMenu() {
 
@@ -158,6 +159,12 @@
                 "aria-label",
                 "Open navigation menu"
             );
+
+            document.body.classList.remove(
+                "menu-open"
+            );
+
+            document.body.style.overflow = "";
 
         }
 
@@ -182,6 +189,36 @@
                 "Close navigation menu"
             );
 
+            document.body.classList.add(
+                "menu-open"
+            );
+
+            document.body.style.overflow =
+                "hidden";
+
+        }
+
+
+        function toggleMobileMenu() {
+
+            if (!navLinks) {
+                return;
+            }
+
+            var isOpen =
+                navLinks.classList.contains("open");
+
+
+            if (isOpen) {
+
+                closeMobileMenu();
+
+            } else {
+
+                openMobileMenu();
+
+            }
+
         }
 
 
@@ -189,23 +226,11 @@
 
             menuToggle.addEventListener(
                 "click",
-                function () {
+                function (event) {
 
-                    var isOpen =
-                        navLinks &&
-                        navLinks.classList.contains(
-                            "open"
-                        );
+                    event.stopPropagation();
 
-                    if (isOpen) {
-
-                        closeMobileMenu();
-
-                    } else {
-
-                        openMobileMenu();
-
-                    }
+                    toggleMobileMenu();
 
                 }
             );
@@ -214,15 +239,13 @@
 
 
         /*
-         * Close menu after clicking a navigation link.
+         * Close menu after navigation link click.
          */
 
         if (navLinks) {
 
             var mobileLinks =
-                navLinks.querySelectorAll(
-                    "a"
-                );
+                navLinks.querySelectorAll("a");
 
             mobileLinks.forEach(
                 function (link) {
@@ -243,20 +266,49 @@
 
 
         /*
-         * Close menu with Escape.
+         * Close menu when clicking outside.
          */
 
         document.addEventListener(
-            "keydown",
+            "click",
             function (event) {
 
                 if (
-                    event.key === "Escape"
+                    !navLinks ||
+                    !menuToggle
+                ) {
+                    return;
+                }
+
+
+                var isOpen =
+                    navLinks.classList.contains(
+                        "open"
+                    );
+
+
+                if (!isOpen) {
+                    return;
+                }
+
+
+                var clickedInsideMenu =
+                    navLinks.contains(
+                        event.target
+                    );
+
+                var clickedToggle =
+                    menuToggle.contains(
+                        event.target
+                    );
+
+
+                if (
+                    !clickedInsideMenu &&
+                    !clickedToggle
                 ) {
 
                     closeMobileMenu();
-
-                    closeModal();
 
                 }
 
@@ -266,7 +318,7 @@
 
         /* =================================================
            HEADER SCROLL EFFECT
-        ================================================= */
+           ================================================= */
 
         function handleScroll() {
 
@@ -329,7 +381,7 @@
 
         /* =================================================
            BACK TO TOP
-        ================================================= */
+           ================================================= */
 
         if (backToTop) {
 
@@ -341,7 +393,10 @@
 
                         top: 0,
 
-                        behavior: "smooth"
+                        behavior:
+                            reduceMotion
+                                ? "auto"
+                                : "smooth"
 
                     });
 
@@ -353,7 +408,7 @@
 
         /* =================================================
            SCROLL REVEAL
-        ================================================= */
+           ================================================= */
 
         var revealElements =
             document.querySelectorAll(
@@ -362,8 +417,7 @@
 
 
         if (
-            "IntersectionObserver"
-            in window
+            "IntersectionObserver" in window
         ) {
 
             var revealObserver =
@@ -415,10 +469,6 @@
 
         } else {
 
-            /*
-             * Fallback for old browsers.
-             */
-
             revealElements.forEach(
                 function (element) {
 
@@ -434,7 +484,7 @@
 
         /* =================================================
            ACTIVE NAVIGATION
-        ================================================= */
+           ================================================= */
 
         var sections =
             document.querySelectorAll(
@@ -448,8 +498,7 @@
 
 
         if (
-            "IntersectionObserver"
-            in window
+            "IntersectionObserver" in window
         ) {
 
             var sectionObserver =
@@ -526,7 +575,7 @@
 
         /* =================================================
            FAQ ACCORDION
-        ================================================= */
+           ================================================= */
 
         var faqItems =
             document.querySelectorAll(
@@ -558,10 +607,6 @@
                             );
 
 
-                        /*
-                         * Close every other FAQ.
-                         */
-
                         faqItems.forEach(
                             function (otherItem) {
 
@@ -591,10 +636,6 @@
                         );
 
 
-                        /*
-                         * Open selected FAQ.
-                         */
-
                         if (!isOpen) {
 
                             item.classList.add(
@@ -617,7 +658,7 @@
 
         /* =================================================
            AI STUDIO
-        ================================================= */
+           ================================================= */
 
         var aiTools =
             document.querySelectorAll(
@@ -869,7 +910,7 @@
 
         /* =================================================
            AI DEMO GENERATOR
-        ================================================= */
+           ================================================= */
 
         function cleanInput(value) {
 
@@ -948,13 +989,10 @@
                 "Suggested structure: " +
 
                 "Hero → Value Proposition → Services → " +
-
                 "Proof / Work → Process → FAQ → Contact.<br><br>" +
 
                 "Visual direction: premium typography, " +
-
                 "strong spacing, clear calls-to-action " +
-
                 "and a focused conversion journey."
             );
 
@@ -971,17 +1009,11 @@
                 "</strong>, consider creating:<br><br>" +
 
                 "• Educational tips<br>" +
-
                 "• Behind-the-scenes content<br>" +
-
                 "• Common mistakes in the niche<br>" +
-
                 "• Before-and-after transformations<br>" +
-
                 "• Customer questions answered<br>" +
-
                 "• Personal stories and lessons<br>" +
-
                 "• Short-form myth vs fact posts"
             );
 
@@ -1000,23 +1032,15 @@
                 "look for repetitive tasks involving:<br><br>" +
 
                 "• Customer questions<br>" +
-
                 "• Data entry<br>" +
-
                 "• Content production<br>" +
-
                 "• Lead collection<br>" +
-
                 "• Document processing<br>" +
-
                 "• Reporting<br>" +
-
                 "• Internal communication<br><br>" +
 
                 "Next step: identify the task that consumes " +
-
                 "the most repetitive time and design a small " +
-
                 "automation around it."
             );
 
@@ -1026,9 +1050,7 @@
         function escapeHTML(value) {
 
             var element =
-                document.createElement(
-                    "div"
-                );
+                document.createElement("div");
 
 
             element.textContent =
@@ -1057,7 +1079,6 @@
 
                     return (
                         "<strong>Name directions</strong>" +
-
                         "<br><br>" +
 
                         names
@@ -1078,13 +1099,9 @@
                         "<br><br>" +
 
                         "<small>" +
-
                         "These are creative starting points. " +
-
                         "Check trademark, domain and social " +
-
                         "availability before using a name." +
-
                         "</small>"
                     );
 
@@ -1130,7 +1147,10 @@
                     event.preventDefault();
 
 
-                    if (!aiInput || !aiResult) {
+                    if (
+                        !aiInput ||
+                        !aiResult
+                    ) {
                         return;
                     }
 
@@ -1168,20 +1188,13 @@
 
 
         /* =================================================
-           SIMPLE HERO PARALLAX
-        ================================================= */
+           HERO PARALLAX
+           ================================================= */
 
         var heroVisual =
             document.querySelector(
                 ".hero-visual"
             );
-
-
-        var reduceMotion =
-            window.matchMedia &&
-            window.matchMedia(
-                "(prefers-reduced-motion: reduce)"
-            ).matches;
 
 
         if (
@@ -1194,8 +1207,16 @@
                 function (event) {
 
                     /*
-                     * Keep the movement subtle.
+                     * Disable parallax on narrow screens.
                      */
+
+                    if (
+                        window.innerWidth < 900
+                    ) {
+                        heroVisual.style.transform = "";
+                        return;
+                    }
+
 
                     var x =
                         (
@@ -1226,7 +1247,7 @@
 
         /* =================================================
            SERVICE CARD TILT
-        ================================================= */
+           ================================================= */
 
         var serviceCards =
             document.querySelectorAll(
@@ -1242,11 +1263,6 @@
                     card.addEventListener(
                         "mousemove",
                         function (event) {
-
-                            /*
-                             * Disable this effect on
-                             * narrow touch devices.
-                             */
 
                             if (
                                 window.innerWidth < 900
@@ -1317,7 +1333,7 @@
 
         /* =================================================
            SMOOTH INTERNAL LINKS
-        ================================================= */
+           ================================================= */
 
         var internalLinks =
             document.querySelectorAll(
@@ -1346,10 +1362,21 @@
                         }
 
 
-                        var target =
-                            document.querySelector(
-                                targetId
-                            );
+                        var target;
+
+
+                        try {
+
+                            target =
+                                document.querySelector(
+                                    targetId
+                                );
+
+                        } catch (error) {
+
+                            return;
+
+                        }
 
 
                         if (!target) {
@@ -1382,8 +1409,30 @@
 
 
         /* =================================================
+           KEYBOARD ACCESSIBILITY
+           ================================================= */
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    closeMobileMenu();
+
+                    closeModal();
+
+                }
+
+            }
+        );
+
+
+        /* =================================================
            WINDOW RESIZE SAFETY
-        ================================================= */
+           ================================================= */
 
         window.addEventListener(
             "resize",
@@ -1402,14 +1451,8 @@
 
 
         /* =================================================
-           INITIAL STATE
-        ================================================= */
-
-        /*
-         * Reveal above-the-fold elements
-         * immediately so the hero does not
-         * appear empty on slow observers.
-         */
+           INITIAL HERO STATE
+           ================================================= */
 
         window.setTimeout(
             function () {
@@ -1435,88 +1478,49 @@
         );
 
 
-        console.log(
-            "Gomez Digital V4 initialized."
-           /* =========================================================
-   GOMEZ DIGITAL V5
-   STEP 2 — MOBILE NAVIGATION
-   ========================================================= */
+        /* =================================================
+           INITIAL ACCESSIBILITY STATE
+           ================================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
-
-    var menuToggle = document.querySelector(".menu-toggle");
-    var navLinks = document.querySelector(".nav-links");
-
-    if (!menuToggle || !navLinks) {
-        return;
-    }
-
-    menuToggle.addEventListener("click", function () {
-
-        var isOpen = menuToggle.classList.toggle("active");
-
-        navLinks.classList.toggle("active", isOpen);
-
-        menuToggle.setAttribute(
-            "aria-expanded",
-            isOpen ? "true" : "false"
-        );
-
-        document.body.style.overflow = isOpen
-            ? "hidden"
-            : "";
-
-    });
-
-
-    /* ---------------------------------------------
-       CLOSE MENU AFTER CLICKING A LINK
-       --------------------------------------------- */
-
-    var links = navLinks.querySelectorAll("a");
-
-    links.forEach(function (link) {
-
-        link.addEventListener("click", function () {
-
-            menuToggle.classList.remove("active");
-            navLinks.classList.remove("active");
+        if (menuToggle) {
 
             menuToggle.setAttribute(
                 "aria-expanded",
                 "false"
             );
 
-            document.body.style.overflow = "";
-
-        });
-
-    });
-
-
-    /* ---------------------------------------------
-       CLOSE MENU WITH ESCAPE
-       --------------------------------------------- */
-
-    document.addEventListener("keydown", function (event) {
-
-        if (event.key === "Escape") {
-
-            menuToggle.classList.remove("active");
-            navLinks.classList.remove("active");
-
             menuToggle.setAttribute(
-                "aria-expanded",
-                "false"
+                "aria-label",
+                "Open navigation menu"
             );
-
-            document.body.style.overflow = "";
 
         }
 
-    });
 
-});
+        if (aiModal) {
+
+            if (
+                !aiModal.getAttribute(
+                    "aria-hidden"
+                )
+            ) {
+
+                aiModal.setAttribute(
+                    "aria-hidden",
+                    "true"
+                );
+
+            }
+
+        }
+
+
+        /* =================================================
+           INITIALIZE
+           ================================================= */
+
+        console.log(
+            "Gomez Digital V5 initialized."
         );
 
 
