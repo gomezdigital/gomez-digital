@@ -3922,3 +3922,262 @@ h3 {
     }
 
                    }
+/* =========================================================
+   GOMEZ DIGITAL V5
+   STEP 2 — RESPONSIVE NAVIGATION
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   DESKTOP NAVIGATION
+   --------------------------------------------------------- */
+
+.nav {
+    width: 100%;
+    transition:
+        background 0.35s ease,
+        backdrop-filter 0.35s ease,
+        border-color 0.35s ease;
+}
+
+.nav.scrolled {
+    background: rgba(11, 8, 6, 0.82);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+/* ---------------------------------------------------------
+   NAV CONTAINER
+   --------------------------------------------------------- */
+
+.nav .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 78px;
+}
+
+
+/* ---------------------------------------------------------
+   BRAND
+   --------------------------------------------------------- */
+
+.nav-logo,
+.logo {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+
+/* ---------------------------------------------------------
+   DESKTOP MENU
+   --------------------------------------------------------- */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: clamp(18px, 2.5vw, 36px);
+}
+
+.nav-links a {
+    position: relative;
+    white-space: nowrap;
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE MENU BUTTON
+   --------------------------------------------------------- */
+
+.menu-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    z-index: 1001;
+}
+
+
+/* Hamburger lines */
+
+.menu-toggle span {
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    border-radius: 999px;
+    background: currentColor;
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.25s ease;
+}
+
+.menu-toggle span:nth-child(1) {
+    transform: translateY(-7px);
+}
+
+.menu-toggle span:nth-child(2) {
+    transform: translateY(0);
+}
+
+.menu-toggle span:nth-child(3) {
+    transform: translateY(7px);
+}
+
+
+/* ---------------------------------------------------------
+   OPEN MENU ICON
+   --------------------------------------------------------- */
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg);
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .nav .container {
+        min-height: 70px;
+    }
+
+    .nav-links {
+        gap: 16px;
+    }
+
+}
+
+
+/* =========================================================
+   PHONE NAVIGATION
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+    .nav .container {
+        min-height: 68px;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+
+    /* ---------------------------------------------
+       MOBILE MENU PANEL
+       --------------------------------------------- */
+
+    .nav-links {
+        position: fixed;
+
+        top: 0;
+        right: 0;
+
+        width: min(88vw, 380px);
+        height: 100dvh;
+
+        padding:
+            100px
+            28px
+            40px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+
+        gap: 8px;
+
+        background: rgba(11, 8, 6, 0.97);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+
+        border-left: 1px solid rgba(255, 255, 255, 0.08);
+
+        transform: translateX(100%);
+        visibility: hidden;
+
+        transition:
+            transform 0.4s cubic-bezier(.16, 1, .3, 1),
+            visibility 0.4s ease;
+
+        z-index: 1000;
+
+        overflow-y: auto;
+    }
+
+
+    /* ---------------------------------------------
+       OPEN MOBILE MENU
+       --------------------------------------------- */
+
+    .nav-links.active {
+        transform: translateX(0);
+        visibility: visible;
+    }
+
+
+    /* ---------------------------------------------
+       MOBILE LINKS
+       --------------------------------------------- */
+
+    .nav-links a {
+        width: 100%;
+        padding: 14px 0;
+
+        font-size: 1.15rem;
+    }
+
+
+    /* ---------------------------------------------
+       MOBILE CTA
+       --------------------------------------------- */
+
+    .nav-links .btn,
+    .nav-links .nav-cta {
+        width: 100%;
+        margin-top: 18px;
+        text-align: center;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .nav-links {
+        width: 92vw;
+        padding-left: 22px;
+        padding-right: 22px;
+    }
+
+    .nav-links a {
+        font-size: 1.05rem;
+    }
+
+}
