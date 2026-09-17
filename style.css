@@ -1,7 +1,8 @@
 /* =========================================================
-   GOMEZ DIGITAL V4
+   GOMEZ DIGITAL V5
    PREMIUM DIGITAL STUDIO
-   MAIN STYLESHEET
+   MASTER RESPONSIVE STYLESHEET
+   Phone → Tablet → Laptop → Desktop → Large Desktop
 ========================================================= */
 
 
@@ -13,6 +14,7 @@
 
     --bg: #0b0806;
     --bg-soft: #100c09;
+
     --surface: #15100c;
     --surface-2: #1b130d;
     --surface-3: #211810;
@@ -59,12 +61,16 @@
 
 
 html {
+    width: 100%;
     scroll-behavior: smooth;
     scroll-padding-top: 90px;
+    overflow-x: hidden;
 }
 
 
 body {
+    width: 100%;
+    min-width: 0;
     min-height: 100vh;
 
     background:
@@ -92,6 +98,7 @@ body {
     overflow-x: hidden;
 
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
 
@@ -100,9 +107,12 @@ body.modal-open {
 }
 
 
-img {
+img,
+svg,
+video {
     display: block;
     max-width: 100%;
+    height: auto;
 }
 
 
@@ -114,7 +124,9 @@ a {
 
 button,
 input,
-textarea {
+textarea,
+select {
+    max-width: 100%;
     font: inherit;
 }
 
@@ -129,8 +141,16 @@ ul {
 }
 
 
+section,
+header,
+footer,
+main {
+    max-width: 100%;
+}
+
+
 /* =========================================================
-   03. GLOBAL
+   03. GLOBAL CONTAINER
 ========================================================= */
 
 .container {
@@ -140,6 +160,27 @@ ul {
     );
 
     margin-inline: auto;
+}
+
+
+/* =========================================================
+   04. GLOBAL TYPOGRAPHY
+========================================================= */
+
+h1 {
+    font-size: clamp(3rem, 7vw, 7rem);
+    line-height: 0.95;
+}
+
+
+h2 {
+    font-size: clamp(2rem, 4vw, 4rem);
+    line-height: 1;
+}
+
+
+h3 {
+    font-size: clamp(1.25rem, 2vw, 2rem);
 }
 
 
@@ -183,14 +224,12 @@ ul {
 
 .section-heading {
     max-width: 720px;
-
     margin-bottom: 60px;
 }
 
 
 .section-heading h2 {
     max-width: 680px;
-
     margin-bottom: 20px;
 
     font-family:
@@ -227,7 +266,7 @@ ul {
 
 
 /* =========================================================
-   04. BACKGROUND
+   05. BACKGROUND EFFECTS
 ========================================================= */
 
 .background-effects {
@@ -303,7 +342,7 @@ ul {
 
 
 /* =========================================================
-   05. PAGE LOADER
+   06. PAGE LOADER
 ========================================================= */
 
 .page-loader {
@@ -437,7 +476,7 @@ ul {
 
 
 /* =========================================================
-   06. HEADER
+   07. HEADER / NAVIGATION
 ========================================================= */
 
 .site-header {
@@ -458,11 +497,17 @@ ul {
 
 
 .site-header.scrolled {
-    background: rgba(11,8,6,0.78);
+    background:
+        rgba(11,8,6,0.78);
 
-    border-bottom: 1px solid var(--border);
+    border-bottom:
+        1px solid var(--border);
 
-    backdrop-filter: blur(20px);
+    backdrop-filter:
+        blur(20px);
+
+    -webkit-backdrop-filter:
+        blur(20px);
 }
 
 
@@ -484,6 +529,8 @@ ul {
     gap: 11px;
 
     flex-shrink: 0;
+
+    white-space: nowrap;
 }
 
 
@@ -495,7 +542,11 @@ ul {
     width: 37px;
     height: 37px;
 
-    border: 1px solid var(--border-accent);
+    flex-shrink: 0;
+
+    border:
+        1px solid
+        var(--border-accent);
 
     border-radius: 11px;
 
@@ -530,7 +581,11 @@ ul {
 
     align-items: center;
 
-    gap: 28px;
+    gap: clamp(
+        18px,
+        2.5vw,
+        32px
+    );
 }
 
 
@@ -541,6 +596,8 @@ ul {
 
     font-size: 0.84rem;
     font-weight: 500;
+
+    white-space: nowrap;
 
     transition:
         color var(--transition-fast);
@@ -580,7 +637,9 @@ ul {
 .nav-link.nav-cta {
     padding: 11px 17px;
 
-    border: 1px solid var(--border-accent);
+    border:
+        1px solid
+        var(--border-accent);
 
     border-radius: 999px;
 
@@ -605,7 +664,7 @@ ul {
 
 
 /* =========================================================
-   07. MOBILE MENU
+   08. MOBILE MENU BUTTON
 ========================================================= */
 
 .menu-toggle {
@@ -614,33 +673,69 @@ ul {
     width: 45px;
     height: 45px;
 
-    border: 1px solid var(--border);
+    padding: 0;
+
+    border:
+        1px solid
+        var(--border);
 
     border-radius: 12px;
 
-    background: rgba(255,255,255,0.03);
+    color: var(--text);
+
+    background:
+        rgba(255,255,255,0.03);
 
     cursor: pointer;
+
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    z-index: 1001;
 }
 
 
 .menu-toggle span {
+    position: absolute;
+
     display: block;
 
     width: 19px;
     height: 1.5px;
 
-    margin: 4px auto;
+    border-radius: 999px;
 
-    background: var(--text);
+    background:
+        currentColor;
 
-    transition: var(--transition);
+    transition:
+        transform var(--transition),
+        opacity var(--transition);
+}
+
+
+.menu-toggle span:nth-child(1) {
+    transform:
+        translateY(-6px);
+}
+
+
+.menu-toggle span:nth-child(2) {
+    transform:
+        translateY(0);
+}
+
+
+.menu-toggle span:nth-child(3) {
+    transform:
+        translateY(6px);
 }
 
 
 .menu-toggle.active span:nth-child(1) {
     transform:
-        translateY(5.5px)
         rotate(45deg);
 }
 
@@ -652,13 +747,12 @@ ul {
 
 .menu-toggle.active span:nth-child(3) {
     transform:
-        translateY(-5.5px)
         rotate(-45deg);
 }
 
 
 /* =========================================================
-   08. HERO
+   09. HERO
 ========================================================= */
 
 .hero {
@@ -696,13 +790,16 @@ ul {
     display: inline-flex;
 
     align-items: center;
+
     gap: 10px;
 
     margin-bottom: 26px;
 
     padding: 8px 13px;
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
     border-radius: 999px;
 
@@ -719,6 +816,8 @@ ul {
 .eyebrow-dot {
     width: 6px;
     height: 6px;
+
+    flex-shrink: 0;
 
     border-radius: 50%;
 
@@ -790,7 +889,9 @@ ul {
 
     padding: 0 21px;
 
-    border: 1px solid transparent;
+    border:
+        1px solid
+        transparent;
 
     border-radius: 999px;
 
@@ -808,30 +909,36 @@ ul {
 
 
 .button:hover {
-    transform: translateY(-3px);
+    transform:
+        translateY(-3px);
 }
 
 
 .button-primary {
     color: #1a0d04;
 
-    background: var(--accent);
+    background:
+        var(--accent);
 
     box-shadow:
-        0 12px 35px rgba(255,138,36,0.17);
+        0 12px 35px
+        rgba(255,138,36,0.17);
 }
 
 
 .button-primary:hover {
-    background: var(--accent-light);
+    background:
+        var(--accent-light);
 
     box-shadow:
-        0 18px 45px rgba(255,138,36,0.25);
+        0 18px 45px
+        rgba(255,138,36,0.25);
 }
 
 
 .button-secondary {
-    border-color: var(--border);
+    border-color:
+        var(--border);
 
     color: var(--text);
 
@@ -841,7 +948,8 @@ ul {
 
 
 .button-secondary:hover {
-    border-color: var(--border-accent);
+    border-color:
+        var(--border-accent);
 
     background:
         rgba(255,138,36,0.05);
@@ -874,7 +982,9 @@ ul {
 
     letter-spacing: 0.1em;
 
-    border-right: 1px solid var(--border);
+    border-right:
+        1px solid
+        var(--border);
 }
 
 
@@ -884,7 +994,7 @@ ul {
 
 
 /* =========================================================
-   09. HERO VISUAL
+   10. HERO VISUAL
 ========================================================= */
 
 .hero-visual {
@@ -910,7 +1020,9 @@ ul {
 
     padding: 24px;
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
     border-radius: 30px;
 
@@ -921,9 +1033,14 @@ ul {
             rgba(255,255,255,0.018)
         );
 
-    box-shadow: var(--shadow);
+    box-shadow:
+        var(--shadow);
 
-    backdrop-filter: blur(20px);
+    backdrop-filter:
+        blur(20px);
+
+    -webkit-backdrop-filter:
+        blur(20px);
 
     transform:
         perspective(900px)
@@ -968,10 +1085,12 @@ ul {
 
     border-radius: 50%;
 
-    background: var(--accent);
+    background:
+        var(--accent);
 
     box-shadow:
-        0 0 14px var(--accent);
+        0 0 14px
+        var(--accent);
 }
 
 
@@ -998,6 +1117,8 @@ ul {
 
     align-items: flex-end;
     justify-content: space-between;
+
+    gap: 15px;
 
     padding-bottom: 22px;
 }
@@ -1052,7 +1173,8 @@ ul {
 
     min-width: 7px;
 
-    border-radius: 5px 5px 2px 2px;
+    border-radius:
+        5px 5px 2px 2px;
 
     background:
         linear-gradient(
@@ -1062,7 +1184,8 @@ ul {
         );
 
     animation:
-        barFloat 3s ease-in-out infinite alternate;
+        barFloat 3s ease-in-out
+        infinite alternate;
 }
 
 
@@ -1098,11 +1221,13 @@ ul {
 @keyframes barFloat {
 
     from {
-        transform: scaleY(.85);
+        transform:
+            scaleY(.85);
     }
 
     to {
-        transform: scaleY(1.05);
+        transform:
+            scaleY(1.05);
     }
 
 }
@@ -1111,7 +1236,9 @@ ul {
 .hero-card-footer {
     padding-top: 17px;
 
-    border-top: 1px solid var(--border);
+    border-top:
+        1px solid
+        var(--border);
 }
 
 
@@ -1126,7 +1253,9 @@ ul {
 
     padding: 13px 15px;
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
     border-radius: 15px;
 
@@ -1134,9 +1263,14 @@ ul {
         rgba(17,12,9,0.8);
 
     box-shadow:
-        0 20px 50px rgba(0,0,0,0.35);
+        0 20px 50px
+        rgba(0,0,0,0.35);
 
-    backdrop-filter: blur(15px);
+    backdrop-filter:
+        blur(15px);
+
+    -webkit-backdrop-filter:
+        blur(15px);
 }
 
 
@@ -1167,6 +1301,8 @@ ul {
     width: 32px;
     height: 32px;
 
+    flex-shrink: 0;
+
     border-radius: 10px;
 
     color: var(--accent);
@@ -1178,11 +1314,11 @@ ul {
 
 .floating-card-one {
     top: 20%;
-
     left: -5%;
 
     animation:
-        floatingOne 5s ease-in-out infinite;
+        floatingOne 5s ease-in-out
+        infinite;
 }
 
 
@@ -1197,18 +1333,21 @@ ul {
     gap: 2px;
 
     animation:
-        floatingTwo 5s ease-in-out infinite;
+        floatingTwo 5s ease-in-out
+        infinite;
 }
 
 
 @keyframes floatingOne {
 
     0%,100% {
-        transform: translateY(0);
+        transform:
+            translateY(0);
     }
 
     50% {
-        transform: translateY(-12px);
+        transform:
+            translateY(-12px);
     }
 
 }
@@ -1217,11 +1356,13 @@ ul {
 @keyframes floatingTwo {
 
     0%,100% {
-        transform: translateY(0);
+        transform:
+            translateY(0);
     }
 
     50% {
-        transform: translateY(10px);
+        transform:
+            translateY(10px);
     }
 
 }
@@ -1230,7 +1371,9 @@ ul {
 .hero-orbit {
     position: absolute;
 
-    border: 1px solid rgba(255,138,36,0.11);
+    border:
+        1px solid
+        rgba(255,138,36,0.11);
 
     border-radius: 50%;
 
@@ -1242,7 +1385,9 @@ ul {
     width: 510px;
     height: 510px;
 
-    transform: rotate(25deg) scaleY(.55);
+    transform:
+        rotate(25deg)
+        scaleY(.55);
 }
 
 
@@ -1250,12 +1395,14 @@ ul {
     width: 400px;
     height: 400px;
 
-    transform: rotate(-35deg) scaleY(.55);
+    transform:
+        rotate(-35deg)
+        scaleY(.55);
 }
 
 
 /* =========================================================
-   10. MARQUEE
+   11. MARQUEE
 ========================================================= */
 
 .marquee-section {
@@ -1265,8 +1412,13 @@ ul {
 
     padding: 25px 0;
 
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+    border-top:
+        1px solid
+        var(--border);
+
+    border-bottom:
+        1px solid
+        var(--border);
 
     background:
         rgba(255,255,255,0.018);
@@ -1290,8 +1442,7 @@ ul {
     gap: 27px;
 
     animation:
-        marqueeMove 30s
-        linear
+        marqueeMove 30s linear
         infinite;
 }
 
@@ -1320,18 +1471,20 @@ ul {
 @keyframes marqueeMove {
 
     from {
-        transform: translateX(0);
+        transform:
+            translateX(0);
     }
 
     to {
-        transform: translateX(-50%);
+        transform:
+            translateX(-50%);
     }
 
 }
 
 
 /* =========================================================
-   11. SERVICES
+   12. SERVICES
 ========================================================= */
 
 .services {
@@ -1360,9 +1513,12 @@ ul {
 
     padding: 30px;
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
-    border-radius: var(--radius-lg);
+    border-radius:
+        var(--radius-lg);
 
     background:
         linear-gradient(
@@ -1396,16 +1552,19 @@ ul {
     background:
         rgba(255,138,36,0.08);
 
-    filter: blur(50px);
+    filter:
+        blur(50px);
 
     opacity: 0;
 
-    transition: opacity var(--transition);
+    transition:
+        opacity var(--transition);
 }
 
 
 .service-card:hover {
-    transform: translateY(-8px);
+    transform:
+        translateY(-8px);
 
     border-color:
         var(--border-accent);
@@ -1453,7 +1612,9 @@ ul {
 
     margin: 55px 0 28px;
 
-    border: 1px solid var(--border-accent);
+    border:
+        1px solid
+        var(--border-accent);
 
     border-radius: 15px;
 
@@ -1521,7 +1682,8 @@ ul {
 
     border-radius: 50%;
 
-    background: var(--accent);
+    background:
+        var(--accent);
 }
 
 
@@ -1544,7 +1706,7 @@ ul {
 
 
 /* =========================================================
-   12. OUR WORK
+   13. OUR WORK
 ========================================================= */
 
 .split-heading {
@@ -1553,8 +1715,7 @@ ul {
     display: grid;
 
     grid-template-columns:
-        1fr
-        .65fr;
+        1fr .65fr;
 
     align-items: end;
 
@@ -1573,8 +1734,7 @@ ul {
     display: grid;
 
     grid-template-columns:
-        1.35fr
-        .65fr;
+        1.35fr .65fr;
 
     gap: 18px;
 }
@@ -1583,9 +1743,12 @@ ul {
 .work-card {
     overflow: hidden;
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
-    border-radius: var(--radius-lg);
+    border-radius:
+        var(--radius-lg);
 
     background:
         rgba(255,255,255,0.025);
@@ -1597,7 +1760,8 @@ ul {
 
 
 .work-card:hover {
-    transform: translateY(-7px);
+    transform:
+        translateY(-7px);
 
     border-color:
         var(--border-accent);
@@ -1605,7 +1769,8 @@ ul {
 
 
 .work-large {
-    grid-row: span 2;
+    grid-row:
+        span 2;
 }
 
 
@@ -1638,7 +1803,9 @@ ul {
 .mock-browser {
     width: 72%;
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
     border-radius: 16px;
 
@@ -1648,7 +1815,8 @@ ul {
         rgba(255,255,255,0.045);
 
     box-shadow:
-        0 30px 70px rgba(0,0,0,0.45);
+        0 30px 70px
+        rgba(0,0,0,0.45);
 
     transform:
         rotate(-3deg);
@@ -1666,7 +1834,9 @@ ul {
 
     padding-left: 12px;
 
-    border-bottom: 1px solid var(--border);
+    border-bottom:
+        1px solid
+        var(--border);
 
     background:
         rgba(0,0,0,0.2);
@@ -1716,11 +1886,12 @@ ul {
         "Space Grotesk",
         sans-serif;
 
-    font-size: clamp(
-        1.5rem,
-        3vw,
-        2.6rem
-    );
+    font-size:
+        clamp(
+            1.5rem,
+            3vw,
+            2.6rem
+        );
 
     line-height: 1;
 }
@@ -1745,7 +1916,7 @@ ul {
 
 
 .work-info h3 {
-    margin: 8px 0 8px;
+    margin: 8px 0;
 
     font-family:
         "Space Grotesk",
@@ -1790,7 +1961,8 @@ ul {
 
     border-radius: 18px;
 
-    transform: rotate(7deg);
+    transform:
+        rotate(7deg);
 
     background:
         linear-gradient(
@@ -1800,7 +1972,8 @@ ul {
         );
 
     box-shadow:
-        0 25px 60px rgba(0,0,0,0.35);
+        0 25px 60px
+        rgba(0,0,0,0.35);
 }
 
 
@@ -1859,7 +2032,9 @@ ul {
 
 
 .redesign-before {
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
     color: var(--text-muted);
 
@@ -1869,7 +2044,9 @@ ul {
 
 
 .redesign-after {
-    border: 1px solid var(--border-accent);
+    border:
+        1px solid
+        var(--border-accent);
 
     color: var(--accent);
 
@@ -1882,7 +2059,7 @@ ul {
 
 
 /* =========================================================
-   13. AI STUDIO
+   14. AI STUDIO
 ========================================================= */
 
 .ai-panel {
@@ -1891,16 +2068,16 @@ ul {
     display: grid;
 
     grid-template-columns:
-        .85fr
-        1.15fr;
+        .85fr 1.15fr;
 
     gap: 70px;
 
-    padding: clamp(
-        30px,
-        6vw,
-        70px
-    );
+    padding:
+        clamp(
+            30px,
+            6vw,
+            70px
+        );
 
     border:
         1px solid
@@ -1967,11 +2144,12 @@ ul {
         "Space Grotesk",
         sans-serif;
 
-    font-size: clamp(
-        2.4rem,
-        5vw,
-        4.5rem
-    );
+    font-size:
+        clamp(
+            2.4rem,
+            5vw,
+            4.5rem
+        );
 
     line-height: .98;
 
@@ -2008,9 +2186,7 @@ ul {
     display: grid;
 
     grid-template-columns:
-        45px
-        1fr
-        30px;
+        45px 1fr 30px;
 
     align-items: center;
 
@@ -2041,7 +2217,8 @@ ul {
 
 
 .ai-tool:hover {
-    transform: translateX(6px);
+    transform:
+        translateX(6px);
 
     border-color:
         var(--border-accent);
@@ -2090,24 +2267,22 @@ ul {
 .ai-tool:hover .tool-arrow {
     color: var(--accent);
 
-    transform: translateX(4px);
+    transform:
+        translateX(4px);
 }
 
 
 /* =========================================================
-   14. PROCESS
+   15. PROCESS
 ========================================================= */
 
 .process-grid {
     display: grid;
 
     grid-template-columns:
-        1fr
-        50px
-        1fr
-        50px
-        1fr
-        50px
+        1fr 50px
+        1fr 50px
+        1fr 50px
         1fr;
 
     align-items: center;
@@ -2169,15 +2344,14 @@ ul {
 
 
 /* =========================================================
-   15. ABOUT
+   16. ABOUT
 ========================================================= */
 
 .about-grid {
     display: grid;
 
     grid-template-columns:
-        .9fr
-        1.1fr;
+        .9fr 1.1fr;
 
     align-items: center;
 
@@ -2200,7 +2374,8 @@ ul {
         470px
     );
 
-    aspect-ratio: 1 / 1.05;
+    aspect-ratio:
+        1 / 1.05;
 
     padding: 30px;
 
@@ -2229,7 +2404,8 @@ ul {
 
     position: absolute;
 
-    border: 1px solid
+    border:
+        1px solid
         rgba(255,138,36,0.12);
 
     border-radius: 50%;
@@ -2243,7 +2419,8 @@ ul {
     top: 10%;
     left: 50%;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 }
 
 
@@ -2254,7 +2431,8 @@ ul {
     top: 20%;
     left: 50%;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 }
 
 
@@ -2273,18 +2451,20 @@ ul {
         "Space Grotesk",
         sans-serif;
 
-    font-size: clamp(
-        4rem,
-        12vw,
-        8rem
-    );
+    font-size:
+        clamp(
+            4rem,
+            12vw,
+            8rem
+        );
 
     font-weight: 700;
 
     letter-spacing: -0.08em;
 
     text-shadow:
-        0 0 50px rgba(255,138,36,0.2);
+        0 0 50px
+        rgba(255,138,36,0.2);
 }
 
 
@@ -2336,11 +2516,12 @@ ul {
         "Space Grotesk",
         sans-serif;
 
-    font-size: clamp(
-        2.3rem,
-        5vw,
-        4.5rem
-    );
+    font-size:
+        clamp(
+            2.3rem,
+            5vw,
+            4.5rem
+        );
 
     line-height: 1;
 
@@ -2366,20 +2547,25 @@ ul {
 
     margin-top: 35px;
 
-    border-top: 1px solid var(--border);
+    border-top:
+        1px solid
+        var(--border);
 }
 
 
 .about-points div {
     display: grid;
 
-    grid-template-columns: 50px 1fr;
+    grid-template-columns:
+        50px 1fr;
 
     gap: 15px;
 
     padding: 17px 0;
 
-    border-bottom: 1px solid var(--border);
+    border-bottom:
+        1px solid
+        var(--border);
 }
 
 
@@ -2398,27 +2584,30 @@ ul {
 
 
 /* =========================================================
-   16. FAQ
+   17. FAQ
 ========================================================= */
 
 .faq-grid {
     display: grid;
 
     grid-template-columns:
-        .75fr
-        1.25fr;
+        .75fr 1.25fr;
 
     gap: 90px;
 }
 
 
 .faq-list {
-    border-top: 1px solid var(--border);
+    border-top:
+        1px solid
+        var(--border);
 }
 
 
 .faq-item {
-    border-bottom: 1px solid var(--border);
+    border-bottom:
+        1px solid
+        var(--border);
 }
 
 
@@ -2438,7 +2627,8 @@ ul {
 
     text-align: left;
 
-    background: transparent;
+    background:
+        transparent;
 
     cursor: pointer;
 }
@@ -2469,7 +2659,11 @@ ul {
     width: 30px;
     height: 30px;
 
-    border: 1px solid var(--border);
+    flex-shrink: 0;
+
+    border:
+        1px solid
+        var(--border);
 
     border-radius: 50%;
 
@@ -2482,7 +2676,8 @@ ul {
 
 
 .faq-item.open .faq-icon {
-    transform: rotate(45deg);
+    transform:
+        rotate(45deg);
 
     background:
         rgba(255,138,36,0.08);
@@ -2492,7 +2687,8 @@ ul {
 .faq-answer {
     display: grid;
 
-    grid-template-rows: 0fr;
+    grid-template-rows:
+        0fr;
 
     transition:
         grid-template-rows .4s ease;
@@ -2516,7 +2712,8 @@ ul {
 
 
 .faq-item.open .faq-answer {
-    grid-template-rows: 1fr;
+    grid-template-rows:
+        1fr;
 }
 
 
@@ -2526,7 +2723,7 @@ ul {
 
 
 /* =========================================================
-   17. CONTACT
+   18. CONTACT
 ========================================================= */
 
 .contact {
@@ -2542,15 +2739,18 @@ ul {
     display: grid;
 
     grid-template-columns:
-        1.15fr
-        .85fr;
+        1.15fr .85fr;
 
     align-items: center;
 
     gap: 40px;
 
     padding:
-        clamp(35px, 7vw, 85px);
+        clamp(
+            35px,
+            7vw,
+            85px
+        );
 
     border:
         1px solid
@@ -2591,11 +2791,12 @@ ul {
         "Space Grotesk",
         sans-serif;
 
-    font-size: clamp(
-        2.7rem,
-        6vw,
-        5.5rem
-    );
+    font-size:
+        clamp(
+            2.7rem,
+            6vw,
+            5.5rem
+        );
 
     line-height: .94;
 
@@ -2649,7 +2850,8 @@ ul {
     letter-spacing: -0.08em;
 
     text-shadow:
-        0 0 40px rgba(255,138,36,0.25);
+        0 0 40px
+        rgba(255,138,36,0.25);
 }
 
 
@@ -2663,7 +2865,8 @@ ul {
     border-radius: 50%;
 
     animation:
-        ringPulse 5s ease-in-out infinite;
+        ringPulse 5s ease-in-out
+        infinite;
 }
 
 
@@ -2692,12 +2895,16 @@ ul {
 @keyframes ringPulse {
 
     0%,100% {
-        transform: scale(.96);
+        transform:
+            scale(.96);
+
         opacity: .45;
     }
 
     50% {
-        transform: scale(1.04);
+        transform:
+            scale(1.04);
+
         opacity: 1;
     }
 
@@ -2705,14 +2912,16 @@ ul {
 
 
 /* =========================================================
-   18. FOOTER
+   19. FOOTER
 ========================================================= */
 
 .site-footer {
     padding:
         55px 0 25px;
 
-    border-top: 1px solid var(--border);
+    border-top:
+        1px solid
+        var(--border);
 
     background:
         rgba(0,0,0,0.12);
@@ -2723,9 +2932,7 @@ ul {
     display: grid;
 
     grid-template-columns:
-        1.3fr
-        .7fr
-        1fr;
+        1.3fr .7fr 1fr;
 
     gap: 40px;
 
@@ -2785,7 +2992,9 @@ ul {
 
     padding-top: 20px;
 
-    border-top: 1px solid var(--border);
+    border-top:
+        1px solid
+        var(--border);
 
     color: var(--text-muted);
 
@@ -2794,7 +3003,7 @@ ul {
 
 
 /* =========================================================
-   19. AI MODAL
+   20. AI MODAL
 ========================================================= */
 
 .modal {
@@ -2839,7 +3048,11 @@ ul {
     background:
         rgba(0,0,0,0.78);
 
-    backdrop-filter: blur(12px);
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
 }
 
 
@@ -2871,7 +3084,8 @@ ul {
         );
 
     box-shadow:
-        0 40px 100px rgba(0,0,0,.6);
+        0 40px 100px
+        rgba(0,0,0,.6);
 
     transform:
         translateY(20px)
@@ -2985,11 +3199,11 @@ ul {
 .ai-form textarea {
     width: 100%;
 
-    resize: vertical;
-
     min-height: 130px;
 
     padding: 15px;
+
+    resize: vertical;
 
     border:
         1px solid
@@ -3061,19 +3275,23 @@ ul {
 
     from {
         opacity: 0;
-        transform: translateY(8px);
+
+        transform:
+            translateY(8px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+
+        transform:
+            translateY(0);
     }
 
 }
 
 
 /* =========================================================
-   20. BACK TO TOP
+   21. BACK TO TOP
 ========================================================= */
 
 .back-to-top {
@@ -3102,7 +3320,11 @@ ul {
     background:
         rgba(15,10,7,0.8);
 
-    backdrop-filter: blur(12px);
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
 
     cursor: pointer;
 
@@ -3141,7 +3363,7 @@ ul {
 
 
 /* =========================================================
-   21. REVEAL ANIMATIONS
+   22. REVEAL ANIMATIONS
 ========================================================= */
 
 .reveal {
@@ -3165,12 +3387,14 @@ ul {
 
 
 /* =========================================================
-   22. FOCUS ACCESSIBILITY
+   23. ACCESSIBILITY
 ========================================================= */
 
 a:focus-visible,
 button:focus-visible,
-textarea:focus-visible {
+textarea:focus-visible,
+input:focus-visible,
+select:focus-visible {
     outline:
         2px solid
         var(--accent);
@@ -3180,7 +3404,78 @@ textarea:focus-visible {
 
 
 /* =========================================================
-   23. TABLET
+   24. LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1441px) {
+
+    .container {
+        width:
+            min(
+                calc(100% - 80px),
+                1400px
+            );
+    }
+
+
+    .hero-grid {
+        gap: 90px;
+    }
+
+
+    .hero-title {
+        font-size:
+            clamp(
+                5rem,
+                6vw,
+                7.5rem
+            );
+    }
+
+
+    .section {
+        padding-top: 130px;
+        padding-bottom: 130px;
+    }
+
+}
+
+
+/* =========================================================
+   25. LAPTOP
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    .container {
+        width:
+            min(
+                calc(100% - 48px),
+                1100px
+            );
+    }
+
+
+    .nav-links {
+        gap: 20px;
+    }
+
+
+    .hero-grid {
+        gap: 45px;
+    }
+
+
+    .about-grid,
+    .faq-grid {
+        gap: 60px;
+    }
+
+}
+
+
+/* =========================================================
+   26. TABLET / SMALL LAPTOP
 ========================================================= */
 
 @media (max-width: 1000px) {
@@ -3224,7 +3519,8 @@ textarea:focus-visible {
         grid-column:
             1 / -1;
 
-        grid-row: auto;
+        grid-row:
+            auto;
     }
 
 
@@ -3295,40 +3591,87 @@ textarea:focus-visible {
 
 
 /* =========================================================
-   24. MOBILE NAVIGATION
+   27. TABLET NAVIGATION
 ========================================================= */
 
-@media (max-width: 820px) {
+@media (max-width: 900px) {
 
     .container {
         width:
             min(
-                calc(100% - 30px),
-                var(--container)
+                calc(100% - 40px),
+                760px
             );
     }
 
 
     .navbar {
-        min-height: 72px;
-    }
-
-
-    .menu-toggle {
-        display: block;
-
-        position: relative;
-
-        z-index: 1001;
+        min-height: 74px;
     }
 
 
     .nav-links {
+        gap: 14px;
+    }
+
+
+    .nav-link {
+        font-size: 0.78rem;
+    }
+
+
+    .nav-link.nav-cta {
+        padding:
+            9px 13px;
+    }
+
+}
+
+
+/* =========================================================
+   28. MOBILE NAVIGATION
+========================================================= */
+
+@media (max-width: 760px) {
+
+    .container {
+        width:
+            calc(100% - 30px);
+    }
+
+
+    .navbar {
+        min-height: 70px;
+    }
+
+
+    .menu-toggle {
+        display: flex;
+    }
+
+
+    /* -----------------------------------------------------
+       MOBILE MENU PANEL
+    ----------------------------------------------------- */
+
+    .nav-links {
         position: fixed;
 
-        top: 72px;
-        left: 15px;
-        right: 15px;
+        top: 0;
+        right: 0;
+
+        width:
+            min(
+                88vw,
+                380px
+            );
+
+        height: 100dvh;
+
+        padding:
+            100px
+            28px
+            40px;
 
         display: flex;
 
@@ -3336,56 +3679,74 @@ textarea:focus-visible {
 
         align-items: stretch;
 
-        gap: 0;
+        justify-content: flex-start;
 
-        padding: 12px;
+        gap: 8px;
 
-        border:
+        border-left:
             1px solid
-            var(--border-accent);
-
-        border-radius: 20px;
+            var(--border);
 
         background:
-            rgba(16,11,8,0.96);
+            rgba(11,8,6,0.97);
 
-        backdrop-filter: blur(20px);
+        backdrop-filter:
+            blur(24px);
+
+        -webkit-backdrop-filter:
+            blur(24px);
 
         box-shadow:
-            0 30px 80px rgba(0,0,0,.5);
+            -30px 0 80px
+            rgba(0,0,0,0.35);
 
-        opacity: 0;
+        transform:
+            translateX(100%);
 
         visibility: hidden;
 
         pointer-events: none;
 
-        transform:
-            translateY(-10px);
-
         transition:
-            opacity var(--transition),
-            visibility var(--transition),
-            transform var(--transition);
+            transform .4s
+                cubic-bezier(.16,1,.3,1),
+            visibility .4s ease;
+
+        z-index: 1000;
+
+        overflow-y: auto;
     }
 
 
-    .nav-links.open {
-        opacity: 1;
+    /* -----------------------------------------------------
+       JAVASCRIPT CAN USE EITHER CLASS
+       .open OR .active
+    ----------------------------------------------------- */
+
+    .nav-links.open,
+    .nav-links.active {
+        transform:
+            translateX(0);
 
         visibility: visible;
 
         pointer-events: auto;
-
-        transform:
-            translateY(0);
     }
 
 
+    /* -----------------------------------------------------
+       MOBILE LINKS
+    ----------------------------------------------------- */
+
     .nav-link {
-        padding: 15px;
+        width: 100%;
+
+        padding:
+            15px 4px;
 
         border-radius: 12px;
+
+        font-size: 1.08rem;
     }
 
 
@@ -3396,13 +3757,20 @@ textarea:focus-visible {
 
     .nav-link:hover,
     .nav-link.active {
+        padding-left: 10px;
+
         background:
             rgba(255,138,36,0.06);
     }
 
 
     .nav-link.nav-cta {
-        margin-top: 6px;
+        width: 100%;
+
+        margin-top: 12px;
+
+        padding:
+            14px;
 
         text-align: center;
 
@@ -3411,8 +3779,17 @@ textarea:focus-visible {
     }
 
 
+    /* -----------------------------------------------------
+       HERO
+    ----------------------------------------------------- */
+
     .hero {
         padding-top: 125px;
+    }
+
+
+    .hero-grid {
+        gap: 40px;
     }
 
 
@@ -3432,10 +3809,11 @@ textarea:focus-visible {
 
 
     .hero-card {
-        width: min(
-            90%,
-            390px
-        );
+        width:
+            min(
+                90%,
+                390px
+            );
     }
 
 
@@ -3462,7 +3840,8 @@ textarea:focus-visible {
 
 
     .section {
-        padding: 85px 0;
+        padding:
+            85px 0;
     }
 
 
@@ -3485,14 +3864,15 @@ textarea:focus-visible {
 
 
     .footer-contact {
-        align-items: flex-start;
+        align-items:
+            flex-start;
     }
 
 }
 
 
 /* =========================================================
-   25. SMALL MOBILE
+   29. MOBILE
 ========================================================= */
 
 @media (max-width: 600px) {
@@ -3505,6 +3885,12 @@ textarea:focus-visible {
 
     .brand-text {
         font-size: .9rem;
+    }
+
+
+    .brand-mark {
+        width: 35px;
+        height: 35px;
     }
 
 
@@ -3566,6 +3952,8 @@ textarea:focus-visible {
 
     .mini-bars {
         height: 80px;
+
+        gap: 6px;
     }
 
 
@@ -3592,8 +3980,13 @@ textarea:focus-visible {
     }
 
 
+    /* -----------------------------------------------------
+       SERVICES
+    ----------------------------------------------------- */
+
     .services-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
 
 
@@ -3614,8 +4007,13 @@ textarea:focus-visible {
     }
 
 
+    /* -----------------------------------------------------
+       WORK
+    ----------------------------------------------------- */
+
     .work-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
 
 
@@ -3646,18 +4044,22 @@ textarea:focus-visible {
     }
 
 
-    .ai-panel {
-        padding: 28px 20px;
+    /* -----------------------------------------------------
+       AI STUDIO
+    ----------------------------------------------------- */
 
-        border-radius: 25px;
+    .ai-panel {
+        padding:
+            28px 20px;
+
+        border-radius:
+            25px;
     }
 
 
     .ai-tool {
         grid-template-columns:
-            32px
-            1fr
-            20px;
+            32px 1fr 20px;
 
         gap: 10px;
 
@@ -3665,100 +4067,273 @@ textarea:focus-visible {
     }
 
 
+    /* -----------------------------------------------------
+       PROCESS
+    ----------------------------------------------------- */
+
     .process-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
 
         gap: 10px;
     }
 
 
     .process-step {
-        padding: 20px 0;
+        padding:
+            20px 0;
     }
 
 
     .process-number {
-        margin-bottom: 20px;
+        margin-bottom:
+            20px;
     }
 
+
+    /* -----------------------------------------------------
+       ABOUT
+    ----------------------------------------------------- */
 
     .about-frame {
-        border-radius: 25px;
+        border-radius:
+            25px;
     }
 
 
+    .about-caption {
+        left: 22px;
+        right: 22px;
+        bottom: 22px;
+    }
+
+
+    /* -----------------------------------------------------
+       FAQ
+    ----------------------------------------------------- */
+
     .faq-question {
-        min-height: 70px;
+        min-height:
+            70px;
     }
 
 
     .faq-question span:first-child {
-        font-size: .85rem;
+        font-size:
+            .85rem;
     }
 
 
+    /* -----------------------------------------------------
+       CONTACT
+    ----------------------------------------------------- */
+
     .contact-panel {
-        min-height: 550px;
+        min-height:
+            550px;
 
-        padding: 30px 22px;
+        padding:
+            30px 22px;
 
-        border-radius: 25px;
+        border-radius:
+            25px;
+    }
+
+
+    .contact-actions {
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+    }
+
+
+    .contact-actions .button {
+        width:
+            100%;
     }
 
 
     .contact-decoration {
-        right: -110px;
-        bottom: -40px;
+        right:
+            -110px;
 
-        opacity: .4;
+        bottom:
+            -40px;
+
+        opacity:
+            .4;
     }
 
 
-    .footer-grid {
-        grid-template-columns: 1fr;
+    /* -----------------------------------------------------
+       FOOTER
+    ----------------------------------------------------- */
 
-        gap: 30px;
+    .footer-grid {
+        grid-template-columns:
+            1fr;
+
+        gap:
+            30px;
     }
 
 
     .footer-contact {
-        align-items: flex-start;
+        align-items:
+            flex-start;
     }
 
 
     .footer-bottom {
-        flex-direction: column;
+        flex-direction:
+            column;
 
-        gap: 8px;
+        gap:
+            8px;
+    }
+
+
+    /* -----------------------------------------------------
+       MODAL
+    ----------------------------------------------------- */
+
+    .modal {
+        padding:
+            12px;
     }
 
 
     .modal-container {
-        padding: 28px 20px;
+        padding:
+            28px 20px;
+
+        max-height:
+            92svh;
     }
 
 }
 
 
 /* =========================================================
-   26. REDUCED MOTION
+   30. SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .container {
+        width:
+            calc(100% - 20px);
+    }
+
+
+    .nav-links {
+        width:
+            92vw;
+
+        padding-left:
+            22px;
+
+        padding-right:
+            22px;
+    }
+
+
+    .nav-link {
+        font-size:
+            1rem;
+    }
+
+
+    .hero-title {
+        font-size:
+            2.55rem;
+    }
+
+
+    .hero-description {
+        font-size:
+            .88rem;
+    }
+
+
+    .hero-visual {
+        min-height:
+            320px;
+    }
+
+
+    .hero-card {
+        width:
+            94%;
+
+        min-height:
+            270px;
+    }
+
+
+    .hero-stat strong {
+        font-size:
+            2.6rem;
+    }
+
+
+    .floating-card {
+        transform:
+            scale(.75);
+    }
+
+
+    .floating-card-one {
+        left:
+            -8%;
+    }
+
+
+    .floating-card-two {
+        right:
+            -8%;
+    }
+
+
+    .about-caption strong {
+        font-size:
+            .78rem;
+    }
+
+
+    .contact-content h2 {
+        font-size:
+            2.5rem;
+    }
+
+}
+
+
+/* =========================================================
+   31. REDUCED MOTION
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
     html {
-        scroll-behavior: auto;
+        scroll-behavior:
+            auto;
     }
 
 
     *,
     *::before,
     *::after {
-        animation-duration: 0.01ms !important;
+        animation-duration:
+            0.01ms !important;
 
-        animation-iteration-count: 1 !important;
+        animation-iteration-count:
+            1 !important;
 
-        transition-duration: 0.01ms !important;
+        transition-duration:
+            0.01ms !important;
     }
 
 
@@ -3766,418 +4341,6 @@ textarea:focus-visible {
         opacity: 1;
 
         transform: none;
-    }
-
-               }
-/* =========================================================
-   GOMEZ DIGITAL V5
-   RESPONSIVE FOUNDATION
-   Phone → Tablet → Laptop → Large Desktop
-   ========================================================= */
-
-
-/* ---------------------------------------------------------
-   GLOBAL RESPONSIVE SAFETY
-   --------------------------------------------------------- */
-
-html {
-    width: 100%;
-    overflow-x: hidden;
-}
-
-body {
-    width: 100%;
-    min-width: 0;
-    overflow-x: hidden;
-}
-
-img,
-svg,
-video {
-    max-width: 100%;
-    height: auto;
-}
-
-button,
-a,
-input,
-textarea,
-select {
-    max-width: 100%;
-}
-
-section,
-header,
-footer,
-main {
-    max-width: 100%;
-}
-
-
-/* ---------------------------------------------------------
-   RESPONSIVE CONTAINER
-   --------------------------------------------------------- */
-
-.container {
-    width: min(100% - 40px, 1200px);
-    margin-inline: auto;
-}
-
-
-/* ---------------------------------------------------------
-   FLUID TYPOGRAPHY
-   --------------------------------------------------------- */
-
-h1 {
-    font-size: clamp(3rem, 7vw, 7rem);
-    line-height: 0.95;
-}
-
-h2 {
-    font-size: clamp(2rem, 4vw, 4rem);
-    line-height: 1;
-}
-
-h3 {
-    font-size: clamp(1.25rem, 2vw, 2rem);
-}
-
-
-/* ---------------------------------------------------------
-   LARGE DESKTOP
-   --------------------------------------------------------- */
-
-@media (min-width: 1441px) {
-
-    .container {
-        width: min(100% - 80px, 1400px);
-    }
-
-}
-
-
-/* ---------------------------------------------------------
-   LAPTOP / DESKTOP
-   --------------------------------------------------------- */
-
-@media (max-width: 1200px) {
-
-    .container {
-        width: min(100% - 48px, 1100px);
-    }
-
-}
-
-
-/* ---------------------------------------------------------
-   TABLET
-   --------------------------------------------------------- */
-
-@media (max-width: 900px) {
-
-    .container {
-        width: min(100% - 40px, 760px);
-    }
-
-}
-
-
-/* ---------------------------------------------------------
-   PHONE
-   --------------------------------------------------------- */
-
-@media (max-width: 600px) {
-
-    .container {
-        width: calc(100% - 32px);
-    }
-
-    h1 {
-        font-size: clamp(2.7rem, 14vw, 4.5rem);
-    }
-
-    h2 {
-        font-size: clamp(2rem, 10vw, 3rem);
-    }
-
-    h3 {
-        font-size: 1.35rem;
-    }
-
-}
-
-
-/* ---------------------------------------------------------
-   SMALL PHONE
-   --------------------------------------------------------- */
-
-@media (max-width: 380px) {
-
-    .container {
-        width: calc(100% - 24px);
-    }
-
-    h1 {
-        font-size: 2.55rem;
-    }
-
-                   }
-/* =========================================================
-   GOMEZ DIGITAL V5
-   STEP 2 — RESPONSIVE NAVIGATION
-   ========================================================= */
-
-
-/* ---------------------------------------------------------
-   DESKTOP NAVIGATION
-   --------------------------------------------------------- */
-
-.nav {
-    width: 100%;
-    transition:
-        background 0.35s ease,
-        backdrop-filter 0.35s ease,
-        border-color 0.35s ease;
-}
-
-.nav.scrolled {
-    background: rgba(11, 8, 6, 0.82);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-
-/* ---------------------------------------------------------
-   NAV CONTAINER
-   --------------------------------------------------------- */
-
-.nav .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 78px;
-}
-
-
-/* ---------------------------------------------------------
-   BRAND
-   --------------------------------------------------------- */
-
-.nav-logo,
-.logo {
-    flex-shrink: 0;
-    white-space: nowrap;
-}
-
-
-/* ---------------------------------------------------------
-   DESKTOP MENU
-   --------------------------------------------------------- */
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: clamp(18px, 2.5vw, 36px);
-}
-
-.nav-links a {
-    position: relative;
-    white-space: nowrap;
-}
-
-
-/* ---------------------------------------------------------
-   MOBILE MENU BUTTON
-   --------------------------------------------------------- */
-
-.menu-toggle {
-    display: none;
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-
-    align-items: center;
-    justify-content: center;
-
-    position: relative;
-    z-index: 1001;
-}
-
-
-/* Hamburger lines */
-
-.menu-toggle span {
-    position: absolute;
-    width: 24px;
-    height: 2px;
-    border-radius: 999px;
-    background: currentColor;
-
-    transition:
-        transform 0.3s ease,
-        opacity 0.25s ease;
-}
-
-.menu-toggle span:nth-child(1) {
-    transform: translateY(-7px);
-}
-
-.menu-toggle span:nth-child(2) {
-    transform: translateY(0);
-}
-
-.menu-toggle span:nth-child(3) {
-    transform: translateY(7px);
-}
-
-
-/* ---------------------------------------------------------
-   OPEN MENU ICON
-   --------------------------------------------------------- */
-
-.menu-toggle.active span:nth-child(1) {
-    transform: rotate(45deg);
-}
-
-.menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.menu-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg);
-}
-
-
-/* =========================================================
-   TABLET
-   ========================================================= */
-
-@media (max-width: 900px) {
-
-    .nav .container {
-        min-height: 70px;
-    }
-
-    .nav-links {
-        gap: 16px;
-    }
-
-}
-
-
-/* =========================================================
-   PHONE NAVIGATION
-   ========================================================= */
-
-@media (max-width: 760px) {
-
-    .nav .container {
-        min-height: 68px;
-    }
-
-    .menu-toggle {
-        display: flex;
-    }
-
-
-    /* ---------------------------------------------
-       MOBILE MENU PANEL
-       --------------------------------------------- */
-
-    .nav-links {
-        position: fixed;
-
-        top: 0;
-        right: 0;
-
-        width: min(88vw, 380px);
-        height: 100dvh;
-
-        padding:
-            100px
-            28px
-            40px;
-
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-
-        gap: 8px;
-
-        background: rgba(11, 8, 6, 0.97);
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
-
-        border-left: 1px solid rgba(255, 255, 255, 0.08);
-
-        transform: translateX(100%);
-        visibility: hidden;
-
-        transition:
-            transform 0.4s cubic-bezier(.16, 1, .3, 1),
-            visibility 0.4s ease;
-
-        z-index: 1000;
-
-        overflow-y: auto;
-    }
-
-
-    /* ---------------------------------------------
-       OPEN MOBILE MENU
-       --------------------------------------------- */
-
-    .nav-links.active {
-        transform: translateX(0);
-        visibility: visible;
-    }
-
-
-    /* ---------------------------------------------
-       MOBILE LINKS
-       --------------------------------------------- */
-
-    .nav-links a {
-        width: 100%;
-        padding: 14px 0;
-
-        font-size: 1.15rem;
-    }
-
-
-    /* ---------------------------------------------
-       MOBILE CTA
-       --------------------------------------------- */
-
-    .nav-links .btn,
-    .nav-links .nav-cta {
-        width: 100%;
-        margin-top: 18px;
-        text-align: center;
-    }
-
-}
-
-
-/* =========================================================
-   SMALL PHONES
-   ========================================================= */
-
-@media (max-width: 380px) {
-
-    .nav-links {
-        width: 92vw;
-        padding-left: 22px;
-        padding-right: 22px;
-    }
-
-    .nav-links a {
-        font-size: 1.05rem;
     }
 
 }
