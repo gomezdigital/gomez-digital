@@ -1918,31 +1918,140 @@ summary:focus-visible {
 
 
 /* =========================================================
+   /* =========================================================
    14. WORK
+   PREMIUM PORTFOLIO SYSTEM
    ========================================================= */
 
-.work-heading {
+#work {
+  position: relative;
+
+  background:
+    radial-gradient(
+      circle at 12% 30%,
+      rgba(255, 138, 0, 0.035),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 88% 75%,
+      rgba(255, 138, 0, 0.025),
+      transparent 30%
+    );
+}
+
+#work::before {
+  position: absolute;
+
+  top: 12%;
+  right: -180px;
+
+  width: 420px;
+  height: 420px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 138, 0, 0.055),
+      transparent 70%
+    );
+
+  content: "";
+
+  pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------
+   SECTION HEADING
+   --------------------------------------------------------- */
+
+#work .section-head {
+  position: relative;
+
+  z-index: 2;
+
   display: flex;
 
   align-items: flex-end;
   justify-content: space-between;
 
-  gap: 35px;
+  gap: 45px;
 
-  max-width: none;
+  margin-bottom: 48px;
 }
 
-.work-heading > p {
-  max-width: 390px;
+#work .section-head > div {
+  min-width: 0;
+}
+
+#work .section-number {
+  display: block;
+
+  margin-bottom: 17px;
+
+  color: var(--accent);
+
+  font-family:
+    "Space Grotesk",
+    Arial,
+    sans-serif;
+
+  font-size: 0.68rem;
+  font-weight: 700;
+
+  letter-spacing: 0.16em;
+
+  text-transform: uppercase;
+}
+
+#work .section-head h2 {
+  margin: 0;
+
+  font-family:
+    "Space Grotesk",
+    Arial,
+    sans-serif;
+
+  font-size:
+    clamp(2.6rem, 5vw, 4.5rem);
+
+  font-weight: 600;
+
+  line-height: 0.96;
+
+  letter-spacing: -0.06em;
+}
+
+#work .section-head h2 em {
+  color: var(--accent);
+
+  font-style: normal;
+}
+
+#work .section-head > p {
+  width: min(100%, 430px);
 
   margin: 0;
 
   color: var(--text-muted);
 
-  font-size: 0.86rem;
+  font-size: 0.88rem;
+
+  line-height: 1.75;
 }
 
+
+/* ---------------------------------------------------------
+   PROJECT GRID
+   --------------------------------------------------------- */
+
 .work-grid {
+  position: relative;
+
+  z-index: 2;
+
   display: grid;
 
   grid-template-columns:
@@ -1953,154 +2062,232 @@ summary:focus-visible {
   min-width: 0;
 }
 
-.work-card {
+
+/* ---------------------------------------------------------
+   PROJECT CARD
+   --------------------------------------------------------- */
+
+.project {
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
   min-width: 0;
 
   overflow: hidden;
 
   border:
-    1px solid var(--border);
+    1px solid rgba(255, 255, 255, 0.075);
 
-  border-radius: var(--radius-lg);
+  border-radius: 24px;
 
   background:
-    rgba(255, 255, 255, 0.018);
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.038),
+      rgba(255, 255, 255, 0.012)
+    );
+
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.22);
 
   transition:
-    transform var(--ease),
-    border-color var(--ease);
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    background 0.35s ease;
 }
 
-.work-card:last-child {
-  grid-column:
-    1 / -1;
+.project::after {
+  position: absolute;
+
+  inset: 0;
+
+  border:
+    1px solid transparent;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 138, 0, 0.12),
+      transparent 35%,
+      transparent 70%,
+      rgba(255, 138, 0, 0.035)
+    );
+
+  opacity: 0;
+
+  content: "";
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.35s ease;
 }
 
-.work-card:hover {
-  transform: translateY(-5px);
+.project:hover {
+  transform: translateY(-7px);
 
   border-color:
-    rgba(255, 255, 255, 0.14);
+    rgba(255, 138, 0, 0.24);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 138, 0, 0.045),
+      rgba(255, 255, 255, 0.014)
+    );
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.34),
+    0 20px 70px rgba(255, 138, 0, 0.055);
 }
 
-.work-image {
-  position: relative;
+.project:hover::after {
+  opacity: 1;
+}
 
-  min-height: 350px;
+
+/* ---------------------------------------------------------
+   FEATURED PROJECT
+   --------------------------------------------------------- */
+
+.project-large {
+  grid-column:
+    1 / -1;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(0, 0.85fr);
+
+  min-height: 390px;
+}
+
+
+/* ---------------------------------------------------------
+   PROJECT ART
+   --------------------------------------------------------- */
+
+.project-art {
+  position: relative;
 
   display: flex;
 
   align-items: center;
   justify-content: center;
 
-  padding: 34px;
+  min-height: 330px;
+
+  padding: 40px;
 
   overflow: hidden;
 
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(255, 138, 0, 0.10),
-      transparent 58%
-    );
-}
-
-.work-image-two {
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(255, 138, 0, 0.07),
-      transparent 58%
-    );
-}
-
-.work-image-three {
-  min-height: 300px;
-
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(255, 138, 0, 0.06),
-      transparent 60%
-    );
-}
-
-.work-browser {
-  width: min(100%, 500px);
-
-  overflow: hidden;
-
-  border:
-    1px solid rgba(255, 255, 255, 0.10);
-
-  border-radius: 16px;
-
-  background:
-    #0d0a08;
-
-  box-shadow:
-    0 30px 70px rgba(0, 0, 0, 0.35);
-
-  transform:
-    perspective(900px)
-    rotateX(4deg);
-}
-
-.work-browser-bar {
-  display: flex;
-
-  align-items: center;
-
-  gap: 5px;
-
-  height: 31px;
-
-  padding: 0 11px;
-
-  border-bottom:
-    1px solid rgba(255, 255, 255, 0.06);
-
-  background:
-    rgba(255, 255, 255, 0.025);
-}
-
-.work-browser-bar span {
-  width: 6px;
-  height: 6px;
-
-  border-radius: 50%;
-
-  background:
-    rgba(255, 255, 255, 0.22);
-}
-
-.work-browser-content {
-  min-height: 230px;
-
-  padding:
-    clamp(25px, 5vw, 45px);
+  isolation: isolate;
 
   background:
     linear-gradient(
       145deg,
-      rgba(255, 138, 0, 0.075),
-      transparent 70%
+      #17100c,
+      #0c0907
     );
 }
 
-.work-browser-content small {
-  color: var(--accent);
+.project-art::before {
+  position: absolute;
 
-  font-size: 0.55rem;
-  font-weight: 700;
+  width: 75%;
+  height: 75%;
 
-  letter-spacing: 0.15em;
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 138, 0, 0.18),
+      transparent 68%
+    );
+
+  filter: blur(4px);
+
+  content: "";
+
+  z-index: -1;
+
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s ease;
 }
 
-.work-browser-content strong {
-  display: block;
+.project:hover .project-art::before {
+  transform: scale(1.15);
 
-  margin-top: 13px;
+  opacity: 0.85;
+}
+
+.project-art::after {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.035) 45%,
+      transparent 70%
+    );
+
+  content: "";
+
+  pointer-events: none;
+
+  transform:
+    translateX(-100%);
+
+  transition:
+    transform 0.7s ease;
+}
+
+.project:hover .project-art::after {
+  transform:
+    translateX(100%);
+}
+
+
+/* ---------------------------------------------------------
+   ART BRANDING
+   --------------------------------------------------------- */
+
+.project-art > span {
+  position: absolute;
+
+  top: 22px;
+  left: 24px;
+
+  color:
+    rgba(255, 255, 255, 0.34);
+
+  font-family:
+    "Space Grotesk",
+    Arial,
+    sans-serif;
+
+  font-size: 0.65rem;
+  font-weight: 700;
+
+  letter-spacing: 0.16em;
+}
+
+.project-art > div {
+  position: relative;
+
+  text-align: center;
 
   color: var(--text);
 
@@ -2110,92 +2297,548 @@ summary:focus-visible {
     sans-serif;
 
   font-size:
-    clamp(1.35rem, 3vw, 2rem);
+    clamp(1.7rem, 4vw, 3.1rem);
 
-  line-height: 1.03;
+  font-weight: 400;
 
-  letter-spacing: -0.04em;
+  line-height: 0.88;
+
+  letter-spacing: -0.06em;
+
+  text-transform: uppercase;
+
+  text-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.45);
 }
 
-.mock-button {
-  width: fit-content;
+.project-art > div b {
+  color: var(--accent);
 
-  margin-top: 25px;
+  font-weight: 600;
+}
 
-  padding: 8px 13px;
+
+/* ---------------------------------------------------------
+   HUSTLA MINDSET
+   --------------------------------------------------------- */
+
+.art-hustla {
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(255, 138, 0, 0.15),
+      transparent 32%
+    ),
+    linear-gradient(
+      145deg,
+      #18100b,
+      #0b0806 75%
+    );
+}
+
+.art-hustla::before {
+  width: 270px;
+  height: 270px;
 
   border:
-    1px solid rgba(255, 138, 0, 0.28);
+    1px solid rgba(255, 138, 0, 0.16);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 138, 0, 0.13),
+      transparent 65%
+    );
+
+  box-shadow:
+    0 0 80px rgba(255, 138, 0, 0.09);
+}
+
+.art-hustla::after {
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 138, 0, 0.09),
+      transparent
+    );
+}
+
+
+/* ---------------------------------------------------------
+   GOMEZ ALPHA
+   --------------------------------------------------------- */
+
+.art-alpha {
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(255, 138, 0, 0.10),
+      transparent 40%
+    ),
+    linear-gradient(
+      145deg,
+      #120d09,
+      #080605
+    );
+}
+
+.art-alpha::before {
+  width: 240px;
+  height: 240px;
+
+  border:
+    1px solid rgba(255, 138, 0, 0.18);
+
+  background:
+    repeating-radial-gradient(
+      circle,
+      transparent 0 28px,
+      rgba(255, 138, 0, 0.075) 29px 30px
+    );
+
+  opacity: 0.9;
+}
+
+.art-alpha::after {
+  background:
+    linear-gradient(
+      105deg,
+      transparent 20%,
+      rgba(255, 138, 0, 0.10) 50%,
+      transparent 80%
+    );
+}
+
+
+/* ---------------------------------------------------------
+   CLIENT PROJECT
+   --------------------------------------------------------- */
+
+.art-client {
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(255, 138, 0, 0.085),
+      transparent 42%
+    ),
+    linear-gradient(
+      145deg,
+      #15100c,
+      #0b0806
+    );
+}
+
+.art-client::before {
+  width: 210px;
+  height: 210px;
+
+  border:
+    1px solid rgba(255, 138, 0, 0.13);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 138, 0, 0.11),
+      transparent 68%
+    );
+}
+
+.art-client > div {
+  font-size:
+    clamp(1.45rem, 3vw, 2.5rem);
+}
+
+
+/* ---------------------------------------------------------
+   NEXT PROJECT CTA
+   --------------------------------------------------------- */
+
+.project-cta {
+  border-color:
+    rgba(255, 138, 0, 0.18);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 138, 0, 0.055),
+      rgba(255, 255, 255, 0.012)
+    );
+}
+
+.art-next {
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255, 138, 0, 0.075),
+      transparent 48%
+    ),
+    #0d0907;
+}
+
+.art-next::before {
+  width: 180px;
+  height: 180px;
+
+  border:
+    1px dashed rgba(255, 138, 0, 0.25);
+
+  background:
+    transparent;
+}
+
+.art-next > div {
+  color:
+    rgba(255, 255, 255, 0.76);
+}
+
+.art-next > div b {
+  color: var(--accent);
+}
+
+
+/* ---------------------------------------------------------
+   PROJECT INFORMATION
+   --------------------------------------------------------- */
+
+.project-info {
+  position: relative;
+
+  z-index: 3;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  min-width: 0;
+
+  padding:
+    27px 28px
+    30px;
+}
+
+.project-info > span {
+  display: block;
+
+  color: var(--accent);
+
+  font-size: 0.59rem;
+  font-weight: 700;
+
+  line-height: 1.4;
+
+  letter-spacing: 0.13em;
+
+  text-transform: uppercase;
+}
+
+.project-info h3 {
+  margin:
+    10px 0 8px;
+
+  color: var(--text);
+
+  font-family:
+    "Space Grotesk",
+    Arial,
+    sans-serif;
+
+  font-size:
+    clamp(1.25rem, 2vw, 1.55rem);
+
+  font-weight: 600;
+
+  line-height: 1.1;
+
+  letter-spacing: -0.035em;
+}
+
+.project-info p {
+  max-width: 620px;
+
+  margin: 0;
+
+  color: var(--text-muted);
+
+  font-size: 0.82rem;
+
+  line-height: 1.7;
+}
+
+
+/* ---------------------------------------------------------
+   PROJECT LINKS
+   --------------------------------------------------------- */
+
+.project-info a {
+  display: inline-flex;
+
+  align-items: center;
+
+  min-height: 38px;
+
+  margin-top: 20px;
+
+  padding:
+    8px 13px;
+
+  border:
+    1px solid rgba(255, 138, 0, 0.22);
 
   border-radius: 999px;
 
+  background:
+    rgba(255, 138, 0, 0.045);
+
   color: var(--accent);
 
-  font-size: 0.55rem;
+  font-size: 0.68rem;
   font-weight: 700;
-
-  letter-spacing: 0.08em;
-}
-
-.work-info {
-  display: flex;
-
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 20px;
-
-  padding: 22px 24px;
-}
-
-.work-category {
-  color: var(--accent);
-
-  font-size: 0.58rem;
-  font-weight: 700;
-
-  letter-spacing: 0.13em;
-}
-
-.work-info h3 {
-  margin: 6px 0 0;
-
-  font-size: 1rem;
-}
-
-.work-link {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  width: 38px;
-  height: 38px;
-
-  flex: 0 0 38px;
-
-  border:
-    1px solid rgba(255, 255, 255, 0.10);
-
-  border-radius: 50%;
-
-  color: var(--accent);
 
   transition:
     background var(--ease),
+    border-color var(--ease),
     transform var(--ease),
-    border-color var(--ease);
+    box-shadow var(--ease);
 }
 
-.work-link:hover {
-  transform: translateY(-2px);
+.project-info a:hover {
+  transform:
+    translateY(-2px);
 
   background:
-    rgba(255, 138, 0, 0.08);
+    rgba(255, 138, 0, 0.10);
 
   border-color:
-    rgba(255, 138, 0, 0.3);
+    rgba(255, 138, 0, 0.42);
+
+  box-shadow:
+    0 10px 30px rgba(255, 138, 0, 0.08);
 }
+
+
+/* ---------------------------------------------------------
+   FEATURED PROJECT LAYOUT
+   --------------------------------------------------------- */
+
+.project-large .project-art {
+  min-height: 390px;
+}
+
+.project-large .project-info {
+  justify-content: center;
+
+  padding:
+    42px 38px;
+}
+
+
+/* ---------------------------------------------------------
+   TABLET
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+  #work .section-head {
+    display: block;
+
+    margin-bottom: 35px;
+  }
+
+  #work .section-head > p {
+    width: min(100%, 650px);
+
+    margin-top: 18px;
+  }
+
+  .work-grid {
+    grid-template-columns:
+      minmax(0, 1fr);
+
+    gap: 18px;
+  }
+
+  .project-large {
+    grid-column: auto;
+
+    display: flex;
+
+    min-height: 0;
+  }
+
+  .project-large .project-art {
+    min-height: 330px;
+  }
+
+  .project-large .project-info {
+    padding:
+      27px 28px
+      30px;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   PHONE
+   --------------------------------------------------------- */
+
+@media (max-width: 700px) {
+
+  #work .section-head h2 {
+    font-size:
+      clamp(2.35rem, 12vw, 3.25rem);
+  }
+
+  #work .section-number {
+    margin-bottom: 14px;
+
+    font-size: 0.59rem;
+  }
+
+  #work .section-head > p {
+    font-size: 0.82rem;
+
+    line-height: 1.7;
+  }
+
+  .work-grid {
+    gap: 15px;
+  }
+
+  .project {
+    border-radius: 19px;
+  }
+
+  .project-art,
+  .project-large .project-art {
+    min-height: 245px;
+
+    padding: 25px;
+  }
+
+  .project-art > span {
+    top: 17px;
+    left: 18px;
+
+    font-size: 0.55rem;
+  }
+
+  .project-art > div {
+    font-size:
+      clamp(1.45rem, 9vw, 2.2rem);
+  }
+
+  .art-client > div {
+    font-size:
+      clamp(1.2rem, 7vw, 1.8rem);
+  }
+
+  .project-info,
+  .project-large .project-info {
+    padding:
+      21px 20px
+      23px;
+  }
+
+  .project-info > span {
+    font-size: 0.52rem;
+
+    letter-spacing: 0.10em;
+  }
+
+  .project-info h3 {
+    margin-top: 8px;
+
+    font-size: 1.12rem;
+  }
+
+  .project-info p {
+    font-size: 0.76rem;
+
+    line-height: 1.65;
+  }
+
+  .project-info a {
+    min-height: 36px;
+
+    margin-top: 16px;
+
+    padding:
+      7px 11px;
+
+    font-size: 0.62rem;
+  }
+
+  .art-hustla::before {
+    width: 190px;
+    height: 190px;
+  }
+
+  .art-alpha::before {
+    width: 175px;
+    height: 175px;
+  }
+
+  .art-client::before {
+    width: 155px;
+    height: 155px;
+  }
+
+  .art-next::before {
+    width: 145px;
+    height: 145px;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   SMALL PHONES
+   --------------------------------------------------------- */
+
+@media (max-width: 390px) {
+
+  #work .section-head {
+    margin-bottom: 28px;
+  }
+
+  .project-art,
+  .project-large .project-art {
+    min-height: 215px;
+
+    padding: 18px;
+  }
+
+  .project-art > span {
+    top: 14px;
+    left: 15px;
+  }
+
+  .project-info,
+  .project-large .project-info {
+    padding:
+      18px 17px
+      20px;
+  }
+
+  .project-info h3 {
+    font-size: 1.04rem;
+  }
+
+  .project-info p {
+    font-size: 0.72rem;
+  }
+
+  .project-info a {
+    margin-top: 13px;
+  }
+}
+
+
+/* =========================================================
+   END WORK
+   ========================================================= */
 
 
 /* =========================================================
