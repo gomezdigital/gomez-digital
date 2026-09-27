@@ -1,335 +1,315 @@
-/* =========================================================
-   GOMEZ DIGITAL V6
-   script.js
-   Stable + Responsive Interaction Build
-   ========================================================= */
+(() => {
+  "use strict";
 
-/*
- * =========================================================
- * EMERGENCY LOADER SAFETY
- * =========================================================
- *
- * This runs immediately, before the rest of the application.
- * If another JavaScript problem occurs, the website will still
- * become usable instead of remaining permanently on the loader.
- */
+  /* =========================================================
+     GOMEZ DIGITAL
+     V6 STABLE + RESPONSIVE JAVASCRIPT
+     
+     Built specifically for the current index.html.
+     Defensive DOM checks are used throughout so one missing
+     element cannot break the rest of the website.
+     ========================================================= */
 
-(function () {
 
-  const emergencyHideLoader = function () {
+  /* =========================================================
+     01. SAFE DOM HELPERS
+     ========================================================= */
 
-    const loader = document.getElementById("loader");
+  const $ = (selector, parent = document) => {
+    try {
+      return parent.querySelector(selector);
+    } catch {
+      return null;
+    }
+  };
+
+  const $$ = (selector, parent = document) => {
+    try {
+      return Array.from(parent.querySelectorAll(selector));
+    } catch {
+      return [];
+    }
+  };
+
+  const on = (element, event, handler, options) => {
+    if (!element) return;
+
+    try {
+      element.addEventListener(event, handler, options);
+    } catch {
+      /* Ignore isolated listener errors */
+    }
+  };
+
+
+  /* =========================================================
+     02. LOADER
+     
+     IMPORTANT:
+     Never allow JavaScript to trap the visitor on the loader.
+     ========================================================= */
+
+  const hideLoader = () => {
+    const loader = $("#loader");
 
     if (!loader) return;
 
     loader.classList.add("hidden");
 
-    document.body.style.overflow = "";
-
-  };
-
-  /*
-   * Absolute emergency fallback.
-   * This timer exists outside DOMContentLoaded so that a
-   * JavaScript error later in the application cannot prevent it.
-   */
-
-  window.setTimeout(emergencyHideLoader, 3500);
-
-})();
-
-
-/* =========================================================
-   MAIN APPLICATION
-   ========================================================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  /* =======================================================
-     ELEMENTS
-  ======================================================= */
-
-  const loader =
-    document.getElementById("loader");
-
-  const siteHeader =
-    document.getElementById("siteHeader");
-
-  const menuToggle =
-    document.getElementById("menuToggle");
-
-  const mainNav =
-    document.getElementById("mainNav");
-
-  const currentYear =
-    document.getElementById("currentYear");
-
-  const revealElements =
-    document.querySelectorAll(".reveal");
-
-  const toolModal =
-    document.getElementById("toolModal");
-
-  const toolModalBackdrop =
-    document.getElementById("toolModalBackdrop");
-
-  const toolModalClose =
-    document.getElementById("toolModalClose");
-
-  const toolModalIcon =
-    document.getElementById("toolModalIcon");
-
-  const toolModalEyebrow =
-    document.getElementById("toolModalEyebrow");
-
-  const toolModalTitle =
-    document.getElementById("toolModalTitle");
-
-  const toolModalDescription =
-    document.getElementById("toolModalDescription");
-
-  const toolInputLabel =
-    document.getElementById("toolInputLabel");
-
-  const toolInput =
-    document.getElementById("toolInput");
-
-  const toolGenerate =
-    document.getElementById("toolGenerate");
-
-  const toolResult =
-    document.getElementById("toolResult");
-
-  const toolButtons =
-    document.querySelectorAll(".tool-button");
-
-
-  /* =======================================================
-     CURRENT YEAR
-     ======================================================= */
-
-  if (currentYear) {
-
-    currentYear.textContent =
-      new Date().getFullYear();
-
-  }
-
-
-  /* =======================================================
-     LOADER
-     ======================================================= */
-
-  const hideLoader = function () {
-
-    if (!loader) return;
-
-    loader.classList.add("hidden");
-
-    document.body.style.overflow = "";
-
+    try {
+      loader.setAttribute("aria-hidden", "true");
+    } catch {
+      /* Safe fallback */
+    }
   };
 
 
-  /*
-   * Prevent scrolling while the loader is visible.
-   */
+  /* Emergency fallback:
+     Even if another JavaScript section fails,
+     the website must still open. */
 
-  document.body.style.overflow = "hidden";
+  window.setTimeout(hideLoader, 3500);
 
 
-  /*
-   * Normal loader removal.
-   */
+  /* =========================================================
+     03. DOM READY
+     ========================================================= */
 
-  if (document.readyState === "complete") {
+  const init = () => {
 
-    window.setTimeout(hideLoader, 700);
+    /* -------------------------------------------------------
+       Core elements
+       ------------------------------------------------------- */
 
-  } else {
+    const loader = $("#loader");
+    const siteHeader = $("#siteHeader");
+    const menuToggle = $("#menuToggle");
+    const mainNav = $("#mainNav");
 
-    window.addEventListener(
-      "load",
-      function () {
+    const toolModal = $("#toolModal");
+    const toolModalClose = $("#toolModalClose");
+    const toolModalBackdrop = $("#toolModalBackdrop");
 
-        window.setTimeout(
-          hideLoader,
-          700
-        );
+    const toolTitle = $("#toolTitle");
+    const toolDescription = $("#toolDescription");
+    const toolInput = $("#toolInput");
+    const toolGenerate = $("#toolGenerate");
+    const toolResult = $("#toolResult");
 
-      },
-      {
-        once: true
+    const heroVisual = $(".hero-visual");
+
+
+    /* =======================================================
+       04. LOADER INITIALIZATION
+       ======================================================= */
+
+    if (loader) {
+
+      /*
+       * If the page has already completely loaded,
+       * close the loader shortly after initialization.
+       */
+
+      if (document.readyState === "complete") {
+
+        window.setTimeout(() => {
+          hideLoader();
+        }, 250);
+
+      } else {
+
+        on(window, "load", () => {
+
+          window.setTimeout(() => {
+            hideLoader();
+          }, 650);
+
+        });
+
       }
-    );
 
-  }
+      /*
+       * Second safety fallback.
+       */
 
-
-  /*
-   * Secondary safety fallback.
-   */
-
-  window.setTimeout(
-    hideLoader,
-    3000
-  );
-
-
-  /* =======================================================
-     HEADER SCROLL EFFECT
-     ======================================================= */
-
-  const updateHeader = function () {
-
-    if (!siteHeader) return;
-
-    if (window.scrollY > 35) {
-
-      siteHeader.classList.add(
-        "scrolled"
-      );
-
-    } else {
-
-      siteHeader.classList.remove(
-        "scrolled"
-      );
-
+      window.setTimeout(() => {
+        hideLoader();
+      }, 3000);
     }
 
-  };
 
+    /* =======================================================
+       05. HEADER SCROLL EFFECT
+       ======================================================= */
 
-  updateHeader();
+    const updateHeader = () => {
 
+      if (!siteHeader) return;
 
-  window.addEventListener(
-    "scroll",
-    updateHeader,
-    {
+      const scrolled =
+        window.scrollY > 30;
+
+      siteHeader.classList.toggle(
+        "scrolled",
+        scrolled
+      );
+    };
+
+    updateHeader();
+
+    on(window, "scroll", updateHeader, {
       passive: true
-    }
-  );
+    });
 
 
-  /* =======================================================
-     MOBILE MENU
-     ======================================================= */
+    /* =======================================================
+       06. MOBILE MENU
+       ======================================================= */
 
-  if (menuToggle && mainNav) {
+    const closeMenu = () => {
 
-    menuToggle.addEventListener(
-      "click",
-      function () {
+      if (!mainNav || !menuToggle) return;
 
-        const isOpen =
-          mainNav.classList.toggle("open");
+      mainNav.classList.remove("open");
+      menuToggle.classList.remove("active");
 
-        menuToggle.classList.toggle(
-          "active",
-          isOpen
-        );
+      menuToggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
 
-        menuToggle.setAttribute(
-          "aria-expanded",
-          String(isOpen)
-        );
+      document.body.classList.remove(
+        "menu-open"
+      );
+    };
 
+
+    const openMenu = () => {
+
+      if (!mainNav || !menuToggle) return;
+
+      mainNav.classList.add("open");
+      menuToggle.classList.add("active");
+
+      menuToggle.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+      document.body.classList.add(
+        "menu-open"
+      );
+    };
+
+
+    const toggleMenu = () => {
+
+      if (!mainNav) return;
+
+      const isOpen =
+        mainNav.classList.contains("open");
+
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
       }
-    );
+    };
+
+
+    on(menuToggle, "click", toggleMenu);
 
 
     /*
      * Close menu after clicking a navigation link.
      */
 
-    const navLinks =
-      mainNav.querySelectorAll("a");
+    $$("#mainNav a").forEach((link) => {
 
-    navLinks.forEach(
-      function (link) {
+      on(link, "click", () => {
+        closeMenu();
+      });
 
-        link.addEventListener(
-          "click",
-          function () {
-
-            mainNav.classList.remove(
-              "open"
-            );
-
-            menuToggle.classList.remove(
-              "active"
-            );
-
-            menuToggle.setAttribute(
-              "aria-expanded",
-              "false"
-            );
-
-          }
-        );
-
-      }
-    );
+    });
 
 
     /*
-     * Close menu when clicking outside it.
+     * Close mobile navigation when clicking outside it.
      */
 
-    document.addEventListener(
-      "click",
-      function (event) {
+    on(document, "click", (event) => {
 
-        const clickedInsideMenu =
-          mainNav.contains(event.target);
+      if (!mainNav || !menuToggle) return;
 
-        const clickedToggle =
-          menuToggle.contains(event.target);
-
-        if (
-          !clickedInsideMenu &&
-          !clickedToggle &&
-          mainNav.classList.contains("open")
-        ) {
-
-          mainNav.classList.remove(
-            "open"
-          );
-
-          menuToggle.classList.remove(
-            "active"
-          );
-
-          menuToggle.setAttribute(
-            "aria-expanded",
-            "false"
-          );
-
-        }
-
+      if (
+        !mainNav.classList.contains("open")
+      ) {
+        return;
       }
-    );
 
-  }
+      const target = event.target;
+
+      if (
+        !mainNav.contains(target) &&
+        !menuToggle.contains(target)
+      ) {
+        closeMenu();
+      }
+
+    });
 
 
-  /* =======================================================
-     SCROLL REVEAL
-     ======================================================= */
+    /*
+     * Escape key closes mobile menu.
+     */
 
-  if (
-    "IntersectionObserver" in window &&
-    revealElements.length > 0
-  ) {
+    on(document, "keydown", (event) => {
 
-    const revealObserver =
-      new IntersectionObserver(
-        function (entries, observer) {
+      if (event.key !== "Escape") return;
 
-          entries.forEach(
-            function (entry) {
+      closeMenu();
+
+    });
+
+
+    /*
+     * If the screen becomes desktop-sized,
+     * make sure the mobile menu cannot remain open.
+     */
+
+    const handleResize = () => {
+
+      if (
+        window.innerWidth > 900
+      ) {
+        closeMenu();
+      }
+
+    };
+
+    on(window, "resize", handleResize, {
+      passive: true
+    });
+
+
+    /* =======================================================
+       07. SCROLL REVEAL
+       ======================================================= */
+
+    const revealElements =
+      $$(".reveal");
+
+
+    if (
+      revealElements.length &&
+      "IntersectionObserver" in window
+    ) {
+
+      const revealObserver =
+        new IntersectionObserver(
+          (entries, observer) => {
+
+            entries.forEach((entry) => {
 
               if (!entry.isIntersecting) {
                 return;
@@ -343,1002 +323,738 @@ document.addEventListener("DOMContentLoaded", function () {
                 entry.target
               );
 
-            }
-          );
+            });
 
-        },
-        {
-          threshold: 0.12,
-          rootMargin: "0px 0px -40px 0px"
-        }
-      );
-
-
-    revealElements.forEach(
-      function (element) {
-
-        revealObserver.observe(
-          element
+          },
+          {
+            threshold: 0.12,
+            rootMargin: "0px 0px -40px 0px"
+          }
         );
 
+
+      revealElements.forEach((element) => {
+
+        revealObserver.observe(element);
+
+      });
+
+    } else {
+
+      /*
+       * Fallback for browsers without
+       * IntersectionObserver.
+       */
+
+      revealElements.forEach((element) => {
+
+        element.classList.add("visible");
+
+      });
+
+    }
+
+
+    /* =======================================================
+       08. SMOOTH ANCHOR NAVIGATION
+       ======================================================= */
+
+    const anchorLinks =
+      $$('a[href^="#"]');
+
+
+    anchorLinks.forEach((link) => {
+
+      on(link, "click", (event) => {
+
+        const href =
+          link.getAttribute("href");
+
+        if (
+          !href ||
+          href === "#" ||
+          href.length < 2
+        ) {
+          return;
+        }
+
+        let target = null;
+
+        try {
+          target = document.querySelector(
+            href
+          );
+        } catch {
+          target = null;
+        }
+
+        if (!target) {
+          return;
+        }
+
+        event.preventDefault();
+
+        const headerHeight =
+          siteHeader
+            ? siteHeader.offsetHeight
+            : 0;
+
+        const targetTop =
+          target.getBoundingClientRect().top +
+          window.scrollY -
+          headerHeight -
+          15;
+
+        window.scrollTo({
+          top: Math.max(0, targetTop),
+          behavior: "smooth"
+        });
+
+      });
+
+    });
+
+
+    /* =======================================================
+       09. AI STUDIO DATA
+       ======================================================= */
+
+    const tools = {
+
+      "business-name": {
+        title: "Business Name Generator",
+        description:
+          "Generate modern, memorable business-name directions from a simple description.",
+        placeholder:
+          "Example: A premium clothing brand for ambitious young professionals.",
+        button:
+          "Generate Names"
+      },
+
+      "website-concept": {
+        title: "Website Concept",
+        description:
+          "Turn a business idea into a clear website direction.",
+        placeholder:
+          "Example: A Botswana-based construction company targeting commercial clients.",
+        button:
+          "Create Concept"
+      },
+
+      "content-spark": {
+        title: "Content Spark",
+        description:
+          "Generate content directions for your brand or business.",
+        placeholder:
+          "Example: A digital agency trying to attract international clients.",
+        button:
+          "Generate Ideas"
+      },
+
+      "ai-roadmap": {
+        title: "AI Roadmap",
+        description:
+          "Create a practical starting roadmap for using AI in a business.",
+        placeholder:
+          "Example: A small restaurant wants to use AI to improve marketing and customer service.",
+        button:
+          "Build Roadmap"
       }
-    );
 
-  } else {
+    };
 
-    /*
-     * Browser fallback.
-     */
 
-    revealElements.forEach(
-      function (element) {
+    /* =======================================================
+       10. AI GENERATORS
+       ======================================================= */
 
-        element.classList.add(
+    const cleanInput = (value) => {
+
+      return String(value || "")
+        .trim()
+        .replace(/\s+/g, " ")
+        .slice(0, 700);
+
+    };
+
+
+    const generateBusinessNames = (input) => {
+
+      const topic =
+        input || "your business";
+
+      return `
+        <strong>Business name directions</strong>
+
+        <br><br>
+
+        <b>01 — ${topic} Studio</b><br>
+        A clean, modern name structure suitable for a premium brand.
+
+        <br><br>
+
+        <b>02 — ${topic} Labs</b><br>
+        Works well for technology, innovation or AI-focused positioning.
+
+        <br><br>
+
+        <b>03 — ${topic} Collective</b><br>
+        Useful for a creative, community or multi-service business.
+
+        <br><br>
+
+        <b>04 — ${topic} Works</b><br>
+        A flexible professional naming direction for a service business.
+
+        <br><br>
+
+        <b>Tip:</b> Before using a name commercially, check domain,
+        social-media and trademark availability.
+      `;
+
+    };
+
+
+    const generateWebsiteConcept = (input) => {
+
+      const topic =
+        input || "your business";
+
+      return `
+        <strong>Website concept</strong>
+
+        <br><br>
+
+        <b>Hero:</b><br>
+        Clearly explain what ${topic} does and who it helps.
+
+        <br><br>
+
+        <b>Trust section:</b><br>
+        Show results, experience, testimonials, certifications or
+        relevant proof.
+
+        <br><br>
+
+        <b>Services:</b><br>
+        Present the main services using short explanations and
+        clear outcomes.
+
+        <br><br>
+
+        <b>Process:</b><br>
+        Explain how a customer moves from first contact to completion.
+
+        <br><br>
+
+        <b>CTA:</b><br>
+        Give visitors one obvious next action such as
+        "Get a Quote", "Book a Call" or "Start a Project".
+      `;
+
+    };
+
+
+    const generateContentIdeas = (input) => {
+
+      const topic =
+        input || "your brand";
+
+      return `
+        <strong>Content ideas for ${topic}</strong>
+
+        <br><br>
+
+        <b>01.</b> The biggest mistake customers make before buying.
+
+        <br><br>
+
+        <b>02.</b> A simple before-and-after transformation.
+
+        <br><br>
+
+        <b>03.</b> Three things beginners should know.
+
+        <br><br>
+
+        <b>04.</b> Behind the scenes: how the business actually works.
+
+        <br><br>
+
+        <b>05.</b> A common industry myth — followed by the facts.
+
+        <br><br>
+
+        <b>06.</b> A short customer problem → solution story.
+
+        <br><br>
+
+        <b>07.</b> A quick educational carousel or short-form video.
+      `;
+
+    };
+
+
+    const generateAIRoadmap = (input) => {
+
+      const topic =
+        input || "your business";
+
+      return `
+        <strong>Practical AI roadmap</strong>
+
+        <br><br>
+
+        <b>Step 1 — Identify repetitive work</b><br>
+        List tasks such as writing, research, customer replies,
+        reporting and administration.
+
+        <br><br>
+
+        <b>Step 2 — Start with low-risk automation</b><br>
+        Use AI for drafting, summarising, brainstorming and
+        information organisation.
+
+        <br><br>
+
+        <b>Step 3 — Create reusable workflows</b><br>
+        Turn successful tasks into repeatable processes.
+
+        <br><br>
+
+        <b>Step 4 — Measure the result</b><br>
+        Track time saved, quality, response speed and customer
+        experience.
+
+        <br><br>
+
+        <b>Step 5 — Expand carefully</b><br>
+        Only automate more important processes after testing
+        the earlier workflow.
+
+        <br><br>
+
+        <b>Business context:</b> ${topic}
+      `;
+
+    };
+
+
+    const generateToolResult = (
+      toolKey,
+      input
+    ) => {
+
+      switch (toolKey) {
+
+        case "business-name":
+          return generateBusinessNames(input);
+
+        case "website-concept":
+          return generateWebsiteConcept(input);
+
+        case "content-spark":
+          return generateContentIdeas(input);
+
+        case "ai-roadmap":
+          return generateAIRoadmap(input);
+
+        default:
+          return `
+            <strong>Let's build something.</strong>
+            <br><br>
+            Enter a little more information and try again.
+          `;
+
+      }
+
+    };
+
+
+    /* =======================================================
+       11. OPEN AI TOOL MODAL
+       ======================================================= */
+
+    let activeTool = null;
+
+
+    const openTool = (toolKey) => {
+
+      if (!toolModal) return;
+
+      const tool =
+        tools[toolKey];
+
+      if (!tool) return;
+
+      activeTool = toolKey;
+
+      if (toolTitle) {
+        toolTitle.textContent =
+          tool.title;
+      }
+
+      if (toolDescription) {
+        toolDescription.textContent =
+          tool.description;
+      }
+
+      if (toolInput) {
+
+        toolInput.value = "";
+
+        toolInput.placeholder =
+          tool.placeholder;
+
+      }
+
+      if (toolGenerate) {
+
+        toolGenerate.textContent =
+          tool.button;
+
+      }
+
+      if (toolResult) {
+
+        toolResult.innerHTML = "";
+
+        toolResult.classList.remove(
           "visible"
         );
 
       }
-    );
 
-  }
+      toolModal.classList.add("open");
 
-
-  /* =======================================================
-     SMOOTH ANCHOR NAVIGATION
-     ======================================================= */
-
-  document
-    .querySelectorAll('a[href^="#"]')
-    .forEach(
-      function (link) {
-
-        link.addEventListener(
-          "click",
-          function (event) {
-
-            const targetId =
-              link.getAttribute("href");
-
-            if (
-              !targetId ||
-              targetId === "#"
-            ) {
-
-              return;
-
-            }
-
-            let target = null;
-
-            try {
-
-              target =
-                document.querySelector(
-                  targetId
-                );
-
-            } catch (error) {
-
-              return;
-
-            }
-
-            if (!target) return;
-
-            event.preventDefault();
-
-            target.scrollIntoView({
-              behavior: "smooth",
-              block: "start"
-            });
-
-          }
-        );
-
-      }
-    );
-
-
-  /* =======================================================
-     AI STUDIO CONFIGURATION
-     ======================================================= */
-
-  const toolData = {
-
-    "business-name": {
-
-      icon: "✦",
-
-      eyebrow:
-        "AI BUSINESS TOOL",
-
-      title:
-        "Business Name Generator",
-
-      description:
-        "Give us a short description of your business and generate name directions you can explore.",
-
-      label:
-        "What does your business do?",
-
-      placeholder:
-        "Example: A premium streetwear brand for young entrepreneurs."
-
-    },
-
-
-    "website-concept": {
-
-      icon: "◇",
-
-      eyebrow:
-        "AI WEBSITE TOOL",
-
-      title:
-        "Website Concept Generator",
-
-      description:
-        "Describe your business and we'll create a starting direction for your website.",
-
-      label:
-        "Describe your business or idea",
-
-      placeholder:
-        "Example: A Botswana-based construction company serving commercial clients."
-
-    },
-
-
-    "content-spark": {
-
-      icon: "✎",
-
-      eyebrow:
-        "AI CONTENT TOOL",
-
-      title:
-        "Content Spark",
-
-      description:
-        "Get content directions you can use to start building your digital presence.",
-
-      label:
-        "What is your brand about?",
-
-      placeholder:
-        "Example: A fitness coach helping busy students get stronger."
-
-    },
-
-
-    "ai-roadmap": {
-
-      icon: "↗",
-
-      eyebrow:
-        "AI STRATEGY TOOL",
-
-      title:
-        "AI Roadmap",
-
-      description:
-        "Identify practical ways AI could support your business, workflow or customer experience.",
-
-      label:
-        "What does your business currently do?",
-
-      placeholder:
-        "Example: I run a small online clothing store and manage orders manually."
-
-    }
-
-  };
-
-
-  let activeTool = null;
-
-
-  /* =======================================================
-     OPEN AI TOOL
-     ======================================================= */
-
-  const openTool = function (toolKey) {
-
-    if (!toolModal) return;
-
-    const data =
-      toolData[toolKey];
-
-    if (!data) return;
-
-    activeTool = toolKey;
-
-
-    if (toolModalIcon) {
-
-      toolModalIcon.textContent =
-        data.icon;
-
-    }
-
-
-    if (toolModalEyebrow) {
-
-      toolModalEyebrow.textContent =
-        data.eyebrow;
-
-    }
-
-
-    if (toolModalTitle) {
-
-      toolModalTitle.textContent =
-        data.title;
-
-    }
-
-
-    if (toolModalDescription) {
-
-      toolModalDescription.textContent =
-        data.description;
-
-    }
-
-
-    if (toolInputLabel) {
-
-      toolInputLabel.textContent =
-        data.label;
-
-    }
-
-
-    if (toolInput) {
-
-      toolInput.value = "";
-
-      toolInput.placeholder =
-        data.placeholder;
-
-    }
-
-
-    if (toolResult) {
-
-      toolResult.classList.remove(
-        "show"
+      toolModal.setAttribute(
+        "aria-hidden",
+        "false"
       );
 
-      toolResult.innerHTML = "";
+      document.body.style.overflow =
+        "hidden";
 
-    }
-
-
-    if (toolGenerate) {
-
-      toolGenerate.disabled = false;
-
-      toolGenerate.innerHTML =
-        'Generate <span>✦</span>';
-
-    }
-
-
-    toolModal.classList.add(
-      "active"
-    );
-
-    toolModal.setAttribute(
-      "aria-hidden",
-      "false"
-    );
-
-    document.body.classList.add(
-      "modal-open"
-    );
-
-
-    window.setTimeout(
-      function () {
+      window.setTimeout(() => {
 
         if (toolInput) {
-
           toolInput.focus();
-
         }
 
-      },
-      250
-    );
+      }, 100);
 
-  };
+    };
 
 
-  /* =======================================================
-     CLOSE AI TOOL
-     ======================================================= */
+    /* =======================================================
+       12. CLOSE AI TOOL MODAL
+       ======================================================= */
 
-  const closeTool = function () {
+    const closeTool = () => {
 
-    if (!toolModal) return;
+      if (!toolModal) return;
 
-    toolModal.classList.remove(
-      "active"
-    );
-
-    toolModal.setAttribute(
-      "aria-hidden",
-      "true"
-    );
-
-    document.body.classList.remove(
-      "modal-open"
-    );
-
-    activeTool = null;
-
-  };
-
-
-  /* =======================================================
-     TOOL BUTTON EVENTS
-     ======================================================= */
-
-  toolButtons.forEach(
-    function (button) {
-
-      button.addEventListener(
-        "click",
-        function () {
-
-          const tool =
-            button.getAttribute(
-              "data-tool"
-            );
-
-          if (!tool) return;
-
-          openTool(tool);
-
-        }
+      toolModal.classList.remove(
+        "open"
       );
 
-    }
-  );
+      toolModal.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      document.body.style.overflow = "";
+
+      activeTool = null;
+
+    };
 
 
-  if (toolModalClose) {
+    /* =======================================================
+       13. AI TOOL BUTTONS
+       ======================================================= */
 
-    toolModalClose.addEventListener(
+    $$(".tool-button").forEach((button) => {
+
+      on(button, "click", () => {
+
+        const toolKey =
+          button.dataset.tool ||
+          button.getAttribute(
+            "data-tool"
+          );
+
+        if (!toolKey) return;
+
+        openTool(toolKey);
+
+      });
+
+    });
+
+
+    /* =======================================================
+       14. AI TOOL GENERATE
+       ======================================================= */
+
+    on(toolGenerate, "click", () => {
+
+      if (!activeTool) return;
+
+      const input =
+        cleanInput(
+          toolInput
+            ? toolInput.value
+            : ""
+        );
+
+      const result =
+        generateToolResult(
+          activeTool,
+          input
+        );
+
+      if (!toolResult) return;
+
+      toolResult.innerHTML =
+        result;
+
+      toolResult.classList.add(
+        "visible"
+      );
+
+      toolResult.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+      });
+
+    });
+
+
+    /* =======================================================
+       15. ENTER KEY IN AI TOOL
+       ======================================================= */
+
+    on(toolInput, "keydown", (event) => {
+
+      if (
+        event.key === "Enter" &&
+        (event.ctrlKey || event.metaKey)
+      ) {
+
+        event.preventDefault();
+
+        if (toolGenerate) {
+          toolGenerate.click();
+        }
+
+      }
+
+    });
+
+
+    /* =======================================================
+       16. CLOSE MODAL
+       ======================================================= */
+
+    on(
+      toolModalClose,
       "click",
       closeTool
     );
 
-  }
-
-
-  if (toolModalBackdrop) {
-
-    toolModalBackdrop.addEventListener(
+    on(
+      toolModalBackdrop,
       "click",
       closeTool
     );
 
-  }
 
-
-  /* =======================================================
-     ESCAPE KEY
-     ======================================================= */
-
-  document.addEventListener(
-    "keydown",
-    function (event) {
+    on(document, "keydown", (event) => {
 
       if (
         event.key === "Escape" &&
         toolModal &&
-        toolModal.classList.contains(
-          "active"
-        )
+        toolModal.classList.contains("open")
       ) {
 
         closeTool();
 
       }
 
-    }
-  );
+    });
 
 
-  /* =======================================================
-     INPUT HELPERS
-     ======================================================= */
+    /* =======================================================
+       17. HERO VISUAL INTERACTION
+       
+       Desktop only.
+       Disabled on touch devices to prevent mobile
+       layout problems.
+       ======================================================= */
 
-  const cleanInput = function (value) {
+    const supportsHover =
+      window.matchMedia &&
+      window.matchMedia(
+        "(hover: hover) and (pointer: fine)"
+      ).matches;
 
-    return value
-      .trim()
-      .replace(/\s+/g, " ");
 
-  };
+    if (
+      heroVisual &&
+      supportsHover
+    ) {
 
+      const visualFrame =
+        $(".visual-frame", heroVisual);
 
-  const capitalizeWords = function (text) {
+      if (visualFrame) {
 
-    return text
-      .split(" ")
-      .map(
-        function (word) {
-
-          if (!word) return "";
-
-          return (
-            word.charAt(0).toUpperCase() +
-            word.slice(1)
-          );
-
-        }
-      )
-      .join(" ");
-
-  };
-
-
-  /* =======================================================
-     BUSINESS NAME GENERATOR
-     ======================================================= */
-
-  const generateBusinessNames =
-    function (input) {
-
-      const words =
-        input
-          .replace(/[^\w\s]/g, "")
-          .split(" ")
-          .filter(Boolean);
-
-      const first =
-        words[0]
-          ? capitalizeWords(words[0])
-          : "Nova";
-
-      const second =
-        words[1]
-          ? capitalizeWords(words[1])
-          : "Labs";
-
-
-      return `
-        <strong>Possible directions</strong>
-
-        <ul>
-          <li>${first} Digital</li>
-          <li>${first} ${second}</li>
-          <li>${first} Labs</li>
-          <li>${second} Studio</li>
-          <li>${first} Collective</li>
-        </ul>
-
-        <small>
-          These are creative starting points — check
-          trademark, domain and social availability
-          before choosing a final name.
-        </small>
-      `;
-
-    };
-
-
-  /* =======================================================
-     WEBSITE CONCEPT GENERATOR
-     ======================================================= */
-
-  const generateWebsiteConcept =
-    function (input) {
-
-      return `
-        <strong>
-          Suggested website direction
-        </strong>
-
-        <p>
-          <b>Positioning:</b>
-          Present ${input} as a modern, trustworthy
-          solution with a clear value proposition.
-        </p>
-
-        <p>
-          <b>Hero:</b>
-          A strong headline explaining the main customer
-          benefit, followed by one primary call-to-action.
-        </p>
-
-        <p>
-          <b>Core sections:</b>
-          Services, benefits, how it works, proof/results,
-          FAQ and a clear contact or enquiry section.
-        </p>
-
-        <p>
-          <b>Conversion goal:</b>
-          Make it immediately obvious what the visitor
-          should do next.
-        </p>
-      `;
-
-    };
-
-
-  /* =======================================================
-     CONTENT SPARK
-     ======================================================= */
-
-  const generateContentSpark =
-    function (input) {
-
-      return `
-        <strong>
-          Content ideas for your brand
-        </strong>
-
-        <ol>
-
-          <li>
-            <b>The Problem:</b>
-            Explain the biggest problem your audience faces.
-          </li>
-
-          <li>
-            <b>Behind the Scenes:</b>
-            Show how your product or service actually works.
-          </li>
-
-          <li>
-            <b>Quick Win:</b>
-            Give your audience one useful tip they can
-            implement immediately.
-          </li>
-
-          <li>
-            <b>Myth vs Reality:</b>
-            Challenge a common misconception in your industry.
-          </li>
-
-          <li>
-            <b>Customer Story:</b>
-            Show a real transformation, result or experience.
-          </li>
-
-        </ol>
-
-        <small>
-          Brand context:
-          ${input}
-        </small>
-      `;
-
-    };
-
-
-  /* =======================================================
-     AI ROADMAP
-     ======================================================= */
-
-  const generateAIRoadmap =
-    function (input) {
-
-      return `
-        <strong>
-          Potential AI opportunities
-        </strong>
-
-        <ol>
-
-          <li>
-            <b>Automate repetitive tasks</b>
-            such as data entry, follow-ups or routine communication.
-          </li>
-
-          <li>
-            <b>Improve customer support</b>
-            with an AI-assisted FAQ or knowledge system.
-          </li>
-
-          <li>
-            <b>Speed up content creation</b>
-            using structured AI workflows.
-          </li>
-
-          <li>
-            <b>Organize information</b>
-            so important business data can be found faster.
-          </li>
-
-          <li>
-            <b>Build a simple dashboard</b>
-            for tracking useful business metrics.
-          </li>
-
-        </ol>
-
-        <small>
-          Business context:
-          ${input}
-        </small>
-      `;
-
-    };
-
-
-  /* =======================================================
-     GENERATE TOOL RESULT
-     ======================================================= */
-
-  const generateToolResult =
-    function () {
-
-      if (!activeTool) return;
-
-      const input =
-        toolInput
-          ? cleanInput(toolInput.value)
-          : "";
-
-
-      if (!input) {
-
-        if (toolResult) {
-
-          toolResult.innerHTML = `
-            <strong>
-              Give us a little more information.
-            </strong>
-
-            <p>
-              Enter a short description above so the tool
-              can generate a useful starting point.
-            </p>
-          `;
-
-          toolResult.classList.add(
-            "show"
-          );
-
-        }
-
-        return;
-
-      }
-
-
-      if (toolGenerate) {
-
-        toolGenerate.disabled = true;
-
-        toolGenerate.innerHTML =
-          "Generating...";
-
-      }
-
-
-      if (toolResult) {
-
-        toolResult.classList.remove(
-          "show"
-        );
-
-        toolResult.innerHTML = "";
-
-      }
-
-
-      window.setTimeout(
-        function () {
-
-          let result = "";
-
-
-          switch (activeTool) {
-
-            case "business-name":
-
-              result =
-                generateBusinessNames(
-                  input
-                );
-
-              break;
-
-
-            case "website-concept":
-
-              result =
-                generateWebsiteConcept(
-                  input
-                );
-
-              break;
-
-
-            case "content-spark":
-
-              result =
-                generateContentSpark(
-                  input
-                );
-
-              break;
-
-
-            case "ai-roadmap":
-
-              result =
-                generateAIRoadmap(
-                  input
-                );
-
-              break;
-
-
-            default:
-
-              result = `
-                <strong>
-                  Something went wrong.
-                </strong>
-
-                <p>
-                  Please try again.
-                </p>
-              `;
-
-          }
-
-
-          if (toolResult) {
-
-            toolResult.innerHTML =
-              result;
-
-            toolResult.classList.add(
-              "show"
-            );
-
-          }
-
-
-          if (toolGenerate) {
-
-            toolGenerate.disabled = false;
-
-            toolGenerate.innerHTML =
-              'Generate <span>✦</span>';
-
-          }
-
-        },
-        650
-      );
-
-    };
-
-
-  if (toolGenerate) {
-
-    toolGenerate.addEventListener(
-      "click",
-      generateToolResult
-    );
-
-  }
-
-
-  /* =======================================================
-     ENTER / CTRL + ENTER
-     ======================================================= */
-
-  if (toolInput) {
-
-    toolInput.addEventListener(
-      "keydown",
-      function (event) {
-
-        if (
-          event.key === "Enter" &&
-          (event.ctrlKey || event.metaKey)
-        ) {
-
-          event.preventDefault();
-
-          generateToolResult();
-
-        }
-
-      }
-    );
-
-  }
-
-
-  /* =======================================================
-     FAQ
-     ======================================================= */
-
-  const faqItems =
-    document.querySelectorAll(
-      ".faq-item"
-    );
-
-
-  faqItems.forEach(
-    function (item) {
-
-      item.addEventListener(
-        "toggle",
-        function () {
-
-          if (!item.open) return;
-
-          faqItems.forEach(
-            function (otherItem) {
-
-              if (
-                otherItem !== item &&
-                otherItem.open
-              ) {
-
-                otherItem.open = false;
-
-              }
-
-            }
-          );
-
-        }
-      );
-
-    }
-  );
-
-
-  /* =======================================================
-     HERO VISUAL EFFECT
-     ======================================================= */
-
-  const heroVisual =
-    document.querySelector(
-      ".hero-visual"
-    );
-
-
-  if (
-    heroVisual &&
-    window.matchMedia &&
-    window.matchMedia(
-      "(pointer: fine)"
-    ).matches
-  ) {
-
-    const frame =
-      heroVisual.querySelector(
-        ".visual-frame"
-      );
-
-
-    if (frame) {
-
-      heroVisual.addEventListener(
-        "mousemove",
-        function (event) {
+        const moveVisual = (event) => {
 
           const rect =
             heroVisual.getBoundingClientRect();
 
-          if (
-            !rect.width ||
-            !rect.height
-          ) {
-
-            return;
-
-          }
-
-
           const x =
-            (event.clientX - rect.left) /
-            rect.width;
+            event.clientX -
+            rect.left;
 
           const y =
-            (event.clientY - rect.top) /
-            rect.height;
+            event.clientY -
+            rect.top;
 
+          const percentX =
+            (x / rect.width) - 0.5;
+
+          const percentY =
+            (y / rect.height) - 0.5;
 
           const rotateY =
-            (x - 0.5) * 5;
+            percentX * 5;
 
           const rotateX =
-            (0.5 - y) * 4;
+            percentY * -4;
+
+          visualFrame.style.transform =
+            `perspective(1300px)
+             rotateY(${rotateY}deg)
+             rotateX(${rotateX}deg)`;
+
+        };
 
 
-          frame.style.transform =
-            `
-            perspective(1300px)
-            rotateY(${rotateY - 2}deg)
-            rotateX(${rotateX}deg)
-            translateY(-3px)
-            `;
+        const resetVisual = () => {
 
-        }
-      );
+          visualFrame.style.transform =
+            "perspective(1300px) rotateY(-5deg) rotateX(2deg)";
+
+        };
 
 
-      heroVisual.addEventListener(
-        "mouseleave",
-        function () {
-
-          frame.style.transform =
-            `
-            perspective(1300px)
-            rotateY(-5deg)
-            rotateX(2deg)
-            `;
-
-        }
-      );
-
-    }
-
-  }
-
-
-  /* =======================================================
-     RESIZE SAFETY
-     ======================================================= */
-
-  /*
-   * If the user rotates a phone, resizes a browser,
-   * or changes between responsive layouts, close the
-   * mobile navigation when the viewport becomes wider.
-   */
-
-  window.addEventListener(
-    "resize",
-    function () {
-
-      if (
-        window.innerWidth > 900 &&
-        mainNav &&
-        menuToggle
-      ) {
-
-        mainNav.classList.remove(
-          "open"
+        on(
+          heroVisual,
+          "mousemove",
+          moveVisual
         );
 
-        menuToggle.classList.remove(
-          "active"
-        );
-
-        menuToggle.setAttribute(
-          "aria-expanded",
-          "false"
+        on(
+          heroVisual,
+          "mouseleave",
+          resetVisual
         );
 
       }
 
-    },
-    {
-      passive: true
     }
-  );
 
 
-  /* =======================================================
-     FINAL INITIALIZATION
-     ======================================================= */
+    /* =======================================================
+       18. FAQ
+       
+       Native <details>/<summary> is used by the HTML.
+       We intentionally do NOT replace it with custom
+       JavaScript because native behavior is safer.
+       ======================================================= */
 
-  updateHeader();
+    const faqItems =
+      $$(".faq-item");
 
-});
+
+    faqItems.forEach((item) => {
+
+      on(item, "toggle", () => {
+
+        if (!item.open) return;
+
+        faqItems.forEach((other) => {
+
+          if (
+            other !== item &&
+            other.open
+          ) {
+            other.open = false;
+          }
+
+        });
+
+      });
+
+    });
+
+
+    /* =======================================================
+       19. PHONE / TABLET SAFETY
+       ======================================================= */
+
+    const preventStaleMenuState = () => {
+
+      if (
+        window.innerWidth > 900
+      ) {
+
+        closeMenu();
+
+      }
+
+    };
+
+    on(
+      window,
+      "orientationchange",
+      preventStaleMenuState
+    );
+
+
+    /* =======================================================
+       20. FINAL INITIALIZATION
+       ======================================================= */
+
+    updateHeader();
+
+  };
+
+
+  /* =========================================================
+     21. START APPLICATION
+     ========================================================= */
+
+  if (
+    document.readyState === "loading"
+  ) {
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      init,
+      {
+        once: true
+      }
+    );
+
+  } else {
+
+    init();
+
+  }
+
+
+})();
