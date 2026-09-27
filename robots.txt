@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gomezdigital.github.io/gomez-digital/sitemap.xml
