@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title">
+  <title id="title">Gomez Digital — Digital Experiences That Move</title>
+  <defs>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb347"/><stop offset="1" stop-color="#ff7900"/></linearGradient>
+    <radialGradient id="halo"><stop offset="0" stop-color="#ff8a00" stop-opacity=".25"/><stop offset="1" stop-color="#0b0806" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0b0806"/><circle cx="1000" cy="170" r="430" fill="url(#halo)"/><circle cx="120" cy="630" r="360" fill="url(#halo)"/><path d="M0 510H1200" stroke="#ff8a00" stroke-opacity=".18"/>
+  <rect x="82" y="86" width="86" height="86" rx="22" fill="#14100d" stroke="#ff8a00" stroke-opacity=".6"/><text x="125" y="143" fill="url(#glow)" font-family="Arial,sans-serif" font-size="35" font-weight="800" text-anchor="middle">GD</text>
+  <text x="190" y="123" fill="#f7f3ef" font-family="Arial,sans-serif" font-size="28" font-weight="700" letter-spacing="1">GOMEZ DIGITAL</text><text x="190" y="154" fill="#b7aaa0" font-family="Arial,sans-serif" font-size="15" letter-spacing="4">DIGITAL STUDIO</text>
+  <text x="82" y="300" fill="#f7f3ef" font-family="Arial,sans-serif" font-size="68" font-weight="800">Digital experiences</text><text x="82" y="382" fill="url(#glow)" font-family="Arial,sans-serif" font-size="78" font-weight="800">that move.</text>
+  <text x="86" y="445" fill="#c9c0b8" font-family="Arial,sans-serif" font-size="25">Websites · AI Solutions · Automation · Digital Branding</text><rect x="84" y="495" width="220" height="5" rx="2.5" fill="url(#glow)"/><text x="84" y="550" fill="#8d8178" font-family="Arial,sans-serif" font-size="18" letter-spacing="3">BOTSWANA · WORLDWIDE</text>
+</svg>
