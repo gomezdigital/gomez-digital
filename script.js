@@ -473,7 +473,12 @@
       return String(value || "")
         .trim()
         .replace(/\s+/g, " ")
-        .slice(0, 700);
+        .slice(0, 700)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
 
     };
 
