@@ -90,8 +90,8 @@
     const toolModalClose = $("#toolModalClose");
     const toolModalBackdrop = $("#toolModalBackdrop");
 
-    const toolTitle = $("#toolTitle");
-    const toolDescription = $("#toolDescription");
+    const toolTitle = $("#toolModalTitle");
+    const toolDescription = $("#toolModalDescription");
     const toolInput = $("#toolInput");
     const toolGenerate = $("#toolGenerate");
     const toolResult = $("#toolResult");
@@ -1024,6 +1024,18 @@
       preventStaleMenuState
     );
 
+
+
+
+    /* =======================================================
+       20. CURRENT FOOTER YEAR
+       ======================================================= */
+
+    const currentYear = $("#currentYear");
+
+    if (currentYear) {
+      currentYear.textContent = String(new Date().getFullYear());
+    }
 
     /* =======================================================
        20. FINAL INITIALIZATION
