@@ -155,6 +155,7 @@
         class="menu-toggle"
         id="menuToggle"
         aria-label="Open navigation menu"
+        aria-controls="mainNav"
         aria-expanded="false"
       >
         <span></span>
@@ -163,7 +164,7 @@
       </button>
 
 
-      <nav class="main-nav" id="mainNav">
+      <nav class="main-nav" id="mainNav" aria-label="Main navigation">
 
         <a href="#home">Home</a>
 
@@ -481,14 +482,15 @@
             </h2>
 
             <p>
-              Use our free AI-powered concept tools to generate ideas,
-              explore website directions and map out opportunities before
-              starting your project.
+              Use our free interactive planning tools to explore business names,
+              website directions, content ideas and practical AI opportunities
+              before starting your project. These lightweight tools run directly
+              in your browser and give you a useful starting point.
             </p>
 
             <div class="ai-badge">
               <span>✦</span>
-              AI-assisted creative tools
+              FREE INTERACTIVE IDEA TOOLS
             </div>
 
           </div>
@@ -509,6 +511,7 @@
               </div>
 
               <button
+                type="button"
                 class="tool-button"
                 data-tool="business-name"
               >
@@ -715,8 +718,8 @@
       <h2>Ideas made<br><em>visible.</em></h2>
     </div>
     <p>
-      Real projects, practical digital experiences and focused builds designed
-      around what each business actually needs.
+      A selection of client work, studio projects and early-stage concepts — each
+      shaped around a clear purpose and a practical user experience.
     </p>
   </div>  <div class="work-grid"><article class="project project-large reveal">
   <div class="project-art art-hustla">
@@ -1201,10 +1204,13 @@
   <div
     class="tool-modal"
     id="toolModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="toolModalTitle"
     aria-hidden="true"
   >
 
-    <div class="tool-modal-backdrop" id="toolModalBackdrop"></div>
+    <div class="tool-modal-backdrop" id="toolModalBackdrop" aria-hidden="true"></div>
 
     <div class="tool-modal-box">
 
@@ -1245,6 +1251,7 @@
         ></textarea>
 
         <button
+          type="button"
           class="btn btn-primary"
           id="toolGenerate"
         >
