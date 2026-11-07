@@ -681,6 +681,7 @@
        ======================================================= */
 
     let activeTool = null;
+    let lastFocusedElement = null;
 
 
     const openTool = (toolKey) => {
@@ -692,6 +693,7 @@
 
       if (!tool) return;
 
+      lastFocusedElement = document.activeElement;
       activeTool = toolKey;
 
       if (toolTitle) {
@@ -771,6 +773,11 @@
       document.body.style.overflow = "";
 
       activeTool = null;
+
+      if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+        lastFocusedElement.focus();
+      }
+      lastFocusedElement = null;
 
     };
 
@@ -877,14 +884,31 @@
 
     on(document, "keydown", (event) => {
 
-      if (
-        event.key === "Escape" &&
-        toolModal &&
-        toolModal.classList.contains("open")
-      ) {
+      if (!toolModal || !toolModal.classList.contains("open")) return;
 
+      if (event.key === "Escape") {
         closeTool();
+        return;
+      }
 
+      if (event.key === "Tab") {
+        const focusable = $(
+          'button:not([disabled]), textarea:not([disabled]), input:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])',
+          toolModal
+        ).filter((element) => element.offsetParent !== null);
+
+        if (!focusable.length) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
       }
 
     });
