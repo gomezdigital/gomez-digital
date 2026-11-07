@@ -4801,3 +4801,201 @@ main,
 /* =========================================================
    END
    ========================================================= */
+
+
+/* =========================================================
+   30. EXPERIENCE POLISH — ACCESSIBILITY, CLARITY & FINISH
+   ========================================================= */
+
+:root {
+  --focus-ring: 0 0 0 4px rgba(255, 138, 0, 0.18);
+}
+
+html {
+  scroll-padding-top: calc(var(--header-height) + 18px);
+}
+
+body {
+  min-height: 100vh;
+}
+
+section[id] {
+  scroll-margin-top: calc(var(--header-height) + 16px);
+}
+
+::placeholder {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+a, button, input, textarea, select, summary {
+  touch-action: manipulation;
+}
+
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:where(a, button, input, textarea, select, summary):focus-visible {
+  outline: 2px solid var(--accent-light);
+  outline-offset: 4px;
+  box-shadow: var(--focus-ring);
+}
+
+.main-nav a[aria-current="location"] {
+  color: var(--accent-light);
+}
+
+.main-nav a[aria-current="location"]::after {
+  transform: scaleX(1);
+}
+
+.hero-description,
+.section-heading > p,
+.ai-copy > p,
+.about-copy > p,
+.cta-content > p {
+  text-wrap: pretty;
+}
+
+.service-card,
+.ai-tool,
+.project,
+.faq-item,
+.process-step {
+  isolation: isolate;
+}
+
+.service-card,
+.ai-tool,
+.project-info,
+.faq-item {
+  transition:
+    border-color 220ms ease,
+    background-color 220ms ease,
+    transform 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.service-card:hover,
+.ai-tool:hover,
+.project:hover {
+  border-color: rgba(255, 138, 0, 0.28);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.24);
+}
+
+.ai-tool {
+  min-width: 0;
+}
+
+.tool-content {
+  min-width: 0;
+}
+
+.tool-button,
+#toolGenerate,
+.tool-modal-close,
+.menu-toggle {
+  cursor: pointer;
+}
+
+.tool-button {
+  min-height: 44px;
+}
+
+#toolInput {
+  min-height: 124px;
+  line-height: 1.65;
+}
+
+.tool-result {
+  overflow-wrap: anywhere;
+}
+
+.tool-modal-box {
+  overscroll-behavior: contain;
+}
+
+.tool-modal.open .tool-modal-box {
+  will-change: transform;
+}
+
+.faq-item summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.site-footer a,
+.project-info a,
+.contact-actions a {
+  text-underline-offset: 4px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn,
+  .tool-button,
+  .main-nav a,
+  .footer-links a {
+    transition:
+      transform 220ms ease,
+      color 220ms ease,
+      background-color 220ms ease,
+      border-color 220ms ease,
+      box-shadow 220ms ease;
+  }
+
+  .tool-button:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@media (max-width: 900px) {
+  .main-nav {
+    max-height: min(0px, calc(100svh - var(--header-height) - 24px));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .main-nav.open {
+    max-height: min(620px, calc(100svh - var(--header-height) - 24px));
+  }
+}
+
+@media (max-width: 700px) {
+  .section-heading {
+    margin-bottom: 32px;
+  }
+
+  .hero-trust {
+    row-gap: 14px;
+  }
+
+  .tool-modal {
+    align-items: flex-end;
+  }
+
+  .tool-modal-box {
+    max-height: calc(100svh - 24px);
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+  }
+
+  .cta-actions .btn {
+    min-height: 50px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-card,
+  .ai-tool,
+  .project,
+  .faq-item {
+    transition: none;
+  }
+}
+
+/* =========================================================
+   END EXPERIENCE POLISH
+   ========================================================= */
